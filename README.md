@@ -9,3 +9,4 @@ This is my first Flutter project.
 - Theme changing
 
 LHSang - Mobile Application Engineer Intern.
+ dart fix --dry-run
