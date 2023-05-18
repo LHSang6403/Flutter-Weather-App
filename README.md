@@ -8,4 +8,4 @@ This is my first Flutter project.
 - Remove location
 - Theme changing
 
-LHSang.
+LHSang - Mobile Application Engineer Intern.
