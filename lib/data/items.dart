@@ -10,41 +10,71 @@ class Item {
 
   Item(this._id, this._status, this._temperature, this._address);
 
-  String getName() => _status;
+  String getStatus() => _status;
   int getId() => _id;
   double getTemperature() => _temperature;
   String getAddress() => _address;
 }
 
-final List<Item> items = [];
+class Data {
+  List<Item> items = [];
 
-Future<void> fetchWeatherData(String location) async {
-  String apiKey = '35e9d955b0c34e0c81a35131231905';
-  final url =
-      'https://api.weatherapi.com/v1/current.json?key=$apiKey&q=$location';
+  Data() {
+    items = [];
+  }
 
-  final response = await http.get(Uri.parse(url));
+  Future<Map<String, dynamic>> fetchWeatherData(String location) async {
+    String apiKey =
+        '35e9d955b0c34e0c81a35131231905'; // Replace with your actual API key
+    final url =
+        'https://api.weatherapi.com/v1/current.json?key=$apiKey&q=$location';
 
-  if (response.statusCode == 200) {
-    final data = jsonDecode(response.body);
-    final tempC = data['current']['temp_c'];
-    final condition = data['current']['condition']['text'];
+    final response = await http.get(Uri.parse(url));
 
-    var item = Item(getCurrentDateAsInt(), condition, tempC, location);
-    items.add(item);
-  } else {
-    throw Exception('Failed to fetch weather data');
+    if (response.statusCode == 200) {
+      final data = jsonDecode(response.body);
+      return data;
+    } else {
+      throw Exception('Failed to fetch weather data');
+    }
+  }
+
+  void dataHandleAdd(String location) async {
+    try {
+      final weatherData = await fetchWeatherData(location);
+      final tempC = weatherData['current']['temp_c'];
+      final condition = weatherData['current']['condition']['text'];
+
+      //print('Weather:');
+      //print('Temp C: $tempC');
+      //print('Condition: $condition');
+
+      var item = Item(getCurrentDateAsInt(), condition, tempC, location);
+      items.add(item);
+      PrintOut();
+    } catch (e) {
+      print('Error: $e');
+    }
+  }
+
+  void PrintOut() {
+    print('List:');
+    items.forEach((item) {
+      print(item.getId());
+      print(item.getStatus());
+      print(item.getTemperature());
+      print(item.getAddress());
+      print('--');
+    });
+    print('\n');
   }
 }
 
-void handleFetch(String location) async {
-  await fetchWeatherData(location);
-}
-// adding func just call handleFetch(location) to add new item with weather info to list
+void main() {
+  Data temp = Data();
 
-main() {
-  handleFetch('London');
-  handleFetch('Newyork');
-
-  print(items);
+  temp.dataHandleAdd('Hanoi');
+  temp.dataHandleAdd('New York');
+  temp.dataHandleAdd('Paris');
+  temp.dataHandleAdd('San Jose');
 }

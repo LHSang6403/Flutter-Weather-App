@@ -35,7 +35,7 @@ class CardBody extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Text(
-                      item.getName(),
+                      item.getStatus(),
                       style: const TextStyle(fontSize: 24, color: Colors.black),
                     ),
                     const SizedBox(

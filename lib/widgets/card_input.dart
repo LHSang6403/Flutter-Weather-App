@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:untitled/data/items.dart';
 
 class CardInput extends StatelessWidget {
   CardInput({
     Key? key,
     required this.addCard,
-    
   }) : super(key: key);
 
   final Function addCard;

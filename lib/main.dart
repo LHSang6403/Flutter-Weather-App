@@ -19,25 +19,27 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  
-
+  Data weatherData = Data();
   void _handleAddCard(String locationName) {
     // call api to get: status, temperature
-    int idAdd = getCurrentDateAsInt();
-    String statusAdd = 'unknow'; // api
-    double temperatureAdd = 0; // api
-    String locationAdd = locationName;
+    // int idAdd = getCurrentDateAsInt();
+    // String statusAdd = 'unknow'; // api
+    // double temperatureAdd = 0; // api
+    // String locationAdd = locationName;
 
-    var tempItem = Item(idAdd, statusAdd, temperatureAdd, locationAdd);
+    // var tempItem = Item(idAdd, statusAdd, temperatureAdd, locationAdd);
+    // setState(() {
+    //   //re-render _MyAppState when it has a change of this func add items
+    //   items.add(tempItem);
+    // });
     setState(() {
-      //re-render _MyAppState when it has a change of this func add items
-      items.add(tempItem);
+      weatherData.dataHandleAdd(locationName);
     });
   }
 
   void _handleDeleteCard(int id) {
     setState(() {
-      items.removeWhere((item) => id == item.getId());
+      weatherData.items.removeWhere((item) => id == item.getId());
     });
   }
 
@@ -53,7 +55,7 @@ class _MyAppState extends State<MyApp> {
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16),
         child: Column(
-          children: items
+          children: weatherData.items
               .map((item) => CardBody(
                     item: item,
                     deleteCard: _handleDeleteCard,
