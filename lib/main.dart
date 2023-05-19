@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'widgets/card_body.dart';
 import 'widgets/card_input.dart';
 import 'data/items.dart';
+import 'data/generate_id.dart';
 
 void main() {
   runApp(const MaterialApp(
@@ -18,17 +19,7 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  final List<Item> items = [
-    Item(1, 'Sunny', 30.0, 'HCM'),
-    Item(2, 'Rainy', 25.5, 'HN'),
-    Item(3, 'Cloudy', 28.5, 'DN'),
-  ];
-
-  int getCurrentDateAsInt() {
-    DateTime now = DateTime.now();
-    int currentDate = int.parse("${now.year}${now.month}${now.day}");
-    return currentDate;
-  }
+  
 
   void _handleAddCard(String locationName) {
     // call api to get: status, temperature
