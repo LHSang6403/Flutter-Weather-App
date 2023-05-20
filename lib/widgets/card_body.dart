@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
-//import 'package:flutter/cupertino.dart';
 import 'package:confirm_dialog/confirm_dialog.dart';
+import 'package:untitled/themes/themes.dart';
 
 class CardBody extends StatelessWidget {
+  //HandleColor handleColor;
+  final BuildContext parentContext;
+
   CardBody({
     Key? key,
     required this.item,
     required this.deleteCard,
+    required this.parentContext,
   }) : super(key: key);
 
   var item;
@@ -14,12 +18,17 @@ class CardBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    //final theme = Theme.of(parentContext);
+    //final primaryColor = theme.colorScheme.primary;
+    //final accentColor = theme.colorScheme.secondary;
+    //print(primaryColor);
+    //print(accentColor);
     return Container(
         width: double.infinity,
         height: 80,
         margin: const EdgeInsets.only(bottom: 12),
         decoration: BoxDecoration(
-          color: Colors.amber,
+          color: Colors.amberAccent, // need to use with theme in main.dart
           borderRadius: BorderRadius.circular(18),
         ),
         child: Padding(
@@ -68,7 +77,7 @@ class CardBody extends StatelessWidget {
                 width: 14,
               ),
               Text(
-                item.getAddress(),
+                item.getLocation(),
                 style: const TextStyle(fontSize: 16, color: Colors.black),
               ),
             ]),

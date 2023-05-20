@@ -1,25 +1,36 @@
 import 'package:flutter/material.dart';
 
 class Themes {
-  String primaryColor;
-  String backgroundColor;
-  
-  Themes(this.primaryColor, this.backgroundColor);
+  static final darkTheme = ThemeData(
+    scaffoldBackgroundColor: Colors.grey.shade900,
+    primaryColor: Colors.black,
+    colorScheme: const ColorScheme.dark(),
+    iconTheme: IconThemeData(color: Colors.purple.shade200, opacity: 0.8),
+  );
 
-  void changeColor(String newPrimaryColor, String newbackgroundColor) {
-    primaryColor = newPrimaryColor;
-    backgroundColor = newbackgroundColor;
+  static final lightTheme = ThemeData(
+    scaffoldBackgroundColor: Colors.white,
+    primaryColor: Colors.white,
+    colorScheme: const ColorScheme.light(),
+    iconTheme: const IconThemeData(color: Colors.red, opacity: 0.8),
+  );
+}
+
+class HandleColor {
+  late final Color primaryColor;
+  late final Color accentColor;
+
+  HandleColor(BuildContext context) {
+    final theme = Theme.of(context);
+    primaryColor = theme.colorScheme.primary;
+    accentColor = theme.colorScheme.secondary;
   }
-}
 
-class Light extends Themes {
-  Light() : super("#1C2833", "#FDFEFE");
-}
+  Color getSystemPrimaryColor() {
+    return primaryColor;
+  }
 
-class Dark extends Themes {
-  Dark() : super("##F0F3F4", "#2C3E50");
-}
-
-class Blue extends Themes {
-  Blue() : super("##E74C3C", "#85C1E9");
+  Color getSystemAccentColor() {
+    return accentColor;
+  }
 }

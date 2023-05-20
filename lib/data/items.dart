@@ -1,24 +1,11 @@
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'generate_id.dart';
-
-class Item {
-  final int _id;
-  final String _status;
-  final double _temperature;
-  final String _address;
-
-  Item(this._id, this._status, this._temperature, this._address);
-
-  String getStatus() => _status;
-  int getId() => _id;
-  double getTemperature() => _temperature;
-  String getAddress() => _address;
-}
+import 'package:untitled/main.dart';
+import 'item.dart';
 
 class Data {
   List<Item> items = [];
-
   Data() {
     items = [];
   }
@@ -45,10 +32,6 @@ class Data {
       final tempC = weatherData['current']['temp_c'];
       final condition = weatherData['current']['condition']['text'];
 
-      //print('Weather:');
-      //print('Temp C: $tempC');
-      //print('Condition: $condition');
-
       var item = Item(getCurrentDateAsInt(), condition, tempC, location);
       items.add(item);
       PrintOut();
@@ -59,22 +42,22 @@ class Data {
 
   void PrintOut() {
     print('List:');
-    items.forEach((item) {
+    for (var item in items) {
       print(item.getId());
       print(item.getStatus());
       print(item.getTemperature());
-      print(item.getAddress());
+      print(item.getLocation());
       print('--');
-    });
+    }
     print('\n');
   }
 }
 
-void main() {
-  Data temp = Data();
+// void main() {
+//   Data temp = Data();
 
-  temp.dataHandleAdd('Hanoi');
-  temp.dataHandleAdd('New York');
-  temp.dataHandleAdd('Paris');
-  temp.dataHandleAdd('San Jose');
-}
+//   temp.dataHandleAdd('Hanoi');
+//   temp.dataHandleAdd('New York');
+//   temp.dataHandleAdd('Paris');
+//   temp.dataHandleAdd('San Jose');
+// }
