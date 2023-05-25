@@ -26,7 +26,7 @@ class Data {
     }
   }
 
-  void dataHandleAdd(String location) async {
+  Future<void> dataHandleAdd(String location) async {
     try {
       final weatherData = await fetchWeatherData(location);
       final tempC = weatherData['current']['temp_c'];

@@ -29,12 +29,13 @@ class _MyAppState extends State<MyApp> {
   );
 
   Data weatherData = Data();
-  void _handleAddCard(String locationName) {
-    setState(() {
-      // late re-render error
-      print('setState, re-render');
-      weatherData.dataHandleAdd(locationName);
-    });
+  void _handleAddCard(String locationName) async {
+    //setState(() {
+    // late re-render error
+    print('setState, re-render');
+    await weatherData.dataHandleAdd(locationName);
+    setState(() {});
+    //});
   }
 
   void _handleDeleteCard(int id) {
