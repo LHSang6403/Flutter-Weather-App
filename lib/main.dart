@@ -1,3 +1,6 @@
+import 'theme/theme_loader.dart';
+import 'dart:convert';
+import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
 import 'widgets/card_body.dart';
 import 'widgets/card_input.dart';
@@ -18,6 +21,23 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+  @override
+  void initState() {
+    super.initState();
+    //ThemeDataModel tmp = ThemeDataModel();
+    loadJsonAsset();
+  }
+
+  Future<void> loadJsonAsset() async {
+    final String jsonString = await rootBundle.loadString('assets/themes.json');
+    final data = jsonDecode(jsonString);
+
+    ThemeDataModel themeData = ThemeDataModel();
+    themeData.parseThemes(data);
+    //print(themeData.listThemes[0].name);
+    //print(themeData.listThemes[1].name);
+  }
+
   ThemeData currentTheme = ThemeData.light();
 
   final modifiedTheme = ThemeData.light().copyWith(
@@ -30,18 +50,15 @@ class _MyAppState extends State<MyApp> {
 
   Data weatherData = Data();
   void _handleAddCard(String locationName) async {
-    //setState(() {
-    // late re-render error
-    print('setState, re-render');
+    //print('setState, re-render');
     await weatherData.dataHandleAdd(locationName);
     setState(() {});
-    //});
   }
 
   void _handleDeleteCard(int id) {
-    setState(() {
-      weatherData.items.removeWhere((item) => id == item.getId());
-    });
+    weatherData.items.removeWhere((item) => id == item.getId());
+    //print('setState, re-render');
+    setState(() {});
   }
 
   void toggleTheme() {

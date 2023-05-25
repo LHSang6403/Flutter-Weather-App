@@ -1,0 +1,18 @@
+{
+    "themes": [
+      {
+        "name": "dark",
+        "primaryColor": "#000000",
+        "accentColor": "#FF4081",
+        "otherColor1": "#082c6c",
+        "otherColor2": "#444444"
+      },
+      {
+        "name": "light",
+        "primaryColor": "#FFFFFF",
+        "accentColor": "#39ace7",
+        "otherColor1": "#0784b5",
+        "otherColor2": "#cadeef"
+      }
+    ]
+  }

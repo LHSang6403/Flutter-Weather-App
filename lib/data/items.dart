@@ -1,8 +1,8 @@
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'generate_id.dart';
-import 'package:untitled/main.dart';
 import 'item.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 class Data {
   List<Item> items = [];
@@ -11,10 +11,11 @@ class Data {
   }
 
   Future<Map<String, dynamic>> fetchWeatherData(String location) async {
-    String apiKey =
-        '35e9d955b0c34e0c81a35131231905'; // Replace with your actual API key
-    final url =
-        'https://api.weatherapi.com/v1/current.json?key=$apiKey&q=$location';
+    await dotenv.load(fileName: 'assets/.env');
+    String apiKey = dotenv.env['API_KEY'] ?? '';
+    String apiUrl = dotenv.env['API_URL'] ?? '';
+
+    final url = '$apiUrl=$apiKey&q=$location';
 
     final response = await http.get(Uri.parse(url));
 

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:confirm_dialog/confirm_dialog.dart';
-import 'package:untitled/themes/themes.dart';
+import '/./data/item.dart';
 
 class CardBody extends StatelessWidget {
   //HandleColor handleColor;
@@ -13,22 +12,51 @@ class CardBody extends StatelessWidget {
     required this.parentContext,
   }) : super(key: key);
 
-  var item;
+  Item item;
   final Function deleteCard;
+  Future<void> _dialogBuilder(BuildContext context) {
+    return showDialog<void>(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Confirmation'),
+          content: const Text(
+            'Remove this weather card',
+          ),
+          actions: <Widget>[
+            TextButton(
+              style: TextButton.styleFrom(
+                textStyle: Theme.of(context).textTheme.labelLarge,
+              ),
+              child: const Text('Cancel'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+            TextButton(
+              style: TextButton.styleFrom(
+                textStyle: Theme.of(context).textTheme.labelLarge,
+              ),
+              child: const Text('OK'),
+              onPressed: () {
+                deleteCard(item.getId());
+                Navigator.pop(context, true);
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
-    //final theme = Theme.of(parentContext);
-    //final primaryColor = theme.colorScheme.primary;
-    //final accentColor = theme.colorScheme.secondary;
-    //print(primaryColor);
-    //print(accentColor);
     return Container(
         width: double.infinity,
         height: 80,
         margin: const EdgeInsets.only(bottom: 12),
         decoration: BoxDecoration(
-          color: Colors.amberAccent, // need to use with theme in main.dart
+          color: Colors.amberAccent,
           borderRadius: BorderRadius.circular(18),
         ),
         child: Padding(
@@ -59,10 +87,13 @@ class CardBody extends StatelessWidget {
                 InkWell(
                   onTap: () async {
                     // pop-up comfirm
-                    if (await confirm(context)) {
-                      deleteCard(item.getId());
-                    }
-                    return;
+                    //bool isConfirm = await confirm(context);
+                    // confirm(context).then((value) {
+                    //   if (value) {
+                    //     deleteCard(item.getId());
+                    //   }
+                    // });
+                    _dialogBuilder(context);
                   },
                   child: const Icon(
                     Icons.remove_circle,
