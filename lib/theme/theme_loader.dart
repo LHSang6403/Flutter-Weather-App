@@ -1,3 +1,14 @@
+import 'package:flutter/material.dart';
+
+int convertHexToInt(String hexColor) {
+  return int.parse(hexColor.substring(1), radix: 16);
+}
+
+Color convertHexToColor(String hexColor) {
+  final int colorValue = int.parse(hexColor.substring(1), radix: 16);
+  return Color(colorValue);
+}
+
 class customTheme {
   String name;
   String primaryColor;
@@ -56,11 +67,11 @@ class ThemeDataModel {
       // print(otherColor2);
 
       var themeTemp = customTheme(
-        name: name,
-        primaryColor: primaryColor,
-        accentColor: accentColor,
-        otherColor1: otherColor1,
-        otherColor2: otherColor2);
+          name: name,
+          primaryColor: primaryColor,
+          accentColor: accentColor,
+          otherColor1: otherColor1,
+          otherColor2: otherColor2);
       listThemes.add(themeTemp);
     }
   }

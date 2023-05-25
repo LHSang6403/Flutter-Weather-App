@@ -2,7 +2,7 @@
     "themes": [
       {
         "name": "dark",
-        "primaryColor": "#000000",
+        "primaryColor": "#000001",
         "accentColor": "#FF4081",
         "otherColor1": "#082c6c",
         "otherColor2": "#444444"
