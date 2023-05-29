@@ -2,10 +2,10 @@ import 'theme/theme_loader.dart';
 import 'dart:convert';
 import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
-import 'widgets/card_body.dart';
-import 'widgets/card_input.dart';
 import 'data/items.dart';
-//import 'widgets/bottom_bar.dart';
+import 'package:untitled/pages/search_page.dart';
+import 'package:untitled/pages/setting_page.dart';
+import 'package:untitled/pages/home_page.dart';
 
 ThemeDataModel themeData = ThemeDataModel();
 
@@ -24,11 +24,18 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  @override
+  Data weatherData = Data();
+
   void initState() {
     super.initState();
     //ThemeDataModel tmp = ThemeDataModel();
     loadJsonAsset();
+
+    _pages.add(HomePage(weatherData: weatherData));
+    _pages.add(SearchPage(
+      addCard: _handleAddCard,
+    ));
+    _pages.add(SettingsPage());
   }
 
   Future<void> loadJsonAsset() async {
@@ -38,91 +45,35 @@ class _MyAppState extends State<MyApp> {
     themeData.parseThemes(data);
     //print(themeData.listThemes);
     //print(themeData.listThemes[0].primaryColor);
-    print(convertHexToColor(themeData.listThemes[1].primaryColor));
+    //print(convertHexToColor(themeData.listThemes[1].primaryColor));
     //print(themeData.listThemes[1].name);
   }
 
-  Data weatherData = Data();
   void _handleAddCard(String locationName) async {
     await weatherData.dataHandleAdd(locationName);
     setState(() {});
   }
 
-  void _handleDeleteCard(int id) {
-    weatherData.items.removeWhere((item) => id == item.getId());
-    setState(() {});
-  }
-
-  void toggleTheme() {
-    //print(currentTheme);
-    // setState(() {
-    //   if (currentTheme == ThemeData.light()) {
-    //     currentTheme = ThemeData.dark();
-    //   } else {
-    //     currentTheme = ThemeData.light();
-    //   }
-    // });
-  }
-
   int _currentIndex = 0;
+  final List<Widget> _pages = [];
+
   void _onTabTapped(int index) {
     setState(() {
       _currentIndex = index;
+      //print(_currentIndex);
     });
-
-    // Perform additional actions based on the selected tab
-    switch (index) {
-      case 0:
-        break;
-      case 1:
-        showModalBottomSheet(
-          isScrollControlled: true,
-          context: context,
-          backgroundColor: Colors.white,
-          shape: const RoundedRectangleBorder(
-              borderRadius: BorderRadius.vertical(top: Radius.circular(20))),
-          builder: (BuildContext content) {
-            // context means the position where we want to show this modal -> MyApp
-            return CardInput(addCard: _handleAddCard);
-          },
-        );
-        break;
-      case 2:
-        break;
-    }
   }
 
   @override
   Widget build(BuildContext context) {
-    //print(themeData.listThemes[0].primaryColor);
     return MaterialApp(
-      //theme: Color(convertHexToInt(themeData.listThemes[0].primaryColor)),
       home: Scaffold(
-        appBar: AppBar(
-            title: const Text(
-              'Weather Api App',
-              style: TextStyle(fontSize: 30),
-            ),
-            backgroundColor: (themeData.listThemes.isNotEmpty)
-                ? convertHexToColor(themeData.listThemes[1].primaryColor)
-                : (Colors.red)), // can not read themeData
-        body: SingleChildScrollView(
-          padding: const EdgeInsets.all(16),
-          child: Column(
-            children: weatherData.items
-                .map((item) => CardBody(
-                      item: item,
-                      deleteCard: _handleDeleteCard,
-                      parentContext: context,
-                    ))
-                .toList(),
-          ),
-        ),
+        body: _pages[_currentIndex],
         bottomNavigationBar: BottomNavigationBar(
           currentIndex: _currentIndex,
           onTap: _onTabTapped,
           backgroundColor: Colors.blue,
-          selectedFontSize: 12,
+          selectedFontSize: 10,
           selectedIconTheme:
               const IconThemeData(color: Colors.amberAccent, size: 40),
           selectedItemColor: Colors.amberAccent,
