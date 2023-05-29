@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:autocomplete_textfield/autocomplete_textfield.dart';
+import 'package:untitled/main.dart';
 
 List<String> suggestionList = [];
 
@@ -53,7 +54,11 @@ class _SearchPageState extends State<SearchPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: const Text('Search'),
+          title: const Text(
+            'Search',
+            style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+          ),
+          backgroundColor: themeData.getPrimaryColor(indexThemeData),
         ),
         body: Padding(
           padding: const EdgeInsets.all(18),

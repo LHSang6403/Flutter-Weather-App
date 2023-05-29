@@ -8,6 +8,7 @@ import 'package:untitled/pages/setting_page.dart';
 import 'package:untitled/pages/home_page.dart';
 
 ThemeDataModel themeData = ThemeDataModel();
+int indexThemeData = 0;
 
 void main() {
   runApp(const MaterialApp(
@@ -28,7 +29,6 @@ class _MyAppState extends State<MyApp> {
 
   void initState() {
     super.initState();
-    //ThemeDataModel tmp = ThemeDataModel();
     loadJsonAsset();
 
     _pages.add(HomePage(weatherData: weatherData));
@@ -41,12 +41,9 @@ class _MyAppState extends State<MyApp> {
   Future<void> loadJsonAsset() async {
     final String jsonString = await rootBundle.loadString('assets/themes.json');
     final data = jsonDecode(jsonString);
-
     themeData.parseThemes(data);
-    //print(themeData.listThemes);
-    //print(themeData.listThemes[0].primaryColor);
-    //print(convertHexToColor(themeData.listThemes[1].primaryColor));
-    //print(themeData.listThemes[1].name);
+
+    print(data);
   }
 
   void _handleAddCard(String locationName) async {
@@ -72,12 +69,13 @@ class _MyAppState extends State<MyApp> {
         bottomNavigationBar: BottomNavigationBar(
           currentIndex: _currentIndex,
           onTap: _onTabTapped,
-          backgroundColor: Colors.blue,
+          backgroundColor: themeData.getPrimaryColor(indexThemeData),
           selectedFontSize: 10,
-          selectedIconTheme:
-              const IconThemeData(color: Colors.amberAccent, size: 40),
-          selectedItemColor: Colors.amberAccent,
+          selectedIconTheme: IconThemeData(
+              color: themeData.getAccentColor(indexThemeData), size: 40),
+          selectedItemColor: themeData.getAccentColor(indexThemeData),
           selectedLabelStyle: const TextStyle(fontWeight: FontWeight.bold),
+          unselectedItemColor: Colors.white70,
           items: const <BottomNavigationBarItem>[
             BottomNavigationBarItem(
               icon: Icon(Icons.home),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:untitled/data/items.dart';
-//import 'package:untitled/theme/theme_loader.dart';
+import 'package:untitled/main.dart';
+import 'package:untitled/theme/theme_loader.dart';
 import 'package:untitled/widgets/card_body.dart';
 
 class HomePage extends StatefulWidget {
@@ -20,7 +21,11 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: const Text('Home'),
+          title: const Text(
+            'Home',
+            style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+          ),
+          backgroundColor: themeData.getPrimaryColor(indexThemeData),
         ),
         body: SingleChildScrollView(
           padding: const EdgeInsets.all(16),

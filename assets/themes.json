@@ -8,8 +8,8 @@
         "otherColor2": "#444444"
       },
       {
-        "name": "light",
-        "primaryColor": "#FFFFFF",
+        "name": "custom1",
+        "primaryColor": "#1fbbff",
         "accentColor": "#39ace7",
         "otherColor1": "#0784b5",
         "otherColor2": "#cadeef"

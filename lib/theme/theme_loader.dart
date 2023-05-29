@@ -1,20 +1,12 @@
 import 'package:flutter/material.dart';
-
-int convertHexToInt(String hexColor) {
-  return int.parse(hexColor.substring(1), radix: 16);
-}
-
-Color convertHexToColor(String hexColor) {
-  final int colorValue = int.parse(hexColor.substring(1), radix: 16);
-  return Color(colorValue);
-}
+import 'package:untitled/theme/color_converter.dart';
 
 class customTheme {
   String name;
-  String primaryColor;
-  String accentColor;
-  String otherColor1;
-  String otherColor2;
+  Color primaryColor;
+  Color accentColor;
+  Color otherColor1;
+  Color otherColor2;
 
   customTheme(
       {required this.name,
@@ -25,11 +17,32 @@ class customTheme {
 }
 
 class ThemeDataModel {
-  //data Type
   List<customTheme> listThemes = [];
 
   ThemeDataModel() {
-    listThemes = [];
+    var defaultTheme = customTheme(
+        name: "Default",
+        primaryColor: HexColor("#0066cc"),
+        accentColor: HexColor("#FAFAFA"),
+        otherColor1: HexColor("#0784b5"),
+        otherColor2: HexColor("#cadeef"));
+    listThemes.add(defaultTheme);
+  }
+
+  Color getPrimaryColor(int index) {
+    return listThemes[index].primaryColor;
+  }
+
+  Color getAccentColor(int index) {
+    return listThemes[index].accentColor;
+  }
+
+  Color getColor1(int index) {
+    return listThemes[index].otherColor1;
+  }
+
+  Color getColor2(int index) {
+    return listThemes[index].otherColor2;
   }
 
   void handleReadOneTheme(Map<String, dynamic> eachTheme) {
@@ -42,11 +55,12 @@ class ThemeDataModel {
     final String otherColor2 = eachTheme['themes']['otherColor2'];
 
     var theme = customTheme(
-        name: name,
-        primaryColor: primaryColor,
-        accentColor: accentColor,
-        otherColor1: otherColor1,
-        otherColor2: otherColor2);
+      name: name,
+      primaryColor: HexColor(primaryColor),
+      accentColor: HexColor(accentColor),
+      otherColor1: HexColor(otherColor1),
+      otherColor2: HexColor(otherColor2),
+    );
     listThemes.add(theme);
   }
 
@@ -60,18 +74,12 @@ class ThemeDataModel {
       final String otherColor1 = themeJson['otherColor1'] as String;
       final String otherColor2 = themeJson['otherColor2'] as String;
 
-      // print(name);
-      // print(primaryColor);
-      // print(accentColor);
-      // print(otherColor1);
-      // print(otherColor2);
-
       var themeTemp = customTheme(
           name: name,
-          primaryColor: primaryColor,
-          accentColor: accentColor,
-          otherColor1: otherColor1,
-          otherColor2: otherColor2);
+          primaryColor: HexColor(primaryColor),
+          accentColor: HexColor(accentColor),
+          otherColor1: HexColor(otherColor1),
+          otherColor2: HexColor(otherColor2));
       listThemes.add(themeTemp);
     }
   }
