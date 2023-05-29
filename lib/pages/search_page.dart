@@ -66,7 +66,7 @@ class _SearchPageState extends State<SearchPage> {
                 style: const TextStyle(color: Colors.black, fontSize: 16),
                 decoration: InputDecoration(
                     border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(20.0),
+                  borderRadius: BorderRadius.circular(16.0),
                 )),
                 itemFilter: (item, query) {
                   if (item != null) {
@@ -88,7 +88,6 @@ class _SearchPageState extends State<SearchPage> {
                 itemSubmitted: (item) {
                   locationRequest = item.toString();
                   _suggestionController.text = item.toString();
-                  print("item-click");
                   _handleOnCLick();
                 },
                 itemBuilder: (context, item) {
@@ -107,53 +106,6 @@ class _SearchPageState extends State<SearchPage> {
               ),
             ],
           ),
-        )
-        //----
-        // body: Row(
-        //   mainAxisAlignment: MainAxisAlignment.start,
-        //   children: [
-        //     Padding(
-        //       padding: const EdgeInsets.only(top: 14.0, left: 18.0, bottom: 14.0),
-        //       child: SizedBox(
-        //         height: 60,
-        //         width: 300,
-        //         child: TextField(
-        //           onChanged: (text) {
-        //             locationRequest = text;
-        //           },
-        //           decoration: const InputDecoration(
-        //             labelText: 'Search',
-        //             border: OutlineInputBorder(),
-        //           ),
-        //           controller: fieldText,
-        //         ),
-        //       ),
-        //     ),
-        //     Padding(
-        //       padding: const EdgeInsets.only(top: 14.0, left: 14.0, bottom: 14.0),
-        //       child: SizedBox(
-        //         height: 60,
-        //         width: 80,
-        //         child: ElevatedButton(
-        //           onPressed: () => _handleOnCLick(),
-        //           style: ElevatedButton.styleFrom(
-        //             backgroundColor: Colors.white,
-        //             // Background color
-        //           ),
-        //           child: const Text(
-        //             'Add',
-        //             style: TextStyle(
-        //               fontSize: 20,
-        //               fontWeight: FontWeight.bold,
-        //               color: Colors.black,
-        //             ),
-        //           ),
-        //         ),
-        //       ),
-        //     ),
-        //   ],
-        // ),
-
-        );
+        ));
   }
 }
