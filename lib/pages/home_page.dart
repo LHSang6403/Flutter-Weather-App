@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:untitled/data/items.dart';
 import 'package:untitled/main.dart';
-import 'package:untitled/theme/theme_loader.dart';
 import 'package:untitled/widgets/card_body.dart';
 
 class HomePage extends StatefulWidget {
