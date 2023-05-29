@@ -52,7 +52,7 @@ class CardBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        width: double.infinity,
+        width: MediaQuery.of(context).size.width,
         height: 80,
         margin: const EdgeInsets.only(bottom: 12),
         decoration: BoxDecoration(
@@ -66,33 +66,38 @@ class CardBody extends StatelessWidget {
               height: 22,
             ),
             Row(
+              mainAxisSize: MainAxisSize.max,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Text(
-                      item.getStatus(),
-                      style: const TextStyle(fontSize: 24, color: Colors.black),
-                    ),
-                    const SizedBox(
-                      width: 12,
-                    ),
-                    Text(
-                      (item.getTemperature()).toStringAsFixed(1),
-                      style: const TextStyle(fontSize: 24, color: Colors.black),
-                    ),
-                  ],
+                Expanded(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Text(
+                        (item.getTemperature()).toStringAsFixed(1),
+                        style:
+                            const TextStyle(fontSize: 24, color: Colors.black),
+                      ),
+                      const SizedBox(
+                        width: 12,
+                      ),
+                      Expanded(
+                        child: Text(
+                          item.getStatus(),
+                          style: const TextStyle(
+                              fontSize: 24, color: Colors.black),
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ),
+                      const SizedBox(
+                        width: 14,
+                      ),
+                    ],
+                  ),
                 ),
                 InkWell(
                   onTap: () async {
-                    // pop-up comfirm
-                    //bool isConfirm = await confirm(context);
-                    // confirm(context).then((value) {
-                    //   if (value) {
-                    //     deleteCard(item.getId());
-                    //   }
-                    // });
                     _dialogBuilder(context);
                   },
                   child: const Icon(
