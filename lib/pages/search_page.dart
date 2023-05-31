@@ -40,7 +40,7 @@ class _SearchPageState extends State<SearchPage> {
 
   final ViewModeController viewModeController = Get.find();
 
-  var _suggestionController = new TextEditingController();
+  final _suggestionController = TextEditingController();
   String locationRequest = '';
   final fieldText = TextEditingController();
   _SearchPageState({Key? key});
