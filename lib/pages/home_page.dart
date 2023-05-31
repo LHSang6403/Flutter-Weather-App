@@ -14,6 +14,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   final ViewModeController viewModeController = Get.find();
+
   void _handleDeleteCard(int id) {
     widget.weatherData.items.removeWhere((item) => id == item.getId());
     setState(() {});
@@ -21,14 +22,17 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    final ViewModeController viewModeController = Get.find();
-    return Scaffold(
+    return Obx(() => Scaffold(
         appBar: AppBar(
-          title: const Text(
+          title: Text(
             'Home',
-            style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+            style: TextStyle(
+                color: themeData
+                    .getColor1(viewModeController.indexThemeData.value),
+                fontWeight: FontWeight.bold),
           ),
-          backgroundColor: themeData.getPrimaryColor(viewModeController.indexThemeData.value),
+          backgroundColor: themeData
+              .getPrimaryColor(viewModeController.indexThemeData.value),
         ),
         body: SingleChildScrollView(
           padding: const EdgeInsets.all(16),
@@ -41,6 +45,6 @@ class _HomePageState extends State<HomePage> {
                     ))
                 .toList(),
           ),
-        ));
+        )));
   }
 }

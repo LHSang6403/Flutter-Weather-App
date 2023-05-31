@@ -1,15 +1,16 @@
 import 'package:get/get.dart';
 
 class ViewModeController extends GetxController {
-  RxBool isDarkMode = false.obs; // do not use this
+  int currentIndex = 0;
   RxInt indexThemeData = 0.obs;
 
   void increaseTheme() {
-    //(indexThemeData == 0) ? indexThemeData = 1 : indexThemeData = 0;
     indexThemeData.value++;
+    currentIndex++;
   }
+
   void changeTheme(int value) {
-    //(indexThemeData == 0) ? indexThemeData = 1 : indexThemeData = 0;
     indexThemeData.value = value;
+    currentIndex = value;
   }
 }

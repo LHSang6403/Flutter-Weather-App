@@ -3,10 +3,10 @@ import 'package:untitled/theme/color_converter.dart';
 
 class customTheme {
   String name;
-  Color primaryColor;
-  Color accentColor;
-  Color otherColor1;
-  Color otherColor2;
+  Color primaryColor; // bar's color
+  Color accentColor; // button's color
+  Color otherColor1; // text's color
+  Color otherColor2; 
 
   customTheme(
       {required this.name,
@@ -23,8 +23,8 @@ class ThemeDataModel {
     var defaultTheme = customTheme(
         name: "Default",
         primaryColor: HexColor("#0066cc"),
-        accentColor: HexColor("#FAFAFA"),
-        otherColor1: HexColor("#0784b5"),
+        accentColor: HexColor("#FFFDFA"),
+        otherColor1: HexColor("#FFFAFC"),
         otherColor2: HexColor("#cadeef"));
     listThemes.add(defaultTheme);
   }

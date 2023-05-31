@@ -41,6 +41,7 @@ class _SearchPageState extends State<SearchPage> {
   final ViewModeController viewModeController = Get.find();
 
   final _suggestionController = TextEditingController();
+
   String locationRequest = '';
   final fieldText = TextEditingController();
   _SearchPageState({Key? key});
@@ -56,11 +57,12 @@ class _SearchPageState extends State<SearchPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return Obx(() => Scaffold(
         appBar: AppBar(
-          title: const Text(
+          title: Text(
             'Search',
-            style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+            style: TextStyle(color: themeData.getColor1(viewModeController.indexThemeData.value), 
+            fontWeight: FontWeight.bold),
           ),
           backgroundColor: themeData
               .getPrimaryColor(viewModeController.indexThemeData.value),
@@ -116,6 +118,6 @@ class _SearchPageState extends State<SearchPage> {
               ),
             ],
           ),
-        ));
+        )));
   }
 }

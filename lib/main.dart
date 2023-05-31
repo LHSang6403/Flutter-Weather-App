@@ -12,8 +12,10 @@ import 'package:get/get.dart';
 
 ThemeDataModel themeData = ThemeDataModel();
 
-void main() {
-  runApp(const GetMaterialApp(
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  Get.put(ViewModeController());
+  runApp(const MaterialApp(
     debugShowCheckedModeBanner: false,
     home: MyApp(),
   ));
@@ -60,7 +62,6 @@ class _MyAppState extends State<MyApp> {
   void _onTabTapped(int index) {
     setState(() {
       _currentIndex = index;
-      //print(_currentIndex);
     });
   }
 
@@ -83,7 +84,8 @@ class _MyAppState extends State<MyApp> {
               selectedItemColor: themeData
                   .getAccentColor(viewModeController.indexThemeData.value),
               selectedLabelStyle: const TextStyle(fontWeight: FontWeight.bold),
-              unselectedItemColor: Colors.white70,
+              unselectedItemColor:
+                  themeData.getColor1(viewModeController.indexThemeData.value),
               items: const <BottomNavigationBarItem>[
                 BottomNavigationBarItem(
                   icon: Icon(Icons.home),

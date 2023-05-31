@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/state_manager.dart';
 import 'package:untitled/main.dart';
 import 'package:get/get.dart';
 import 'package:untitled/pages/setting_controller.dart';
@@ -13,52 +12,60 @@ class SettingsPage extends StatefulWidget {
 
 class _SettingsPageState extends State<SettingsPage> {
   final ViewModeController viewModeController = Get.put(ViewModeController());
-  bool isAutoRefresh = false;
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text(
-          'Settings',
-          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+    return Obx(() => Scaffold(
+        appBar: AppBar(
+          title: Text(
+            'Settings',
+            style: TextStyle(color: themeData.getColor1(viewModeController.indexThemeData.value), 
+            fontWeight: FontWeight.bold),
+          ),
+          backgroundColor: themeData
+              .getPrimaryColor(viewModeController.indexThemeData.value),
         ),
-        backgroundColor:
-            themeData.getPrimaryColor(viewModeController.indexThemeData.value),
-      ),
-      body: ListView(
-        padding: const EdgeInsets.all(16.0),
-        children: [
-          ListTile(
-              title: const Text('Auto refresh'),
-              trailing: Switch(
-                value: isAutoRefresh,
-                activeColor: Colors.blue,
-                onChanged: (bool value) {
-                  // This is called when the user toggles the switch.
-                  setState(() {
-                    isAutoRefresh = value;
-                  });
-                },
-              )),
-          ListTile(
-              title: const Text('Dark Mode'),
-              trailing: Switch(
-                value: viewModeController.isDarkMode.value,
-                activeColor: Colors.blue,
-                onChanged: (bool value) {
-                  // This is called when the user toggles the switch.
-                  // setState(() {
-                  //   (indexThemeData == 0)
-                  //       ? indexThemeData = 1
-                  //       : indexThemeData = 0;
-                  //   viewModeController.isDarkMode.value = value;
-                  // });
-                  viewModeController.increaseTheme();
-                },
-              )),
-        ],
-      ),
-    );
+        body: Center(
+          child: Container(
+            width: 350,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: <Widget>[
+                const SizedBox(
+                  height: 24.0,
+                ),
+                const Text(
+                  'Choose theme options',
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+                ),
+                const SizedBox(height: 6.0),
+                Wrap(
+                  spacing: 12.0,
+                  children: List<Widget>.generate(
+                    themeData.listThemes.length,
+                    (int index) {
+                      return ChoiceChip(
+                        label: Text(
+                          index == 0
+                              ? 'Default'
+                              : index == 1
+                                  ? 'Dark'
+                                  : 'Custom ${index - 1}',
+                        ),
+                        selected: viewModeController.currentIndex == index,
+                        onSelected: (bool selected) {
+                          viewModeController.currentIndex =
+                              selected ? index : 0;
+                          viewModeController.changeTheme(index);
+                        },
+                      );
+                    },
+                  ).toList(),
+                ),
+              ],
+            ),
+          ),
+        )));
   }
 }

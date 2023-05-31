@@ -3,16 +3,23 @@
       {
         "name": "dark",
         "primaryColor": "#000001",
-        "accentColor": "#FF4081",
-        "otherColor1": "#082c6c",
+        "accentColor": "#e88504",
+        "otherColor1": "#2a9df4",
         "otherColor2": "#444444"
       },
       {
         "name": "custom1",
-        "primaryColor": "#1fbbff",
-        "accentColor": "#39ace7",
-        "otherColor1": "#0784b5",
+        "primaryColor": "#f5c80f",
+        "accentColor": "#191919",
+        "otherColor1": "#44442c",
         "otherColor2": "#cadeef"
+      },
+      {
+        "name": "custom2",
+        "primaryColor": "#284e1a",
+        "accentColor": "#dc9c5a",
+        "otherColor1": "#ccaeb5",
+        "otherColor2": "#ecf9ef"
       }
     ]
   }
