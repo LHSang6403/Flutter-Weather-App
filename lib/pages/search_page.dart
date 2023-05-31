@@ -2,7 +2,9 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:autocomplete_textfield/autocomplete_textfield.dart';
+import 'package:get/get.dart';
 import 'package:untitled/main.dart';
+import 'package:untitled/pages/setting_controller.dart';
 
 List<String> suggestionList = [];
 
@@ -36,6 +38,8 @@ class _SearchPageState extends State<SearchPage> {
     loadJsonCities();
   }
 
+  final ViewModeController viewModeController = Get.find();
+
   var _suggestionController = new TextEditingController();
   String locationRequest = '';
   final fieldText = TextEditingController();
@@ -58,7 +62,8 @@ class _SearchPageState extends State<SearchPage> {
             'Search',
             style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
           ),
-          backgroundColor: themeData.getPrimaryColor(indexThemeData),
+          backgroundColor: themeData
+              .getPrimaryColor(viewModeController.indexThemeData.value),
         ),
         body: Padding(
           padding: const EdgeInsets.all(18),

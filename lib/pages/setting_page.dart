@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/state_manager.dart';
 import 'package:untitled/main.dart';
+import 'package:get/get.dart';
+import 'package:untitled/pages/setting_controller.dart';
 
 class SettingsPage extends StatefulWidget {
   const SettingsPage({Key? key});
@@ -9,7 +12,7 @@ class SettingsPage extends StatefulWidget {
 }
 
 class _SettingsPageState extends State<SettingsPage> {
-  bool isdarkMode = false;
+  final ViewModeController viewModeController = Get.put(ViewModeController());
   bool isAutoRefresh = false;
 
   @override
@@ -20,7 +23,8 @@ class _SettingsPageState extends State<SettingsPage> {
           'Settings',
           style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
         ),
-        backgroundColor: themeData.getPrimaryColor(indexThemeData),
+        backgroundColor:
+            themeData.getPrimaryColor(viewModeController.indexThemeData.value),
       ),
       body: ListView(
         padding: const EdgeInsets.all(16.0),
@@ -40,16 +44,17 @@ class _SettingsPageState extends State<SettingsPage> {
           ListTile(
               title: const Text('Dark Mode'),
               trailing: Switch(
-                value: isdarkMode,
+                value: viewModeController.isDarkMode.value,
                 activeColor: Colors.blue,
                 onChanged: (bool value) {
                   // This is called when the user toggles the switch.
-                  setState(() {
-                    (indexThemeData == 0)
-                        ? indexThemeData = 1
-                        : indexThemeData = 0;
-                    isdarkMode = value;
-                  });
+                  // setState(() {
+                  //   (indexThemeData == 0)
+                  //       ? indexThemeData = 1
+                  //       : indexThemeData = 0;
+                  //   viewModeController.isDarkMode.value = value;
+                  // });
+                  viewModeController.increaseTheme();
                 },
               )),
         ],
