@@ -13,7 +13,7 @@ import 'package:get/get.dart';
 ThemeDataModel themeData = ThemeDataModel();
 
 void main() {
-  runApp(const MaterialApp(
+  runApp(const GetMaterialApp(
     debugShowCheckedModeBanner: false,
     home: MyApp(),
   ));
@@ -66,7 +66,7 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    return GetMaterialApp(
+    return MaterialApp(
       home: Scaffold(
           body: _pages[_currentIndex],
           bottomNavigationBar: Obx(
