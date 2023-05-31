@@ -73,11 +73,15 @@ class _MyAppState extends State<MyApp> {
             () => BottomNavigationBar(
               currentIndex: _currentIndex,
               onTap: _onTabTapped,
-              backgroundColor: themeData.getPrimaryColor(viewModeController.indexThemeData.value),
+              backgroundColor: themeData
+                  .getPrimaryColor(viewModeController.indexThemeData.value),
               selectedFontSize: 10,
               selectedIconTheme: IconThemeData(
-                  color: themeData.getAccentColor(viewModeController.indexThemeData.value), size: 40),
-              selectedItemColor: themeData.getAccentColor(viewModeController.indexThemeData.value),
+                  color: themeData
+                      .getAccentColor(viewModeController.indexThemeData.value),
+                  size: 40),
+              selectedItemColor: themeData
+                  .getAccentColor(viewModeController.indexThemeData.value),
               selectedLabelStyle: const TextStyle(fontWeight: FontWeight.bold),
               unselectedItemColor: Colors.white70,
               items: const <BottomNavigationBarItem>[
