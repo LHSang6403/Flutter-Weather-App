@@ -7,6 +7,7 @@ import 'package:untitled/widgets/card_body.dart';
 
 class HomePage extends StatefulWidget {
   Data weatherData;
+  
   HomePage({Key? key, required this.weatherData});
   @override
   State<HomePage> createState() => _HomePageState();

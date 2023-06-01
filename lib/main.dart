@@ -1,5 +1,4 @@
 import 'package:untitled/pages/setting_controller.dart';
-
 import 'theme/theme_loader.dart';
 import 'dart:convert';
 import 'package:flutter/services.dart';
@@ -47,8 +46,6 @@ class _MyAppState extends State<MyApp> {
     final String jsonString = await rootBundle.loadString('assets/themes.json');
     final data = jsonDecode(jsonString);
     themeData.parseThemes(data);
-
-    print(data);
   }
 
   void _handleAddCard(String locationName) async {

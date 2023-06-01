@@ -6,7 +6,7 @@ class customTheme {
   Color primaryColor; // bar's color
   Color accentColor; // button's color
   Color otherColor1; // text's color
-  Color otherColor2; 
+  Color otherColor2; // background's color
 
   customTheme(
       {required this.name,
@@ -46,8 +46,6 @@ class ThemeDataModel {
   }
 
   void handleReadOneTheme(Map<String, dynamic> eachTheme) {
-    print(eachTheme);
-    // Data: Map<String, dynamic> to customTheme
     final String name = eachTheme['themes']['name'];
     final String primaryColor = eachTheme['themes']['primaryColor'];
     final String accentColor = eachTheme['themes']['accentColor'];
