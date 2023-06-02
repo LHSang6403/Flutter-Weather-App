@@ -58,10 +58,11 @@ class _SearchPageState extends State<SearchPage> {
   @override
   Widget build(BuildContext context) {
     return Obx(() => Scaffold(
+      backgroundColor: Colors.white.withOpacity(0.0),
         appBar: AppBar(
           title: Text(
             'Search',
-            style: TextStyle(color: themeData.getColor1(viewModeController.indexThemeData.value), 
+            style: TextStyle(color: themeData.getAccentColor2(viewModeController.indexThemeData.value), 
             fontWeight: FontWeight.bold),
           ),
           backgroundColor: themeData

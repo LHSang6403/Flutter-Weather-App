@@ -4,16 +4,20 @@ import 'package:untitled/theme/color_converter.dart';
 class customTheme {
   String name;
   Color primaryColor; // bar's color
-  Color accentColor; // button's color
-  Color otherColor1; // text's color
-  Color otherColor2; // background's color
+  Color accentColor; // selected navbar button's color
+  Color accentColor2; // unselected navbar button, text's color
+  Color backgroundColor; // background's color
+  Color selectedButtonColor;
+  Color unselectedButtonColor;
 
   customTheme(
       {required this.name,
       required this.primaryColor,
       required this.accentColor,
-      required this.otherColor1,
-      required this.otherColor2});
+      required this.accentColor2,
+      required this.backgroundColor,
+      required this.selectedButtonColor,
+      required this.unselectedButtonColor});
 }
 
 class ThemeDataModel {
@@ -24,8 +28,10 @@ class ThemeDataModel {
         name: "Default",
         primaryColor: HexColor("#0066cc"),
         accentColor: HexColor("#FFFDFA"),
-        otherColor1: HexColor("#FFFAFC"),
-        otherColor2: HexColor("#cadeef"));
+        accentColor2: HexColor("#FFFAFC"),
+        backgroundColor: HexColor("#f6f6f6"),
+        selectedButtonColor: HexColor("#000000"),
+        unselectedButtonColor: HexColor("#000000"));
     listThemes.add(defaultTheme);
   }
 
@@ -37,28 +43,41 @@ class ThemeDataModel {
     return listThemes[index].accentColor;
   }
 
-  Color getColor1(int index) {
-    return listThemes[index].otherColor1;
+  Color getAccentColor2(int index) {
+    return listThemes[index].accentColor2;
   }
 
-  Color getColor2(int index) {
-    return listThemes[index].otherColor2;
+  Color getBackgroundColor(int index) {
+    return listThemes[index].backgroundColor;
+  }
+
+  Color getSelectedButtonColor(int index) {
+    return listThemes[index].selectedButtonColor;
+  }
+
+  Color getUnselectedButtonColor(int index) {
+    return listThemes[index].unselectedButtonColor;
   }
 
   void handleReadOneTheme(Map<String, dynamic> eachTheme) {
     final String name = eachTheme['themes']['name'];
     final String primaryColor = eachTheme['themes']['primaryColor'];
     final String accentColor = eachTheme['themes']['accentColor'];
-    final String otherColor1 = eachTheme['themes']['otherColor1'];
-    final String otherColor2 = eachTheme['themes']['otherColor2'];
+    final String accentColor2 = eachTheme['themes']['accentColor2'];
+    final String backgroundColor = eachTheme['themes']['backgroundColor'];
+    final String selectedButtonColor =
+        eachTheme['themes']['selectedButtonColor'];
+    final String unselectedButtonColor =
+        eachTheme['themes']['UnselectedButtonColor'];
 
     var theme = customTheme(
-      name: name,
-      primaryColor: HexColor(primaryColor),
-      accentColor: HexColor(accentColor),
-      otherColor1: HexColor(otherColor1),
-      otherColor2: HexColor(otherColor2),
-    );
+        name: name,
+        primaryColor: HexColor(primaryColor),
+        accentColor: HexColor(accentColor),
+        accentColor2: HexColor(accentColor2),
+        backgroundColor: HexColor(backgroundColor),
+        selectedButtonColor: HexColor(selectedButtonColor),
+        unselectedButtonColor: HexColor(unselectedButtonColor));
     listThemes.add(theme);
   }
 
@@ -69,15 +88,21 @@ class ThemeDataModel {
       final String name = themeJson['name'] as String;
       final String primaryColor = themeJson['primaryColor'] as String;
       final String accentColor = themeJson['accentColor'] as String;
-      final String otherColor1 = themeJson['otherColor1'] as String;
-      final String otherColor2 = themeJson['otherColor2'] as String;
+      final String accentColor2 = themeJson['accentColor2'] as String;
+      final String backgroundColor = themeJson['backgroundColor'] as String;
+      final String selectedButtonColor =
+          themeJson['selectedButtonColor'] as String;
+      final String unselectedButtonColor =
+          themeJson['unselectedButtonColor'] as String;
 
       var themeTemp = customTheme(
           name: name,
           primaryColor: HexColor(primaryColor),
           accentColor: HexColor(accentColor),
-          otherColor1: HexColor(otherColor1),
-          otherColor2: HexColor(otherColor2));
+          accentColor2: HexColor(accentColor2),
+          backgroundColor: HexColor(backgroundColor),
+          selectedButtonColor: HexColor(selectedButtonColor),
+          unselectedButtonColor: HexColor(unselectedButtonColor));
       listThemes.add(themeTemp);
     }
   }

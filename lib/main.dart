@@ -64,41 +64,43 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-          body: _pages[_currentIndex],
-          bottomNavigationBar: Obx(
-            () => BottomNavigationBar(
-              currentIndex: _currentIndex,
-              onTap: _onTabTapped,
-              backgroundColor: themeData
-                  .getPrimaryColor(viewModeController.indexThemeData.value),
-              selectedFontSize: 10,
-              selectedIconTheme: IconThemeData(
-                  color: themeData
-                      .getAccentColor(viewModeController.indexThemeData.value),
-                  size: 40),
-              selectedItemColor: themeData
+    return Obx(
+      () => MaterialApp(
+          home: Scaffold(
+        backgroundColor:
+            themeData.getBackgroundColor(viewModeController.indexThemeData.value),
+        body: _pages[_currentIndex],
+        bottomNavigationBar: BottomNavigationBar(
+          currentIndex: _currentIndex,
+          onTap: _onTabTapped,
+          backgroundColor: themeData
+              .getPrimaryColor(viewModeController.indexThemeData.value),
+          selectedFontSize: 10,
+          selectedIconTheme: IconThemeData(
+              color: themeData
                   .getAccentColor(viewModeController.indexThemeData.value),
-              selectedLabelStyle: const TextStyle(fontWeight: FontWeight.bold),
-              unselectedItemColor:
-                  themeData.getColor1(viewModeController.indexThemeData.value),
-              items: const <BottomNavigationBarItem>[
-                BottomNavigationBarItem(
-                  icon: Icon(Icons.home),
-                  label: 'Home',
-                ),
-                BottomNavigationBarItem(
-                  icon: Icon(Icons.search),
-                  label: 'Search',
-                ),
-                BottomNavigationBarItem(
-                  icon: Icon(Icons.settings),
-                  label: 'Setting',
-                ),
-              ],
+              size: 40),
+          selectedItemColor:
+              themeData.getAccentColor(viewModeController.indexThemeData.value),
+          selectedLabelStyle: const TextStyle(fontWeight: FontWeight.bold),
+          unselectedItemColor:
+              themeData.getAccentColor2(viewModeController.indexThemeData.value),
+          items: const <BottomNavigationBarItem>[
+            BottomNavigationBarItem(
+              icon: Icon(Icons.home),
+              label: 'Home',
             ),
-          )),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.search),
+              label: 'Search',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.settings),
+              label: 'Setting',
+            ),
+          ],
+        ),
+      )),
     );
   }
 }

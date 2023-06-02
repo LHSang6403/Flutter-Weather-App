@@ -6,8 +6,8 @@ class ViewModeController extends GetxController {
   RxInt indexThemeData = 0.obs;
 
   //View options
-  List<String> viewModes = ["List view", "Grid view"];
-  int viewModesIndex = 0;
+  List<String> viewModes = ['List view', 'Grid view'];
+  RxInt viewModesCurrentIndex = 0.obs;
 
   void changeTheme(int value) {
     indexThemeData.value = value;
@@ -15,6 +15,6 @@ class ViewModeController extends GetxController {
   }
 
   void changeView(int value) {
-    viewModesIndex = value;
+    viewModesCurrentIndex.value = value;
   }
 }
