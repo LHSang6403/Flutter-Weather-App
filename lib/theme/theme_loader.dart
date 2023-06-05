@@ -30,8 +30,8 @@ class ThemeDataModel {
         accentColor: HexColor("#FFFDFA"),
         accentColor2: HexColor("#FFFAFC"),
         backgroundColor: HexColor("#f6f6f6"),
-        selectedButtonColor: HexColor("#000000"),
-        unselectedButtonColor: HexColor("#000000"));
+        selectedButtonColor: HexColor("#1cb2f5"),
+        unselectedButtonColor: HexColor("#dddddd"));
     listThemes.add(defaultTheme);
   }
 

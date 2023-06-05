@@ -5,13 +5,13 @@ import 'package:untitled/theme/color_converter.dart';
 import '/./data/item.dart';
 
 class CardBody extends StatelessWidget {
-  final BuildContext parentContext;
+  //final BuildContext parentContext;
 
   CardBody({
     Key? key,
     required this.item,
     required this.deleteCard,
-    required this.parentContext,
+    //required this.parentContext,
   }) : super(key: key);
 
   Item item;

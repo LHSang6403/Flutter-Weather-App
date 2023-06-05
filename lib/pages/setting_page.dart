@@ -29,7 +29,7 @@ class _SettingsPageState extends State<SettingsPage> {
               .getPrimaryColor(viewModeController.indexThemeData.value),
         ),
         body: Center(
-          child: Container(
+          child: SizedBox(
             width: 350,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -38,6 +38,46 @@ class _SettingsPageState extends State<SettingsPage> {
                 const SizedBox(
                   height: 24.0,
                 ),
+                Text(
+                  'View options',
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 18,
+                    color: viewModeController.indexThemeData.value == 0
+                        ? Colors.black
+                        : themeData.getAccentColor2(
+                            viewModeController.indexThemeData.value),
+                  ),
+                ),
+                Row(children: [
+                  Expanded(
+                      child: Text(
+                    viewModeController.isGrid.value == false
+                        ? 'Enable Grid'
+                        : 'Disable Grid',
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.w500,
+                      color: viewModeController.indexThemeData.value == 0
+                          ? Colors.black
+                          : themeData.getAccentColor2(
+                              viewModeController.indexThemeData.value),
+                    ),
+                  )),
+                  Switch(
+                    value: viewModeController.isGrid.value,
+                    onChanged: (newValue) {
+                      viewModeController.toggleChangeView(newValue);
+                    },
+                  ),
+                ]),
+                Divider(
+                  color: viewModeController.indexThemeData.value == 0
+                      ? Colors.black
+                      : themeData.getAccentColor2(
+                          viewModeController.indexThemeData.value),
+                ),
+                const SizedBox(height: 10.0),
                 Text(
                   'Theme options',
                   style: TextStyle(
@@ -77,65 +117,22 @@ class _SettingsPageState extends State<SettingsPage> {
                                   viewModeController.indexThemeData.value)
                               : Colors.black87,
                         ),
-                        // backgroundColor:
-                        //     viewModeController.currentIndex != index
-                        //         ? themeData.getPrimaryColor(
-                        //             viewModeController.indexThemeData.value)
-                        //         : Colors.white54,
+                        backgroundColor:
+                            viewModeController.currentIndex == index
+                                ? themeData.getSelectedButtonColor(
+                                    viewModeController.indexThemeData.value)
+                                : themeData.getUnselectedButtonColor(
+                                    viewModeController.indexThemeData.value),
                         onSelected: (bool selected) {
                           viewModeController.currentIndex =
                               selected ? index : 0;
                           viewModeController.changeTheme(index);
+                          //setState(() {});
+                          //print('re-render theme');
                         },
                       );
                     },
                   ).toList(),
-                ),
-                const SizedBox(
-                  height: 24.0,
-                ),
-                Text(
-                  'View options',
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 18,
-                    color: viewModeController.indexThemeData.value == 0
-                        ? Colors.black
-                        : themeData.getAccentColor2(
-                            viewModeController.indexThemeData.value),
-                  ),
-                ),
-                const SizedBox(height: 6.0),
-                Wrap(
-                  spacing: 12.0,
-                  children: viewModeController.viewModes.map((item) {
-                    var index = viewModeController.viewModes.indexOf(item);
-                    return ChoiceChip(
-                      avatar: CircleAvatar(
-                        backgroundImage: AssetImage(
-                            "assets/images/weather_icons/view${viewModeController.viewModes.indexOf(item)}.jpg"),
-                      ),
-                      label: Text(item),
-                      selected:
-                          viewModeController.viewModesCurrentIndex.value ==
-                              index,
-                      labelStyle: TextStyle(
-                        fontWeight:
-                            viewModeController.viewModesCurrentIndex.value ==
-                                    index
-                                ? FontWeight.bold
-                                : FontWeight.normal,
-                        color: viewModeController.viewModesCurrentIndex.value ==
-                                index
-                            ? themeData.getAccentColor(
-                                viewModeController.indexThemeData.value)
-                            : Colors.black87,
-                      ),
-                      onSelected: (bool selected) {
-                        viewModeController.changeView(index);
-                      },
-                    );
-                  }).toList(),
                 ),
               ],
             ),

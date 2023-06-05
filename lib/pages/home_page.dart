@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:untitled/data/items.dart';
 import 'package:untitled/main.dart';
+import 'package:untitled/pages/modal_bottom_delete.dart';
 import 'package:untitled/pages/setting_controller.dart';
 import 'package:untitled/widgets/card_body.dart';
 import 'package:untitled/widgets/square_body.dart';
@@ -20,6 +21,12 @@ class _HomePageState extends State<HomePage> {
   void _handleDeleteCard(int id) {
     widget.weatherData.items.removeWhere((item) => id == item.getId());
     setState(() {});
+  }
+
+  void handleOpenRemoveBottomSheet(int id) {
+    showRemoveBottomSheet(() {
+      _handleDeleteCard(id);
+    }, context);
   }
 
   @override
@@ -51,7 +58,7 @@ class _HomePageState extends State<HomePage> {
             .map((item) => CardBody(
                   item: item,
                   deleteCard: _handleDeleteCard,
-                  parentContext: context,
+                  //parentContext: context,
                 ))
             .toList(),
       ),
@@ -77,7 +84,9 @@ class _HomePageState extends State<HomePage> {
           return SquareBody(
             item: item,
             deleteCard: _handleDeleteCard,
-            parentContext: context,
+            onLongPressFunc: () {
+              handleOpenRemoveBottomSheet(item.getId());
+            },
           );
         },
       );

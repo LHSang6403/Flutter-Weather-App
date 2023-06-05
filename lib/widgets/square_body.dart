@@ -3,13 +3,13 @@ import 'package:untitled/logics/generate.dart';
 import '/./data/item.dart';
 
 class SquareBody extends StatelessWidget {
-  final BuildContext parentContext;
+  final VoidCallback onLongPressFunc;
 
   SquareBody({
     Key? key,
     required this.item,
     required this.deleteCard,
-    required this.parentContext,
+    required this.onLongPressFunc
   }) : super(key: key);
 
   Item item;
@@ -51,50 +51,53 @@ class SquareBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-        width: 160,
-        height: 160,
-        decoration: BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage(
-                "./assets/images/car${generateRandomFromId(item.getId().toString())}.jpg"),
-            fit: BoxFit.cover,
-            alignment: Alignment.bottomCenter,
-            colorFilter: ColorFilter.mode(
-                Colors.white.withOpacity(0.95), BlendMode.dstATop),
+    return GestureDetector(
+      onLongPress: () => onLongPressFunc(),
+      child: Container(
+          width: 160,
+          height: 160,
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage(
+                  "./assets/images/car${generateRandomFromId(item.getId().toString())}.jpg"),
+              fit: BoxFit.cover,
+              alignment: Alignment.bottomCenter,
+              colorFilter: ColorFilter.mode(
+                  Colors.white.withOpacity(0.95), BlendMode.dstATop),
+            ),
+            borderRadius: BorderRadius.circular(18),
           ),
-          borderRadius: BorderRadius.circular(18),
-        ),
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16),
-          child: Column(
-              mainAxisAlignment: MainAxisAlignment.end,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  '${item.getTemperature().toStringAsFixed(1)}°C',
-                  style: const TextStyle(
-                    fontSize: 28,
-                    color: Colors.black,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16),
+            child: Column(
+                mainAxisAlignment: MainAxisAlignment.end,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    '${item.getTemperature().toStringAsFixed(1)}°C',
+                    style: const TextStyle(
+                      fontSize: 28,
+                      color: Colors.black,
+                    ),
                   ),
-                ),
-                Text(
-                  item.getStatus(),
-                  style: const TextStyle(fontSize: 24, color: Colors.black),
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                ),
-                const SizedBox(
-                  height: 2,
-                ),
-                Text(
-                  item.getLocation(),
-                  style: const TextStyle(fontSize: 20, color: Colors.black),
-                ),
-                const SizedBox(
-                  height: 16,
-                ),
-              ]),
-        ));
+                  Text(
+                    item.getStatus(),
+                    style: const TextStyle(fontSize: 24, color: Colors.black),
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                  const SizedBox(
+                    height: 2,
+                  ),
+                  Text(
+                    item.getLocation(),
+                    style: const TextStyle(fontSize: 20, color: Colors.black),
+                  ),
+                  const SizedBox(
+                    height: 16,
+                  ),
+                ]),
+          )),
+    );
   }
 }

@@ -67,8 +67,8 @@ class _MyAppState extends State<MyApp> {
     return Obx(
       () => MaterialApp(
           home: Scaffold(
-        backgroundColor:
-            themeData.getBackgroundColor(viewModeController.indexThemeData.value),
+        backgroundColor: themeData
+            .getBackgroundColor(viewModeController.indexThemeData.value),
         body: _pages[_currentIndex],
         bottomNavigationBar: BottomNavigationBar(
           currentIndex: _currentIndex,
@@ -83,8 +83,8 @@ class _MyAppState extends State<MyApp> {
           selectedItemColor:
               themeData.getAccentColor(viewModeController.indexThemeData.value),
           selectedLabelStyle: const TextStyle(fontWeight: FontWeight.bold),
-          unselectedItemColor:
-              themeData.getAccentColor2(viewModeController.indexThemeData.value),
+          unselectedItemColor: themeData
+              .getAccentColor2(viewModeController.indexThemeData.value),
           items: const <BottomNavigationBarItem>[
             BottomNavigationBarItem(
               icon: Icon(Icons.home),
