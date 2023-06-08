@@ -180,7 +180,7 @@ class _SearchPageState extends State<SearchPage> {
 
   void _initSpeech() async {
     _speechToText!.initialize(onStatus: (status) {
-      print(isFinalListen); // thang nay bi khoi tao lai, co 2 lan
+      print(isFinalListen);
       if (status == 'done' && isFinalListen) {
         showAddBottomSheet(context, _lastWords);
         isFinalListen = false;
