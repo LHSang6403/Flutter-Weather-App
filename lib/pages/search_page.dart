@@ -173,6 +173,7 @@ class _SearchPageState extends State<SearchPage> {
     loadJsonCities();
   }
 
+// form herre
   SpeechToText? _speechToText = SpeechToText();
   bool _speechEnabled = false;
   String _lastWords = '';
@@ -204,6 +205,8 @@ class _SearchPageState extends State<SearchPage> {
     print(_lastWords);
     print(isFinalListen);
   }
+
+// top here
 
   @override
   Widget build(BuildContext context) {
