@@ -1,21 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:untitled/logics/generate.dart';
-import 'package:untitled/theme/color_converter.dart';
+import '../pages/detail_dialog.dart';
 import '/./data/item.dart';
 
 class CardBody extends StatelessWidget {
-  //final BuildContext parentContext;
-
   CardBody({
     Key? key,
     required this.item,
     required this.deleteCard,
-    //required this.parentContext,
   }) : super(key: key);
 
   Item item;
   final Function deleteCard;
+
   Future<void> _dialogBuilder(BuildContext context) {
     return showDialog<void>(
       context: context,
@@ -53,94 +51,106 @@ class CardBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.only(bottom: 10),
-      child: Slidable(
-        key: const ValueKey(0),
-        endActionPane: ActionPane(
-          dismissible: DismissiblePane(onDismissed: () {}),
-          motion: const DrawerMotion(),
-          extentRatio: 0.3,
-          children: [
-            SlidableAction(
-              autoClose: true,
-              flex: 1,
-              onPressed: (value) {
-                deleteCard(item.getId());
-              },
-              backgroundColor: Colors.red,
-              foregroundColor: Colors.white,
-              borderRadius: BorderRadius.circular(18),
-              icon: Icons.delete,
-              label: 'Remove',
-            ),
-          ],
-        ),
-        child: Container(
-            width: MediaQuery.of(context).size.width,
-            height: 120,
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage(
-                    "./assets/images/car${generateRandomFromId(item.getId().toString())}.jpg"),
-                fit: BoxFit.fitWidth,
-                alignment: Alignment.bottomCenter,
-                colorFilter: ColorFilter.mode(
-                    Colors.white.withOpacity(0.95), BlendMode.dstATop),
+    return GestureDetector(
+      onTap: () {
+        detailDialog(context, item);
+      },
+      child: Container(
+        margin: const EdgeInsets.only(bottom: 10),
+        child: Slidable(
+          key: const ValueKey(0),
+          endActionPane: ActionPane(
+            dismissible: DismissiblePane(onDismissed: () {
+              deleteCard(item.getId());
+            }),
+            motion: const DrawerMotion(),
+            extentRatio: 0.3,
+            children: [
+              SlidableAction(
+                autoClose: true,
+                flex: 1,
+                onPressed: (value) {
+                  deleteCard(item.getId());
+                },
+                backgroundColor: Colors.red,
+                foregroundColor: Colors.white,
+                borderRadius: BorderRadius.circular(18),
+                icon: Icons.delete,
+                label: 'Remove',
               ),
-              borderRadius: BorderRadius.circular(18),
-            ),
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 26),
-              child: Column(mainAxisSize: MainAxisSize.max, children: [
-                const SizedBox(
-                  height: 40,
+            ],
+          ),
+          child: Container(
+              width: MediaQuery.of(context).size.width,
+              height: 120,
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage(
+                      "./assets/images/car${generateRandomFromId(item.getId().toString())}.jpg"),
+                  fit: BoxFit.fitWidth,
+                  alignment: Alignment.bottomCenter,
+                  colorFilter: ColorFilter.mode(
+                      Colors.white.withOpacity(0.95), BlendMode.dstATop),
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Expanded(
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Text(
-                            '${item.getTemperature().toStringAsFixed(1)}°C',
-                            style: const TextStyle(
-                              fontSize: 32,
-                              color: Colors.black,
-                            ),
-                          ),
-                          const SizedBox(
-                            width: 12,
-                          ),
-                          Expanded(
-                            child: Text(
-                              item.getStatus(),
-                              style: const TextStyle(
-                                  fontSize: 28, color: Colors.black),
-                              maxLines: 1,
-                              overflow: TextOverflow.ellipsis,
-                            ),
-                          ),
-                          const SizedBox(
-                            width: 6,
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-                Row(mainAxisAlignment: MainAxisAlignment.start, children: [
+                borderRadius: BorderRadius.circular(18),
+              ),
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 26),
+                child: Column(mainAxisSize: MainAxisSize.max, children: [
                   const SizedBox(
-                    width: 18,
+                    height: 40,
                   ),
-                  Text(
-                    item.getLocation(),
-                    style: const TextStyle(fontSize: 20, color: Colors.black),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Expanded(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Text(
+                              '${item.getTemperatureC().toStringAsFixed(1)}°C',
+                              style: const TextStyle(
+                                  fontSize: 32,
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.w400),
+                            ),
+                            const SizedBox(
+                              width: 12,
+                            ),
+                            Expanded(
+                              child: Text(
+                                item.getStatus(),
+                                style: const TextStyle(
+                                    fontSize: 28,
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.w400),
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                            ),
+                            const SizedBox(
+                              width: 6,
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
                   ),
+                  Row(mainAxisAlignment: MainAxisAlignment.start, children: [
+                    const SizedBox(
+                      width: 18,
+                    ),
+                    Text(
+                      item.getLocation(),
+                      style: const TextStyle(
+                          fontSize: 20,
+                          color: Colors.black,
+                          fontWeight: FontWeight.w400),
+                    ),
+                  ]),
                 ]),
-              ]),
-            )),
+              )),
+        ),
       ),
     );
   }

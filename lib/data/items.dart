@@ -6,6 +6,7 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 class Data {
   List<Item> items = [];
+
   Data() {
     items = [];
   }
@@ -21,6 +22,7 @@ class Data {
 
     if (response.statusCode == 200) {
       final data = jsonDecode(response.body);
+      print(data);
       return data;
     } else {
       throw Exception('Failed to fetch weather data');
@@ -31,9 +33,15 @@ class Data {
     try {
       final weatherData = await fetchWeatherData(location);
       final tempC = weatherData['current']['temp_c'];
+      final tempF = weatherData['current']['temp_f'];
       final condition = weatherData['current']['condition']['text'];
+      final country = weatherData['location']['country'];
+      final localTime = weatherData['location']['localtime'];
+      final lastUpdate = weatherData['current']['last_updated'];
 
-      var item = Item(getCurrentDateAsInt(), condition, tempC, location);
+      print('$tempC, $tempF, $condition, $country, $localTime, $lastUpdate');
+      var item = Item(getCurrentDateAsInt(), condition, tempC, tempF, location,
+          country, localTime, lastUpdate);
       items.add(item);
       PrintOut();
     } catch (e) {
@@ -42,23 +50,18 @@ class Data {
   }
 
   void PrintOut() {
-    print('List:');
+    print('=======Lasted List:');
     for (var item in items) {
       print(item.getId());
       print(item.getStatus());
-      print(item.getTemperature());
+      print(item.getTemperatureC());
+      print(item.getTemperatureF());
       print(item.getLocation());
+      print(item.getCountry());
+      print(item.getLocalTime());
+      print(item.getLastUpdate());
       print('--');
     }
     print('\n');
   }
 }
-
-// void main() {
-//   Data temp = Data();
-
-//   temp.dataHandleAdd('Hanoi');
-//   temp.dataHandleAdd('New York');
-//   temp.dataHandleAdd('Paris');
-//   temp.dataHandleAdd('San Jose');
-// }

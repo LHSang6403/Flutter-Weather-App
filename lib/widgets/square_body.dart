@@ -1,19 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:untitled/logics/generate.dart';
+import '../pages/detail_dialog.dart';
 import '/./data/item.dart';
 
 class SquareBody extends StatelessWidget {
   final VoidCallback onLongPressFunc;
 
-  SquareBody({
-    Key? key,
-    required this.item,
-    required this.deleteCard,
-    required this.onLongPressFunc
-  }) : super(key: key);
+  SquareBody(
+      {Key? key,
+      required this.item,
+      required this.deleteCard,
+      required this.onLongPressFunc})
+      : super(key: key);
 
   Item item;
   final Function deleteCard;
+
   Future<void> _dialogBuilder(BuildContext context) {
     return showDialog<void>(
       context: context,
@@ -53,6 +55,9 @@ class SquareBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onLongPress: () => onLongPressFunc(),
+      onTap: () {
+        detailDialog(context, item);
+      },
       child: Container(
           width: 160,
           height: 160,
@@ -74,7 +79,7 @@ class SquareBody extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    '${item.getTemperature().toStringAsFixed(1)}°C',
+                    '${item.getTemperatureC().toStringAsFixed(1)}°C',
                     style: const TextStyle(
                       fontSize: 28,
                       color: Colors.black,

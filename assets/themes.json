@@ -23,8 +23,8 @@
         "primaryColor": "#284e1a",
         "accentColor": "#dc9c5a",
         "accentColor2": "#ccaeb5",
-        "backgroundColor": "#0f2310",
-        "selectedButtonColor": "#000000",
+        "backgroundColor": "#043927",
+        "selectedButtonColor": "#dc9c5a",
         "unselectedButtonColor": "#dc9c5a"
       }
     ]
