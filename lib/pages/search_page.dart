@@ -179,9 +179,11 @@ class _SearchPageState extends State<SearchPage> {
   String _lastWords = '';
 
   void _initSpeech() async {
+    print('init speech');
     _speechToText!.initialize(onStatus: (status) {
-      print(isFinalListen);
+      print('check final listen: $isFinalListen, status: $status');
       if (status == 'done' && isFinalListen) {
+        print('stand here');
         showAddBottomSheet(context, _lastWords);
         isFinalListen = false;
       }
@@ -190,8 +192,9 @@ class _SearchPageState extends State<SearchPage> {
 
   void _startListening() async {
     print('start listen');
-    await _speechToText!.listen(onResult: _onSpeechResult, localeId: 'en_US');
-    Timer(const Duration(seconds: 3), _stopListening);
+    await _speechToText!.listen(onResult:(result)=> _onSpeechResult(result), localeId: 'en_US');
+    print('here');
+    Timer(const Duration(seconds: 4), _stopListening);
   }
 
   void _stopListening() async {
@@ -203,10 +206,9 @@ class _SearchPageState extends State<SearchPage> {
     isFinalListen = result.finalResult;
     _lastWords = result.recognizedWords;
     print(_lastWords);
-    print(isFinalListen);
+    print('fianl result $isFinalListen');
   }
-
-// top here
+// to here
 
   @override
   Widget build(BuildContext context) {

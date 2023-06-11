@@ -19,7 +19,7 @@ Future detailDialog(context, Item item) => showDialog(
                 height: 10,
               ),
               Container(
-                padding: const EdgeInsets.only(left: 14),
+                padding: const EdgeInsets.only(left: 16),
                 child: Text(
                   '${item.getLocation()}:',
                   style: TextStyle(
@@ -54,7 +54,7 @@ Future detailDialog(context, Item item) => showDialog(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Container(
-                    padding: const EdgeInsets.only(left: 14, top: 8),
+                    padding: const EdgeInsets.only(left: 14, top: 4),
                     child: Text(
                       '${item.getTemperatureC()}°C',
                       style: TextStyle(
@@ -66,7 +66,7 @@ Future detailDialog(context, Item item) => showDialog(
                     ),
                   ),
                   Container(
-                    padding: const EdgeInsets.only(left: 14, top: 8),
+                    padding: const EdgeInsets.only(left: 14, top: 4),
                     child: Text(
                       '${item.getTemperatureF()}°F',
                       style: TextStyle(
@@ -80,7 +80,7 @@ Future detailDialog(context, Item item) => showDialog(
                 ],
               ),
               Container(
-                padding: const EdgeInsets.only(left: 14, top: 8),
+                padding: const EdgeInsets.only(left: 14, top: 4),
                 child: Text(
                   item.getCountry(),
                   style: TextStyle(
@@ -92,7 +92,7 @@ Future detailDialog(context, Item item) => showDialog(
                 ),
               ),
               Container(
-                padding: const EdgeInsets.only(left: 14, top: 8, bottom: 2),
+                padding: const EdgeInsets.only(left: 14, top: 4, bottom: 8),
                 child: Text(
                   'Local time: ${item.getLocalTime()}',
                   style: TextStyle(

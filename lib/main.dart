@@ -62,6 +62,13 @@ class _MyAppState extends State<MyApp> {
     });
   }
 
+  final pageController = PageController(initialPage: 0);
+  @override
+  void dispose() {
+    pageController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Obx(
@@ -69,10 +76,20 @@ class _MyAppState extends State<MyApp> {
           home: Scaffold(
         backgroundColor: themeData
             .getBackgroundColor(viewModeController.indexThemeData.value),
-        body: _pages[_currentIndex],
+        body: PageView(
+            physics: const NeverScrollableScrollPhysics(),
+            controller: pageController,
+            children: _pages),
         bottomNavigationBar: BottomNavigationBar(
           currentIndex: _currentIndex,
-          onTap: _onTabTapped,
+          onTap: (index) {
+            pageController.animateToPage(index,
+                duration: const Duration(milliseconds: 500),
+                curve: Curves.easeInOut);
+            setState(() {
+              _currentIndex = index;
+            });
+          },
           backgroundColor: themeData
               .getPrimaryColor(viewModeController.indexThemeData.value),
           selectedFontSize: 10,
