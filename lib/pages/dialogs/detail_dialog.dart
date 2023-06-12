@@ -83,7 +83,7 @@ Future detailDialog(context, Item item) => showDialog(
                 child: Text(
                   item.getCountry(),
                   style: TextStyle(
-                    fontSize: 24,
+                    fontSize: 20,
                     fontWeight: FontWeight.w500,
                     color: themeData.getPrimaryColor(
                         viewModeController.indexThemeData.value),
