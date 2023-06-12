@@ -2,9 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:untitled/data/item.dart';
 import 'package:untitled/logics/generate.dart';
-import 'package:untitled/pages/setting_controller.dart';
-
-import '../main.dart';
+import 'package:untitled/pages/setting_page/setting_controller.dart';
+import '../../main.dart';
 
 ViewModeController viewModeController = Get.find();
 

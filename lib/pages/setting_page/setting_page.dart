@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:untitled/main.dart';
 import 'package:get/get.dart';
-import 'package:untitled/pages/setting_controller.dart';
+import 'package:untitled/pages/setting_page/setting_controller.dart';
 
 class SettingsPage extends StatefulWidget {
   const SettingsPage({Key? key});

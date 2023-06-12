@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:untitled/pages/setting_controller.dart';
+import 'package:untitled/pages/dialogs/detail_dialog.dart';
+import '../../main.dart';
 
-import '../main.dart';
-
-void showRemoveBottomSheet(VoidCallback removeCard, BuildContext context) {
-  ViewModeController viewModeController = Get.find();
+void showAddBottomSheet(
+    BuildContext context, String locationName, Function addCard) {
+  //VoiceController voiceController = Get.find();
 
   showModalBottomSheet<void>(
     context: context,
@@ -18,7 +17,7 @@ void showRemoveBottomSheet(VoidCallback removeCard, BuildContext context) {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              'Confirm delete this card?',
+              'Do you want to add: $locationName',
               style: TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.w500,
@@ -34,7 +33,8 @@ void showRemoveBottomSheet(VoidCallback removeCard, BuildContext context) {
               children: [
                 ElevatedButton(
                   onPressed: () {
-                    removeCard();
+                    addCard(locationName);
+                    //print('add card: $locationName');
                     Navigator.of(context).pop();
                   },
                   style: ElevatedButton.styleFrom(
@@ -50,7 +50,7 @@ void showRemoveBottomSheet(VoidCallback removeCard, BuildContext context) {
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  child: const Text('Confirm'),
+                  child: const Text('Add'),
                 ),
                 ElevatedButton(
                   onPressed: () {
@@ -58,14 +58,15 @@ void showRemoveBottomSheet(VoidCallback removeCard, BuildContext context) {
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: themeData.getUnselectedButtonColor(
-                        viewModeController
-                            .indexThemeData.value), // Set the background color
+                        viewModeController.indexThemeData.value),
+                    // Set the background color
                     shape: RoundedRectangleBorder(
                       borderRadius:
                           BorderRadius.circular(10), // Set the border radius
                     ),
                     padding: const EdgeInsets.symmetric(
-                        vertical: 12, horizontal: 24), // Set the padding
+                        vertical: 12, horizontal: 24),
+                    // Set the padding
                     textStyle: const TextStyle(
                       fontSize: 16, // Set the font size
                       fontWeight: FontWeight.bold, // Set the font weight

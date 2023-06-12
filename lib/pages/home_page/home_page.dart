@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:untitled/data/items.dart';
 import 'package:untitled/main.dart';
-import 'package:untitled/pages/modal_bottom_delete.dart';
-import 'package:untitled/pages/setting_controller.dart';
+import 'package:untitled/pages/dialogs/modal_bottom_delete.dart';
+import 'package:untitled/pages/setting_page/setting_controller.dart';
 import 'package:untitled/widgets/card_body.dart';
 import 'package:untitled/widgets/square_body.dart';
 

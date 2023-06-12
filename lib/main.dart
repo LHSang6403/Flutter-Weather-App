@@ -1,19 +1,23 @@
-import 'package:untitled/pages/setting_controller.dart';
+import 'dart:async';
+import 'package:untitled/pages/search_page/search_page_controller.dart';
+import 'package:untitled/pages/setting_page/setting_controller.dart';
 import 'theme/theme_loader.dart';
 import 'dart:convert';
 import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
 import 'data/items.dart';
-import 'package:untitled/pages/search_page.dart';
-import 'package:untitled/pages/setting_page.dart';
-import 'package:untitled/pages/home_page.dart';
+import 'package:untitled/pages/search_page/search_page.dart';
+import 'package:untitled/pages/setting_page/setting_page.dart';
+import 'package:untitled/pages/home_page/home_page.dart';
 import 'package:get/get.dart';
 
 ThemeDataModel themeData = ThemeDataModel();
-
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
   Get.put(ViewModeController());
+  Get.put(VoiceController());
+
   runApp(const MaterialApp(
     debugShowCheckedModeBanner: false,
     home: MyApp(),
@@ -30,10 +34,15 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   Data weatherData = Data();
   final ViewModeController viewModeController = Get.find();
+  final VoiceController voiceController = Get.find();
 
   void initState() {
     super.initState();
     loadJsonAsset();
+    voiceController.initSpeech();
+
+    voiceController.context = context;
+    voiceController.addCard = _handleAddCard;
 
     _pages.add(HomePage(weatherData: weatherData));
     _pages.add(SearchPage(
@@ -55,12 +64,6 @@ class _MyAppState extends State<MyApp> {
 
   int _currentIndex = 0;
   final List<Widget> _pages = [];
-
-  void _onTabTapped(int index) {
-    setState(() {
-      _currentIndex = index;
-    });
-  }
 
   final pageController = PageController(initialPage: 0);
   @override

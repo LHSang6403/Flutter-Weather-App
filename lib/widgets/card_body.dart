@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:untitled/logics/generate.dart';
-import '../pages/detail_dialog.dart';
+import 'package:untitled/pages/dialogs/detail_dialog.dart';
+
 import '/./data/item.dart';
 
 class CardBody extends StatelessWidget {
