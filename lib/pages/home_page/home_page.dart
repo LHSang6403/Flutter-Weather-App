@@ -66,13 +66,13 @@ class _HomePageState extends State<HomePage> {
               }
             },
             child: viewModeController.viewModesCurrentIndex.value == 0
-                ? listBody()
-                : gridBody(),
+                ? listCard()
+                : gridCard(),
           ),
         ));
   }
 
-  Widget listBody() {
+  Widget listCard() {
     return Obx(() {
       return SizedBox(
         height: 1000,
@@ -93,14 +93,14 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
-  Widget gridBody() {
+  Widget gridCard() {
     return Obx(() {
       return Container(
-          padding: const EdgeInsets.all(12), child: buildGridView());
+          padding: const EdgeInsets.all(12), child: gridViewBuilder());
     });
   }
 
-  Widget buildGridView() => GridView.builder(
+  Widget gridViewBuilder() => GridView.builder(
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2,
           childAspectRatio: 1,

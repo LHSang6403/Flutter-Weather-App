@@ -14,9 +14,13 @@ int getRandomInt(int min, int max) {
 
 String generateRandomFromId(String id) {
   int hashCode = id.hashCode;
-  hashCode += getRandomInt(1, 9999);
+  
+  hashCode += getRandomInt(1, 999);
+  hashCode -= getRandomInt(1, 999);
+  hashCode += getRandomInt(1, 999);
+
   Random random = Random(hashCode);
-  int randomNumber = random.nextInt(11); // Generate random number from 0 to 11
+  int randomNumber = random.nextInt(26); // Generate random number from 0 to 26
   
   return randomNumber.toString();
 }

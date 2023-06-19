@@ -11,6 +11,9 @@ import 'package:untitled/pages/setting_page/setting_controller.dart';
 
 List<String> suggestionList = [];
 final VoiceController voiceController = Get.find();
+final ViewModeController viewModeController = Get.find();
+final suggestionController = TextEditingController();
+final fieldText = TextEditingController();
 
 void parseCities(dynamic parsedJson) {
   final citiesJson = parsedJson as List<dynamic>;
@@ -33,61 +36,20 @@ class SearchPage extends StatefulWidget {
   final Function addCard;
 
   SearchPage({Key? key, required this.addCard});
-
   @override
-  State<SearchPage> createState() => _SearchPageState();
+  State<SearchPage> createState() => SearchPageState();
 }
 
-class _SearchPageState extends State<SearchPage> {
+class SearchPageState extends State<SearchPage> {
   void initState() {
     super.initState();
     loadJsonCities();
   }
 
-  final ViewModeController viewModeController = Get.find();
-  final _suggestionController = TextEditingController();
   String locationRequest = '';
-  final fieldText = TextEditingController();
-  //bool isFinalListen = false;
+  SearchPageState({Key? key});
 
-  _SearchPageState({Key? key});
-
-  Future<void> _dialogBuilder(BuildContext context) {
-    return showDialog<void>(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: const Text('Add location'),
-          content: Text(
-            'You mean add: ',
-          ),
-          actions: <Widget>[
-            TextButton(
-              style: TextButton.styleFrom(
-                textStyle: Theme.of(context).textTheme.labelLarge,
-              ),
-              child: const Text('Cancel'),
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-            ),
-            TextButton(
-              style: TextButton.styleFrom(
-                textStyle: Theme.of(context).textTheme.labelLarge,
-              ),
-              child: const Text('Add'),
-              onPressed: () {
-                widget.addCard('test');
-                Navigator.pop(context, true);
-              },
-            ),
-          ],
-        );
-      },
-    );
-  }
-
-  void _handleOnCLick() {
+  void handleOnCLick() {
     if (locationRequest.isEmpty) {
       return;
     }
@@ -119,7 +81,7 @@ class _SearchPageState extends State<SearchPage> {
               child: Column(
                 children: <Widget>[
                   AutoCompleteTextField(
-                    controller: _suggestionController,
+                    controller: suggestionController,
                     suggestions: suggestionList,
                     //clearOnSubmit: true,
                     cursorColor: themeData.getSelectedButtonColor(
@@ -158,13 +120,13 @@ class _SearchPageState extends State<SearchPage> {
                     },
                     itemSubmitted: (item) {
                       locationRequest = item.toString();
-                      _suggestionController.text = item.toString();
-                      _handleOnCLick();
+                      suggestionController.text = item.toString();
+                      handleOnCLick();
                       showDialog(
                         context: context,
                         builder: (BuildContext context) {
                           context = context;
-                          Future.delayed(Duration(seconds: 1), () {
+                          Future.delayed(const Duration(seconds: 1), () {
                             Navigator.of(context).pop();
                           });
                           return const Loading();

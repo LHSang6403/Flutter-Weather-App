@@ -1,11 +1,9 @@
 import 'package:get/get.dart';
 
 class ViewModeController extends GetxController {
-  //Theme options
   int currentIndex = 0;
   RxInt indexThemeData = 0.obs;
 
-  //View options
   List<String> viewModes = ['List view', 'Grid view'];
   RxInt viewModesCurrentIndex = 0.obs;
   RxBool isGrid = false.obs;

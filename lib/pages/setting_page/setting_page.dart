@@ -3,6 +3,8 @@ import 'package:untitled/main.dart';
 import 'package:get/get.dart';
 import 'package:untitled/pages/setting_page/setting_controller.dart';
 
+final ViewModeController viewModeController = Get.put(ViewModeController());
+
 class SettingsPage extends StatefulWidget {
   const SettingsPage({Key? key});
 
@@ -11,8 +13,6 @@ class SettingsPage extends StatefulWidget {
 }
 
 class _SettingsPageState extends State<SettingsPage> {
-  final ViewModeController viewModeController = Get.put(ViewModeController());
-
   @override
   Widget build(BuildContext context) {
     return Obx(() => Scaffold(
@@ -127,8 +127,6 @@ class _SettingsPageState extends State<SettingsPage> {
                           viewModeController.currentIndex =
                               selected ? index : 0;
                           viewModeController.changeTheme(index);
-                          //setState(() {});
-                          //print('re-render theme');
                         },
                       );
                     },

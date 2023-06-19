@@ -30,7 +30,7 @@ class SquareBody extends StatelessWidget {
           decoration: BoxDecoration(
             image: DecorationImage(
               image: AssetImage(
-                  "./assets/images/car$idImg.jpg"),
+                  "./assets/images/img$idImg.jpg"),
               fit: BoxFit.cover,
               alignment: Alignment.bottomCenter,
               colorFilter: ColorFilter.mode(

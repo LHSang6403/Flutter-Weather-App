@@ -10,7 +10,6 @@ import 'package:untitled/pages/search_page/search_page.dart';
 
 class VoiceController extends GetxController {
   RxString lastWords = "".obs;
-
   bool isFinalListen = false;
   SpeechToText? speechToText = SpeechToText();
   bool speechEnabled = false;
@@ -35,7 +34,6 @@ class VoiceController extends GetxController {
   }
 
   void startListening() async {
-    print('start listen');
     await speechToText!.listen(
         onResult: (result) => onSpeechResult(result), localeId: 'en_US');
     Timer(const Duration(seconds: 4), stopListening);
@@ -43,7 +41,6 @@ class VoiceController extends GetxController {
 
   void stopListening() async {
     await speechToText!.stop();
-    print('stop listen');
   }
 
   void onSpeechResult(SpeechRecognitionResult result) {

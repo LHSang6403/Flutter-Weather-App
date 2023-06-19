@@ -29,13 +29,11 @@ Future<void> main() async {
 
 class MyApp extends StatefulWidget {
   const MyApp({Key? key}) : super(key: key);
-
   @override
   State<MyApp> createState() => _MyAppState();
 }
 
 class _MyAppState extends State<MyApp> {
-  //Data weatherData = Data();
   final ViewModeController viewModeController = Get.find();
   final VoiceController voiceController = Get.find();
   final RefreshController refreshController = Get.find();
@@ -46,13 +44,13 @@ class _MyAppState extends State<MyApp> {
 
     voiceController.initSpeech();
     voiceController.context = context;
-    voiceController.addCard = _handleAddCard;
+    voiceController.addCard = handleAddCard;
 
-    _pages.add(HomePage());
-    _pages.add(SearchPage(
-      addCard: _handleAddCard,
+    pages.add(HomePage());
+    pages.add(SearchPage(
+      addCard: handleAddCard,
     ));
-    _pages.add(SettingsPage());
+    pages.add(SettingsPage());
   }
 
   Future<void> loadJsonAsset() async {
@@ -61,13 +59,13 @@ class _MyAppState extends State<MyApp> {
     themeData.parseThemes(data);
   }
 
-  void _handleAddCard(String locationName) async {
+  void handleAddCard(String locationName) async {
     await refreshController.weatherData.value.dataHandleAdd(locationName);
     setState(() {});
   }
 
   int _currentIndex = 0;
-  final List<Widget> _pages = [];
+  final List<Widget> pages = [];
 
   final pageController = PageController(initialPage: 0);
   @override
@@ -86,7 +84,7 @@ class _MyAppState extends State<MyApp> {
         body: PageView(
             physics: const NeverScrollableScrollPhysics(),
             controller: pageController,
-            children: _pages),
+            children: pages),
         bottomNavigationBar: BottomNavigationBar(
           currentIndex: _currentIndex,
           onTap: (index) {

@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:untitled/data/item.dart';
 import 'package:untitled/generate/generate_id.dart';
 import 'package:untitled/pages/dialogs/detail_dialog.dart';
-import 'package:untitled/pages/dialogs/information_dialog.dart';
-
-import '/./data/item.dart';
 
 class CardBody extends StatelessWidget {
   CardBody({
@@ -54,7 +52,7 @@ class CardBody extends StatelessWidget {
               height: 120,
               decoration: BoxDecoration(
                 image: DecorationImage(
-                  image: AssetImage("./assets/images/car$idImg.jpg"),
+                  image: AssetImage("./assets/images/img$idImg.jpg"),
                   fit: BoxFit.fitWidth,
                   alignment: Alignment.bottomCenter,
                   colorFilter: ColorFilter.mode(
