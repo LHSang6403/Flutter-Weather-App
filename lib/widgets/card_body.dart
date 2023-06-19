@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
-import 'package:untitled/logics/generate.dart';
+import 'package:untitled/generate/generate_id.dart';
 import 'package:untitled/pages/dialogs/detail_dialog.dart';
+import 'package:untitled/pages/dialogs/information_dialog.dart';
 
 import '/./data/item.dart';
 
@@ -15,46 +16,13 @@ class CardBody extends StatelessWidget {
   Item item;
   final Function deleteCard;
 
-  Future<void> _dialogBuilder(BuildContext context) {
-    return showDialog<void>(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: const Text('Confirmation'),
-          content: const Text(
-            'Remove this weather card',
-          ),
-          actions: <Widget>[
-            TextButton(
-              style: TextButton.styleFrom(
-                textStyle: Theme.of(context).textTheme.labelLarge,
-              ),
-              child: const Text('Cancel'),
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-            ),
-            TextButton(
-              style: TextButton.styleFrom(
-                textStyle: Theme.of(context).textTheme.labelLarge,
-              ),
-              child: const Text('OK'),
-              onPressed: () {
-                deleteCard(item.getId());
-                Navigator.pop(context, true);
-              },
-            ),
-          ],
-        );
-      },
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
+    String idImg = generateRandomFromId(item.getId().toString());
+
     return GestureDetector(
       onTap: () {
-        detailDialog(context, item);
+        detailDialog(context, item, idImg);
       },
       child: Container(
         margin: const EdgeInsets.only(bottom: 10),
@@ -86,8 +54,7 @@ class CardBody extends StatelessWidget {
               height: 120,
               decoration: BoxDecoration(
                 image: DecorationImage(
-                  image: AssetImage(
-                      "./assets/images/car${generateRandomFromId(item.getId().toString())}.jpg"),
+                  image: AssetImage("./assets/images/car$idImg.jpg"),
                   fit: BoxFit.fitWidth,
                   alignment: Alignment.bottomCenter,
                   colorFilter: ColorFilter.mode(

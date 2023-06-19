@@ -3,8 +3,7 @@ import 'package:untitled/pages/dialogs/detail_dialog.dart';
 import '../../main.dart';
 
 void showAddBottomSheet(
-    BuildContext context, String locationName, Function addCard) {
-  //VoiceController voiceController = Get.find();
+  BuildContext context, String locationName, Function addCard) {
 
   showModalBottomSheet<void>(
     context: context,

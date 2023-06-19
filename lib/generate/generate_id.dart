@@ -7,9 +7,16 @@ int getCurrentDateAsInt() {
   return currentDate;
 }
 
-int generateRandomFromId(String id) {
+int getRandomInt(int min, int max) {
+  final random = Random();
+  return min + random.nextInt(max - min + 1);
+}
+
+String generateRandomFromId(String id) {
   int hashCode = id.hashCode;
+  hashCode += getRandomInt(1, 9999);
   Random random = Random(hashCode);
   int randomNumber = random.nextInt(11); // Generate random number from 0 to 11
-  return randomNumber;
+  
+  return randomNumber.toString();
 }

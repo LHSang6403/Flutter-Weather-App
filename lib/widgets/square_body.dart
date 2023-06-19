@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:untitled/logics/generate.dart';
+import 'package:untitled/data/item.dart';
+import 'package:untitled/generate/generate_id.dart';
 import 'package:untitled/pages/dialogs/detail_dialog.dart';
-
-import '/./data/item.dart';
 
 class SquareBody extends StatelessWidget {
   final VoidCallback onLongPressFunc;
@@ -17,47 +16,13 @@ class SquareBody extends StatelessWidget {
   Item item;
   final Function deleteCard;
 
-  Future<void> _dialogBuilder(BuildContext context) {
-    return showDialog<void>(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: const Text('Confirmation'),
-          content: const Text(
-            'Remove this weather card',
-          ),
-          actions: <Widget>[
-            TextButton(
-              style: TextButton.styleFrom(
-                textStyle: Theme.of(context).textTheme.labelLarge,
-              ),
-              child: const Text('Cancel'),
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-            ),
-            TextButton(
-              style: TextButton.styleFrom(
-                textStyle: Theme.of(context).textTheme.labelLarge,
-              ),
-              child: const Text('OK'),
-              onPressed: () {
-                deleteCard(item.getId());
-                Navigator.pop(context, true);
-              },
-            ),
-          ],
-        );
-      },
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
+    String idImg = generateRandomFromId(item.getId().toString());
     return GestureDetector(
       onLongPress: () => onLongPressFunc(),
       onTap: () {
-        detailDialog(context, item);
+        detailDialog(context, item, idImg);
       },
       child: Container(
           width: 160,
@@ -65,7 +30,7 @@ class SquareBody extends StatelessWidget {
           decoration: BoxDecoration(
             image: DecorationImage(
               image: AssetImage(
-                  "./assets/images/car${generateRandomFromId(item.getId().toString())}.jpg"),
+                  "./assets/images/car$idImg.jpg"),
               fit: BoxFit.cover,
               alignment: Alignment.bottomCenter,
               colorFilter: ColorFilter.mode(

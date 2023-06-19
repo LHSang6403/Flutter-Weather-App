@@ -1,6 +1,6 @@
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-import '../logics/generate.dart';
+import '../generate/generate_id.dart';
 import 'item.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
@@ -17,12 +17,10 @@ class Data {
     String apiUrl = dotenv.env['API_URL'] ?? '';
 
     final url = '$apiUrl=$apiKey&q=$location';
-
     final response = await http.get(Uri.parse(url));
 
     if (response.statusCode == 200) {
       final data = jsonDecode(response.body);
-      print(data);
       return data;
     } else {
       throw Exception('Failed to fetch weather data');
@@ -39,18 +37,16 @@ class Data {
       final localTime = weatherData['location']['localtime'];
       final lastUpdate = weatherData['current']['last_updated'];
 
-      print('$tempC, $tempF, $condition, $country, $localTime, $lastUpdate');
       var item = Item(getCurrentDateAsInt(), condition, tempC, tempF, location,
           country, localTime, lastUpdate);
       items.add(item);
-      PrintOut();
     } catch (e) {
       print('Error: $e');
     }
   }
 
   void PrintOut() {
-    print('=======Lasted List:');
+    print('Lasted List:');
     for (var item in items) {
       print(item.getId());
       print(item.getStatus());
@@ -60,7 +56,6 @@ class Data {
       print(item.getCountry());
       print(item.getLocalTime());
       print(item.getLastUpdate());
-      print('--');
     }
     print('\n');
   }

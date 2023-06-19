@@ -1,22 +1,25 @@
 import 'dart:async';
+import 'package:untitled/data/refresh_indicator.dart';
+import 'package:untitled/data/refresh_indicator_controller.dart';
 import 'package:untitled/pages/search_page/search_page_controller.dart';
 import 'package:untitled/pages/setting_page/setting_controller.dart';
 import 'theme/theme_loader.dart';
 import 'dart:convert';
 import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
-import 'data/items.dart';
 import 'package:untitled/pages/search_page/search_page.dart';
 import 'package:untitled/pages/setting_page/setting_page.dart';
 import 'package:untitled/pages/home_page/home_page.dart';
 import 'package:get/get.dart';
 
 ThemeDataModel themeData = ThemeDataModel();
+RefreshData refreshData = RefreshData();
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   Get.put(ViewModeController());
   Get.put(VoiceController());
+  Get.put(RefreshController());
 
   runApp(const MaterialApp(
     debugShowCheckedModeBanner: false,
@@ -32,19 +35,20 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  Data weatherData = Data();
+  //Data weatherData = Data();
   final ViewModeController viewModeController = Get.find();
   final VoiceController voiceController = Get.find();
+  final RefreshController refreshController = Get.find();
 
   void initState() {
     super.initState();
     loadJsonAsset();
-    voiceController.initSpeech();
 
+    voiceController.initSpeech();
     voiceController.context = context;
     voiceController.addCard = _handleAddCard;
 
-    _pages.add(HomePage(weatherData: weatherData));
+    _pages.add(HomePage());
     _pages.add(SearchPage(
       addCard: _handleAddCard,
     ));
@@ -58,7 +62,7 @@ class _MyAppState extends State<MyApp> {
   }
 
   void _handleAddCard(String locationName) async {
-    await weatherData.dataHandleAdd(locationName);
+    await refreshController.weatherData.value.dataHandleAdd(locationName);
     setState(() {});
   }
 

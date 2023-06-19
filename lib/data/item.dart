@@ -13,18 +13,11 @@ class Item {
       this._country, this._localTime, this._lastUpdate);
 
   String getStatus() => _status;
-
   int getId() => _id;
-
   double getTemperatureC() => _temperatureC;
-
   double getTemperatureF() => _temperatureF;
-
   String getLocation() => _location;
-
   String getCountry() => _country;
-
   String getLocalTime() => _localTime;
-
   String getLastUpdate() => _lastUpdate;
 }

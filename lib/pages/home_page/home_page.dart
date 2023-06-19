@@ -1,31 +1,41 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:untitled/data/item.dart';
 import 'package:untitled/data/items.dart';
+import 'package:untitled/data/refresh_indicator_controller.dart';
 import 'package:untitled/main.dart';
 import 'package:untitled/pages/dialogs/modal_bottom_delete.dart';
 import 'package:untitled/pages/setting_page/setting_controller.dart';
 import 'package:untitled/widgets/card_body.dart';
 import 'package:untitled/widgets/square_body.dart';
 
-class HomePage extends StatefulWidget {
-  Data weatherData;
+RefreshController refreshController = Get.find();
 
-  HomePage({Key? key, required this.weatherData});
+class HomePage extends StatefulWidget {
+  HomePage({Key? key});
   @override
   State<HomePage> createState() => _HomePageState();
 }
 
 class _HomePageState extends State<HomePage> {
   final ViewModeController viewModeController = Get.find();
+  final GlobalKey<RefreshIndicatorState> refreshIndicatorKey =
+      GlobalKey<RefreshIndicatorState>();
 
-  void _handleDeleteCard(int id) {
-    widget.weatherData.items.removeWhere((item) => id == item.getId());
+  void handleDeleteCard(int id) {
+    for (Item item in refreshController.weatherData.value.items) {
+      if (id == item.getId()) {
+        refreshData.needRefreshCities.remove(item.getLocation());
+      }
+    }
+    refreshController.weatherData.value.items
+        .removeWhere((item) => id == item.getId());
     setState(() {});
   }
 
   void handleOpenRemoveBottomSheet(int id) {
     showRemoveBottomSheet(() {
-      _handleDeleteCard(id);
+      handleDeleteCard(id);
     }, context);
   }
 
@@ -44,29 +54,50 @@ class _HomePageState extends State<HomePage> {
             backgroundColor: themeData
                 .getPrimaryColor(viewModeController.indexThemeData.value),
           ),
-          body: viewModeController.viewModesCurrentIndex.value == 0
-              ? listBody()
-              : gridBody(),
+          body: RefreshIndicator(
+            key: refreshIndicatorKey,
+            color: Colors.white,
+            backgroundColor: Colors.blue,
+            strokeWidth: 4.0,
+            onRefresh: () async {
+              Data? newData = await refreshData.handleRefresh();
+              if (newData != null) {
+                refreshController.weatherData.value = newData;
+              }
+            },
+            child: viewModeController.viewModesCurrentIndex.value == 0
+                ? listBody()
+                : gridBody(),
+          ),
         ));
   }
 
   Widget listBody() {
-    return SingleChildScrollView(
-      padding: const EdgeInsets.all(16),
-      child: Column(
-        children: widget.weatherData.items
-            .map((item) => CardBody(
-                  item: item,
-                  deleteCard: _handleDeleteCard,
-                  //parentContext: context,
-                ))
-            .toList(),
-      ),
-    );
+    return Obx(() {
+      return SizedBox(
+        height: 1000,
+        child: ListView(
+            scrollDirection: Axis.vertical,
+            padding: const EdgeInsets.all(16),
+            children: [
+              Column(
+                children: refreshController.weatherData.value.items
+                    .map((item) => CardBody(
+                          item: item,
+                          deleteCard: handleDeleteCard,
+                        ))
+                    .toList(),
+              ),
+            ]),
+      );
+    });
   }
 
   Widget gridBody() {
-    return Container(padding: const EdgeInsets.all(12), child: buildGridView());
+    return Obx(() {
+      return Container(
+          padding: const EdgeInsets.all(12), child: buildGridView());
+    });
   }
 
   Widget buildGridView() => GridView.builder(
@@ -77,13 +108,12 @@ class _HomePageState extends State<HomePage> {
           crossAxisSpacing: 12,
         ),
         padding: const EdgeInsets.all(4),
-        itemCount: widget.weatherData.items.length,
+        itemCount: refreshController.weatherData.value.items.length,
         itemBuilder: (context, index) {
-          final item = widget.weatherData.items[index];
-
+          final item = refreshController.weatherData.value.items[index];
           return SquareBody(
             item: item,
-            deleteCard: _handleDeleteCard,
+            deleteCard: handleDeleteCard,
             onLongPressFunc: () {
               handleOpenRemoveBottomSheet(item.getId());
             },

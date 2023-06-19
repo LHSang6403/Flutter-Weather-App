@@ -92,6 +92,7 @@ class _SearchPageState extends State<SearchPage> {
       return;
     }
     widget.addCard(locationRequest);
+    refreshData.loadToNeedRefreshCities(locationRequest);
     fieldText.clear();
     loadJsonCities();
   }
