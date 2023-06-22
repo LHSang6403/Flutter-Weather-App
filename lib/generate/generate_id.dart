@@ -14,7 +14,7 @@ int generateID() {
 String generateRandomFromId(String id) {
   int hashCode = id.hashCode;
 
-  hashCode += Random().nextInt(999); // Value is >= 0 and < 10.
+  hashCode += Random().nextInt(999); // Value is >= 0 and < 999.
   hashCode += Random().nextInt(499);
   hashCode += Random().nextInt(299);
   hashCode += Random().nextInt(99);

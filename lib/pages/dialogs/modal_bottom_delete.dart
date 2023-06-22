@@ -55,16 +55,16 @@ void showRemoveBottomSheet(VoidCallback removeCard, BuildContext context) {
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: themeData.getTextColor(viewModeController
-                        .indexThemeData.value), // Set the background color
+                        .indexThemeData.value),
                     shape: RoundedRectangleBorder(
                       borderRadius:
-                          BorderRadius.circular(10), // Set the border radius
+                          BorderRadius.circular(10),
                     ),
                     padding: const EdgeInsets.symmetric(
-                        vertical: 12, horizontal: 24), // Set the padding
+                        vertical: 12, horizontal: 24),
                     textStyle: const TextStyle(
-                      fontSize: 16, // Set the font size
-                      fontWeight: FontWeight.bold, // Set the font weight
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
                     ),
                   ),
                   child: const Text('Cancel'),
