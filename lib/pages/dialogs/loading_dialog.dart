@@ -39,9 +39,9 @@ class _LoadingState extends State<Loading> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       SpinKitWaveSpinner(
-                        color: themeData.getAccentColor(
+                        color: themeData.getUnselectedButtonColor(
                             viewModeController.indexThemeData.value),
-                        waveColor: themeData.getAccentColor2(
+                        waveColor: themeData.getSelectedButtonColor(
                             viewModeController.indexThemeData.value),
                         size: 60,
                       ),
@@ -52,7 +52,7 @@ class _LoadingState extends State<Loading> {
                         'Loading...',
                         style: TextStyle(
                             fontSize: 16,
-                            color: themeData.getAccentColor(
+                            color: themeData.getSelectedButtonColor(
                                 viewModeController.indexThemeData.value)),
                       )
                     ],

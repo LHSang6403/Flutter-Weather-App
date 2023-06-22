@@ -1,26 +1,26 @@
 import 'dart:math';
 
-int getCurrentDateAsInt() {
+int generateID() {
   DateTime now = DateTime.now();
   int currentDate =
       int.parse("${now.year}${now.month}${now.day}${now.hour}${now.second}");
-  return currentDate;
-}
 
-int getRandomInt(int min, int max) {
-  final random = Random();
-  return min + random.nextInt(max - min + 1);
+  currentDate += Random().nextInt(999999);
+  currentDate += Random().nextInt(999);
+
+  return currentDate;
 }
 
 String generateRandomFromId(String id) {
   int hashCode = id.hashCode;
-  
-  hashCode += getRandomInt(1, 999);
-  hashCode -= getRandomInt(1, 999);
-  hashCode += getRandomInt(1, 999);
+
+  hashCode += Random().nextInt(999); // Value is >= 0 and < 10.
+  hashCode += Random().nextInt(499);
+  hashCode += Random().nextInt(299);
+  hashCode += Random().nextInt(99);
 
   Random random = Random(hashCode);
   int randomNumber = random.nextInt(26); // Generate random number from 0 to 26
-  
+
   return randomNumber.toString();
 }

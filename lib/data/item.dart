@@ -1,5 +1,7 @@
+import 'package:untitled/generate/generate_id.dart';
+
 class Item {
-  final int _id;
+  late int _id;
   final String _status;
   final double _temperatureC;
   final double _temperatureF;
@@ -7,10 +9,14 @@ class Item {
   final String _country;
   final String _localTime;
   final String _lastUpdate;
+  late String _imgID;
 
-  Item(this._id, this._status, this._temperatureC,
-      this._temperatureF, this._location,
-      this._country, this._localTime, this._lastUpdate);
+  Item(this._status, this._temperatureC, this._temperatureF,
+      this._location, this._country, this._localTime, this._lastUpdate) {
+    _id = generateID();
+    _imgID = generateRandomFromId(_id.toString());
+    print('create item $_id and img $_imgID');
+  }
 
   String getStatus() => _status;
   int getId() => _id;
@@ -20,4 +26,5 @@ class Item {
   String getCountry() => _country;
   String getLocalTime() => _localTime;
   String getLastUpdate() => _lastUpdate;
+  String getImgID() => _imgID;
 }

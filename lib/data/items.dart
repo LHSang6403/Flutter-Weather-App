@@ -1,6 +1,5 @@
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-import '../generate/generate_id.dart';
 import 'item.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
@@ -37,7 +36,7 @@ class Data {
       final localTime = weatherData['location']['localtime'];
       final lastUpdate = weatherData['current']['last_updated'];
 
-      var item = Item(getCurrentDateAsInt(), condition, tempC, tempF, location,
+      var item = Item(condition, tempC, tempF, location,
           country, localTime, lastUpdate);
       items.add(item);
     } catch (e) {

@@ -4,28 +4,28 @@
         "name": "dark",
         "primaryColor": "#000001",
         "accentColor": "#e88504",
-        "accentColor2": "#2a9df4",
+        "textColor": "#44442C",
         "backgroundColor": "#101e27",
-        "selectedButtonColor": "#f58216",
-        "unselectedButtonColor": "#8d4004"
+        "selectedButtonColor": "#F58216",
+        "unselectedButtonColor": "#8D4004"
       },
       {
         "name": "custom1",
         "primaryColor": "#f5c80f",
         "accentColor": "#191919",
-        "accentColor2": "#44442c",
+        "textColor": "#FFFDFA",
         "backgroundColor": "#e5f6df",
-        "selectedButtonColor": "#e47200",
-        "unselectedButtonColor": "#ffea61"
+        "selectedButtonColor": "#191919",
+        "unselectedButtonColor": "#52522C"
       },
       {
         "name": "custom2",
         "primaryColor": "#284e1a",
         "accentColor": "#dc9c5a",
-        "accentColor2": "#ccaeb5",
+        "textColor": "#191919",
         "backgroundColor": "#043927",
-        "selectedButtonColor": "#dc9c5a",
-        "unselectedButtonColor": "#dc9c5a"
+        "selectedButtonColor": "#DC9C5A",
+        "unselectedButtonColor": "#CCAEB5"
       }
     ]
   }

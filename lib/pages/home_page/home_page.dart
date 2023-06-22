@@ -47,8 +47,8 @@ class _HomePageState extends State<HomePage> {
             title: Text(
               'Home',
               style: TextStyle(
-                  color: themeData
-                      .getAccentColor2(viewModeController.indexThemeData.value),
+                  color: themeData.getSelectedButtonColor(
+                      viewModeController.indexThemeData.value),
                   fontWeight: FontWeight.bold),
             ),
             backgroundColor: themeData

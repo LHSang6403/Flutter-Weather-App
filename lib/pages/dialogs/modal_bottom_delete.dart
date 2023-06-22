@@ -21,10 +21,8 @@ void showRemoveBottomSheet(VoidCallback removeCard, BuildContext context) {
               style: TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.w500,
-                color: viewModeController.indexThemeData.value == 0
-                    ? Colors.black
-                    : themeData.getAccentColor2(
-                        viewModeController.indexThemeData.value),
+                color: themeData
+                    .getAccentColor(viewModeController.indexThemeData.value),
               ),
             ),
             const SizedBox(height: 24),

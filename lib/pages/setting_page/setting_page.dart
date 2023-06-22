@@ -21,8 +21,8 @@ class _SettingsPageState extends State<SettingsPage> {
           title: Text(
             'Settings',
             style: TextStyle(
-                color: themeData
-                    .getAccentColor2(viewModeController.indexThemeData.value),
+                color: themeData.getSelectedButtonColor(
+                    viewModeController.indexThemeData.value),
                 fontWeight: FontWeight.bold),
           ),
           backgroundColor: themeData
@@ -43,10 +43,8 @@ class _SettingsPageState extends State<SettingsPage> {
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 18,
-                    color: viewModeController.indexThemeData.value == 0
-                        ? Colors.black
-                        : themeData.getAccentColor2(
-                            viewModeController.indexThemeData.value),
+                    color: themeData.getAccentColor(
+                        viewModeController.indexThemeData.value),
                   ),
                 ),
                 Row(children: [
@@ -58,10 +56,8 @@ class _SettingsPageState extends State<SettingsPage> {
                     style: TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.w500,
-                      color: viewModeController.indexThemeData.value == 0
-                          ? Colors.black
-                          : themeData.getAccentColor2(
-                              viewModeController.indexThemeData.value),
+                      color: themeData.getAccentColor(
+                          viewModeController.indexThemeData.value),
                     ),
                   )),
                   Switch(
@@ -72,10 +68,8 @@ class _SettingsPageState extends State<SettingsPage> {
                   ),
                 ]),
                 Divider(
-                  color: viewModeController.indexThemeData.value == 0
-                      ? Colors.black
-                      : themeData.getAccentColor2(
-                          viewModeController.indexThemeData.value),
+                  color: themeData
+                      .getAccentColor(viewModeController.indexThemeData.value),
                 ),
                 const SizedBox(height: 10.0),
                 Text(
@@ -83,10 +77,8 @@ class _SettingsPageState extends State<SettingsPage> {
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 18,
-                    color: viewModeController.indexThemeData.value == 0
-                        ? Colors.black
-                        : themeData.getAccentColor2(
-                            viewModeController.indexThemeData.value),
+                    color: themeData.getAccentColor(
+                        viewModeController.indexThemeData.value),
                   ),
                 ),
                 const SizedBox(height: 6.0),
@@ -109,14 +101,11 @@ class _SettingsPageState extends State<SettingsPage> {
                         ),
                         selected: viewModeController.currentIndex == index,
                         labelStyle: TextStyle(
-                          fontWeight: viewModeController.currentIndex == index
-                              ? FontWeight.bold
-                              : FontWeight.normal,
-                          color: viewModeController.currentIndex == index
-                              ? themeData.getAccentColor(
-                                  viewModeController.indexThemeData.value)
-                              : Colors.black87,
-                        ),
+                            fontWeight: viewModeController.currentIndex == index
+                                ? FontWeight.bold
+                                : FontWeight.normal,
+                            color: themeData.getAccentColor(
+                                viewModeController.indexThemeData.value)),
                         backgroundColor:
                             viewModeController.currentIndex == index
                                 ? themeData.getSelectedButtonColor(

@@ -3,8 +3,7 @@ import 'package:untitled/pages/dialogs/detail_dialog.dart';
 import '../../main.dart';
 
 void showAddBottomSheet(
-  BuildContext context, String locationName, Function addCard) {
-
+    BuildContext context, String locationName, Function addCard) {
   showModalBottomSheet<void>(
     context: context,
     builder: (BuildContext context) {
@@ -20,10 +19,8 @@ void showAddBottomSheet(
               style: TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.w500,
-                color: viewModeController.indexThemeData.value == 0
-                    ? Colors.black
-                    : themeData.getAccentColor2(
-                        viewModeController.indexThemeData.value),
+                color: themeData
+                    .getAccentColor(viewModeController.indexThemeData.value),
               ),
             ),
             const SizedBox(height: 24),
@@ -33,7 +30,6 @@ void showAddBottomSheet(
                 ElevatedButton(
                   onPressed: () {
                     addCard(locationName);
-                    //print('add card: $locationName');
                     Navigator.of(context).pop();
                   },
                   style: ElevatedButton.styleFrom(

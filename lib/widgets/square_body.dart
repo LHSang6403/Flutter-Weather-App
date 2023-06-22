@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:untitled/data/item.dart';
-import 'package:untitled/generate/generate_id.dart';
 import 'package:untitled/pages/dialogs/detail_dialog.dart';
 
 class SquareBody extends StatelessWidget {
@@ -18,11 +17,10 @@ class SquareBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    String idImg = generateRandomFromId(item.getId().toString());
     return GestureDetector(
       onLongPress: () => onLongPressFunc(),
       onTap: () {
-        detailDialog(context, item, idImg);
+        detailDialog(context, item, item.getImgID());
       },
       child: Container(
           width: 160,
@@ -30,7 +28,7 @@ class SquareBody extends StatelessWidget {
           decoration: BoxDecoration(
             image: DecorationImage(
               image: AssetImage(
-                  "./assets/images/img$idImg.jpg"),
+                  "./assets/images/img${item.getImgID()}.jpg"),
               fit: BoxFit.cover,
               alignment: Alignment.bottomCenter,
               colorFilter: ColorFilter.mode(

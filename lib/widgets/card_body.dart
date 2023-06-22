@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:untitled/data/item.dart';
-import 'package:untitled/generate/generate_id.dart';
 import 'package:untitled/pages/dialogs/detail_dialog.dart';
 
 class CardBody extends StatelessWidget {
@@ -16,20 +15,16 @@ class CardBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    String idImg = generateRandomFromId(item.getId().toString());
-
     return GestureDetector(
       onTap: () {
-        detailDialog(context, item, idImg);
+        detailDialog(context, item, item.getImgID());
       },
       child: Container(
         margin: const EdgeInsets.only(bottom: 10),
         child: Slidable(
           key: const ValueKey(0),
           endActionPane: ActionPane(
-            dismissible: DismissiblePane(onDismissed: () {
-              deleteCard(item.getId());
-            }),
+            dismissible: null,
             motion: const DrawerMotion(),
             extentRatio: 0.3,
             children: [
@@ -52,7 +47,8 @@ class CardBody extends StatelessWidget {
               height: 120,
               decoration: BoxDecoration(
                 image: DecorationImage(
-                  image: AssetImage("./assets/images/img$idImg.jpg"),
+                  image:
+                      AssetImage("./assets/images/img${item.getImgID()}.jpg"),
                   fit: BoxFit.fitWidth,
                   alignment: Alignment.bottomCenter,
                   colorFilter: ColorFilter.mode(
@@ -61,10 +57,10 @@ class CardBody extends StatelessWidget {
                 borderRadius: BorderRadius.circular(18),
               ),
               child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 26),
+                padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: Column(mainAxisSize: MainAxisSize.max, children: [
                   const SizedBox(
-                    height: 40,
+                    height: 55,
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -72,12 +68,13 @@ class CardBody extends StatelessWidget {
                       Expanded(
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.end,
                           children: [
                             Text(
                               '${item.getTemperatureC().toStringAsFixed(1)}°C',
                               style: const TextStyle(
-                                  fontSize: 32,
-                                  color: Colors.black,
+                                  fontSize: 30,
+                                  color: Colors.white,
                                   fontWeight: FontWeight.w400),
                             ),
                             const SizedBox(
@@ -87,8 +84,8 @@ class CardBody extends StatelessWidget {
                               child: Text(
                                 item.getStatus(),
                                 style: const TextStyle(
-                                    fontSize: 28,
-                                    color: Colors.black,
+                                    fontSize: 20,
+                                    color: Colors.white,
                                     fontWeight: FontWeight.w400),
                                 maxLines: 1,
                                 overflow: TextOverflow.ellipsis,
@@ -109,8 +106,8 @@ class CardBody extends StatelessWidget {
                     Text(
                       item.getLocation(),
                       style: const TextStyle(
-                          fontSize: 20,
-                          color: Colors.black,
+                          fontSize: 16,
+                          color: Colors.white,
                           fontWeight: FontWeight.w400),
                     ),
                   ]),

@@ -100,13 +100,13 @@ class _MyAppState extends State<MyApp> {
           selectedFontSize: 10,
           selectedIconTheme: IconThemeData(
               color: themeData
-                  .getAccentColor(viewModeController.indexThemeData.value),
+                  .getSelectedButtonColor(viewModeController.indexThemeData.value),
               size: 40),
           selectedItemColor:
-              themeData.getAccentColor(viewModeController.indexThemeData.value),
+              themeData.getSelectedButtonColor(viewModeController.indexThemeData.value),
           selectedLabelStyle: const TextStyle(fontWeight: FontWeight.bold),
           unselectedItemColor: themeData
-              .getAccentColor2(viewModeController.indexThemeData.value),
+              .getUnselectedButtonColor(viewModeController.indexThemeData.value),
           items: const <BottomNavigationBarItem>[
             BottomNavigationBarItem(
               icon: Icon(Icons.home),

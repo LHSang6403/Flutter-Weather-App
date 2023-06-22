@@ -69,7 +69,7 @@ class SearchPageState extends State<SearchPage> {
               title: Text(
                 'Search',
                 style: TextStyle(
-                    color: themeData.getAccentColor2(
+                    color: themeData.getSelectedButtonColor(
                         viewModeController.indexThemeData.value),
                     fontWeight: FontWeight.bold),
               ),
@@ -84,17 +84,17 @@ class SearchPageState extends State<SearchPage> {
                     controller: suggestionController,
                     suggestions: suggestionList,
                     //clearOnSubmit: true,
-                    cursorColor: themeData.getSelectedButtonColor(
+                    cursorColor: themeData.getAccentColor(
                         viewModeController.indexThemeData.value),
                     style: TextStyle(
-                        color: themeData.getSelectedButtonColor(
+                        color: themeData.getAccentColor(
                             viewModeController.indexThemeData.value),
                         fontSize: 16),
                     decoration: InputDecoration(
                         enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(16.0),
                           borderSide: BorderSide(
-                              color: themeData.getSelectedButtonColor(
+                              color: themeData.getAccentColor(
                                   viewModeController.indexThemeData.value),
                               width: 2.0),
                         ),
@@ -162,7 +162,7 @@ class SearchPageState extends State<SearchPage> {
                 child: Icon(
                   Icons.mic_outlined,
                   color: themeData
-                      .getAccentColor(viewModeController.indexThemeData.value),
+                      .getSelectedButtonColor(viewModeController.indexThemeData.value),
                 ),
               ),
             ),
