@@ -9,6 +9,7 @@ class customTheme {
   Color backgroundColor; // background's color
   Color selectedButtonColor;
   Color unselectedButtonColor;
+  Color settingTextColor;
 
   customTheme(
       {required this.name,
@@ -17,7 +18,8 @@ class customTheme {
       required this.textColor,
       required this.backgroundColor,
       required this.selectedButtonColor,
-      required this.unselectedButtonColor});
+      required this.unselectedButtonColor,
+      required this.settingTextColor});
 }
 
 class ThemeDataModel {
@@ -31,7 +33,8 @@ class ThemeDataModel {
         textColor: HexColor("#191919"),
         backgroundColor: HexColor("#f6f6f6"),
         selectedButtonColor: HexColor("#FFFDFA"),
-        unselectedButtonColor: HexColor("#FFFAFC"));
+        unselectedButtonColor: HexColor("#FFFAFC"),
+        settingTextColor: HexColor("#191919"));
     listThemes.add(defaultTheme);
   }
 
@@ -59,6 +62,10 @@ class ThemeDataModel {
     return listThemes[index].unselectedButtonColor;
   }
 
+  Color getSettingTextColor(int index) {
+    return listThemes[index].settingTextColor;
+  }
+
   void handleReadOneTheme(Map<String, dynamic> eachTheme) {
     final String name = eachTheme['themes']['name'];
     final String primaryColor = eachTheme['themes']['primaryColor'];
@@ -69,6 +76,7 @@ class ThemeDataModel {
         eachTheme['themes']['selectedButtonColor'];
     final String unselectedButtonColor =
         eachTheme['themes']['UnselectedButtonColor'];
+    final String settingTextColor = eachTheme['themes']['settingTextColor'];
 
     var theme = customTheme(
         name: name,
@@ -77,7 +85,8 @@ class ThemeDataModel {
         textColor: HexColor(textColor),
         backgroundColor: HexColor(backgroundColor),
         selectedButtonColor: HexColor(selectedButtonColor),
-        unselectedButtonColor: HexColor(unselectedButtonColor));
+        unselectedButtonColor: HexColor(unselectedButtonColor),
+        settingTextColor: HexColor(settingTextColor));
     listThemes.add(theme);
   }
 
@@ -94,6 +103,7 @@ class ThemeDataModel {
           themeJson['selectedButtonColor'] as String;
       final String unselectedButtonColor =
           themeJson['unselectedButtonColor'] as String;
+      final String settingTextColor = themeJson['settingTextColor'] as String;
 
       var themeTemp = customTheme(
           name: name,
@@ -102,7 +112,8 @@ class ThemeDataModel {
           textColor: HexColor(textColor),
           backgroundColor: HexColor(backgroundColor),
           selectedButtonColor: HexColor(selectedButtonColor),
-          unselectedButtonColor: HexColor(unselectedButtonColor));
+          unselectedButtonColor: HexColor(unselectedButtonColor),
+          settingTextColor: HexColor(settingTextColor));
       listThemes.add(themeTemp);
     }
   }

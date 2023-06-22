@@ -48,7 +48,7 @@ class CardBody extends StatelessWidget {
               decoration: BoxDecoration(
                 image: DecorationImage(
                   image:
-                      AssetImage("./assets/images/img${item.getImgID()}.jpg"),
+                      AssetImage("./assets/images/background_imgs/img${item.getImgID()}.jpg"),
                   fit: BoxFit.fitWidth,
                   alignment: Alignment.bottomCenter,
                   colorFilter: ColorFilter.mode(

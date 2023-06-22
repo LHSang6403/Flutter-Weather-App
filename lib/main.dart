@@ -89,7 +89,7 @@ class _MyAppState extends State<MyApp> {
           currentIndex: _currentIndex,
           onTap: (index) {
             pageController.animateToPage(index,
-                duration: const Duration(milliseconds: 500),
+                duration: const Duration(milliseconds: 400),
                 curve: Curves.easeInOut);
             setState(() {
               _currentIndex = index;

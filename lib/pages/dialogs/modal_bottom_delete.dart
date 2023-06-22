@@ -35,7 +35,7 @@ void showRemoveBottomSheet(VoidCallback removeCard, BuildContext context) {
                     Navigator.of(context).pop();
                   },
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: themeData.getSelectedButtonColor(
+                    backgroundColor: themeData.getAccentColor(
                         viewModeController.indexThemeData.value),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10),
@@ -54,9 +54,8 @@ void showRemoveBottomSheet(VoidCallback removeCard, BuildContext context) {
                     Navigator.of(context).pop();
                   },
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: themeData.getUnselectedButtonColor(
-                        viewModeController
-                            .indexThemeData.value), // Set the background color
+                    backgroundColor: themeData.getTextColor(viewModeController
+                        .indexThemeData.value), // Set the background color
                     shape: RoundedRectangleBorder(
                       borderRadius:
                           BorderRadius.circular(10), // Set the border radius

@@ -2,11 +2,11 @@ import 'dart:async';
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:autocomplete_textfield/autocomplete_textfield.dart';
 import 'package:get/get.dart';
 import 'package:untitled/main.dart';
 import 'package:untitled/pages/dialogs/loading_dialog.dart';
 import 'package:untitled/pages/search_page/search_page_controller.dart';
+import 'package:untitled/pages/search_page/autocomplete_textfield_custom.dart';
 import 'package:untitled/pages/setting_page/setting_controller.dart';
 
 List<String> suggestionList = [];
@@ -83,7 +83,7 @@ class SearchPageState extends State<SearchPage> {
                   AutoCompleteTextField(
                     controller: suggestionController,
                     suggestions: suggestionList,
-                    //clearOnSubmit: true,
+                    clearOnSubmit: true,
                     cursorColor: themeData.getAccentColor(
                         viewModeController.indexThemeData.value),
                     style: TextStyle(
@@ -161,8 +161,8 @@ class SearchPageState extends State<SearchPage> {
                     .getPrimaryColor(viewModeController.indexThemeData.value),
                 child: Icon(
                   Icons.mic_outlined,
-                  color: themeData
-                      .getSelectedButtonColor(viewModeController.indexThemeData.value),
+                  color: themeData.getSelectedButtonColor(
+                      viewModeController.indexThemeData.value),
                 ),
               ),
             ),

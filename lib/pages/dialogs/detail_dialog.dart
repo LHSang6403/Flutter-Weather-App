@@ -1,5 +1,4 @@
 import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:untitled/data/item.dart';
@@ -28,7 +27,7 @@ Future detailDialog(context, Item item, String id) => showDialog(
                   height: 250,
                   decoration: BoxDecoration(
                     image: DecorationImage(
-                      image: AssetImage("./assets/images/img$id.jpg"),
+                      image: AssetImage("./assets/images/background_imgs/img$id.jpg"),
                       fit: BoxFit.fill,
                       alignment: Alignment.bottomCenter,
                     ),

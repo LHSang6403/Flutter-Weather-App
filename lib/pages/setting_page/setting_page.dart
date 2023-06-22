@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:untitled/main.dart';
 import 'package:get/get.dart';
+import 'package:untitled/pages/dialogs/infor_dialog.dart';
 import 'package:untitled/pages/setting_page/setting_controller.dart';
 
 final ViewModeController viewModeController = Get.put(ViewModeController());
@@ -56,7 +57,7 @@ class _SettingsPageState extends State<SettingsPage> {
                     style: TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.w500,
-                      color: themeData.getAccentColor(
+                      color: themeData.getSettingTextColor(
                           viewModeController.indexThemeData.value),
                     ),
                   )),
@@ -104,7 +105,7 @@ class _SettingsPageState extends State<SettingsPage> {
                             fontWeight: viewModeController.currentIndex == index
                                 ? FontWeight.bold
                                 : FontWeight.normal,
-                            color: themeData.getAccentColor(
+                            color: themeData.getSettingTextColor(
                                 viewModeController.indexThemeData.value)),
                         backgroundColor:
                             viewModeController.currentIndex == index
@@ -120,6 +121,55 @@ class _SettingsPageState extends State<SettingsPage> {
                       );
                     },
                   ).toList(),
+                ),
+                Divider(
+                  color: themeData
+                      .getAccentColor(viewModeController.indexThemeData.value),
+                ),
+                const SizedBox(height: 10.0),
+                Text(
+                  'About developer',
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 18,
+                    color: themeData.getAccentColor(
+                        viewModeController.indexThemeData.value),
+                  ),
+                ),
+                const SizedBox(height: 6.0),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'Sang Le',
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.w500,
+                        color: themeData.getSettingTextColor(
+                            viewModeController.indexThemeData.value),
+                      ),
+                    ),
+                    const SizedBox(
+                      width: 20,
+                    ),
+                    ElevatedButton(
+                      onPressed: () => informationDialog(context),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: themeData.getAccentColor(
+                            viewModeController.indexThemeData.value),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 10, horizontal: 20),
+                        textStyle: const TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      child: const Text('More'),
+                    ),
+                  ],
                 ),
               ],
             ),

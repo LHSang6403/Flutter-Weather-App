@@ -33,7 +33,7 @@ void showAddBottomSheet(
                     Navigator.of(context).pop();
                   },
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: themeData.getSelectedButtonColor(
+                    backgroundColor: themeData.getAccentColor(
                         viewModeController.indexThemeData.value),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10),
@@ -52,7 +52,7 @@ void showAddBottomSheet(
                     Navigator.of(context).pop();
                   },
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: themeData.getUnselectedButtonColor(
+                    backgroundColor: themeData.getTextColor(
                         viewModeController.indexThemeData.value),
                     // Set the background color
                     shape: RoundedRectangleBorder(

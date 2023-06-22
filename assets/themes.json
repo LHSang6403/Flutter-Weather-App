@@ -7,16 +7,18 @@
         "textColor": "#44442C",
         "backgroundColor": "#101e27",
         "selectedButtonColor": "#F58216",
-        "unselectedButtonColor": "#8D4004"
+        "unselectedButtonColor": "#8D4004",
+        "settingTextColor": "#f2f3f4"
       },
       {
         "name": "custom1",
         "primaryColor": "#f5c80f",
-        "accentColor": "#191919",
-        "textColor": "#FFFDFA",
+        "accentColor": "#988C23",
+        "textColor": "#ffd400",
         "backgroundColor": "#e5f6df",
         "selectedButtonColor": "#191919",
-        "unselectedButtonColor": "#52522C"
+        "unselectedButtonColor": "#52522C",
+        "settingTextColor": "#191919"
       },
       {
         "name": "custom2",
@@ -25,7 +27,8 @@
         "textColor": "#191919",
         "backgroundColor": "#043927",
         "selectedButtonColor": "#DC9C5A",
-        "unselectedButtonColor": "#CCAEB5"
+        "unselectedButtonColor": "#CCAEB5",
+        "settingTextColor": "#c17629"
       }
     ]
   }
