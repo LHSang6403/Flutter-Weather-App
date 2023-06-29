@@ -1,15 +1,22 @@
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:untitled/data/item.dart';
 import 'package:untitled/data/items.dart';
 import 'package:untitled/data/refresh_indicator_controller.dart';
+import 'package:untitled/current_locations/get_current_local_controller.dart';
 import 'package:untitled/main.dart';
+import 'package:untitled/pages/dialogs/loading_dialog.dart';
 import 'package:untitled/pages/dialogs/modal_bottom_delete.dart';
 import 'package:untitled/pages/setting_page/setting_controller.dart';
 import 'package:untitled/widgets/card_body.dart';
 import 'package:untitled/widgets/square_body.dart';
 
 RefreshController refreshController = Get.find();
+CurrentLocationController currentLocationController = Get.find();
+final ViewModeController viewModeController = Get.find();
+final GlobalKey<RefreshIndicatorState> refreshIndicatorKey =
+    GlobalKey<RefreshIndicatorState>();
 
 class HomePage extends StatefulWidget {
   HomePage({Key? key});
@@ -18,9 +25,23 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final ViewModeController viewModeController = Get.find();
-  final GlobalKey<RefreshIndicatorState> refreshIndicatorKey =
-      GlobalKey<RefreshIndicatorState>();
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  void firstLoading() {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        context = context;
+        Future.delayed(const Duration(seconds: 1), () {
+          Navigator.of(context).pop();
+        });
+        return const Loading();
+      },
+    );
+  }
 
   void handleDeleteCard(int id) {
     for (Item item in refreshController.weatherData.value.items) {
@@ -54,20 +75,47 @@ class _HomePageState extends State<HomePage> {
             backgroundColor: themeData
                 .getPrimaryColor(viewModeController.indexThemeData.value),
           ),
-          body: RefreshIndicator(
-            key: refreshIndicatorKey,
-            color: Colors.white,
-            backgroundColor: Colors.blue,
-            strokeWidth: 4.0,
-            onRefresh: () async {
-              Data? newData = await refreshData.handleRefresh();
-              if (newData != null) {
-                refreshController.weatherData.value = newData;
-              }
-            },
-            child: viewModeController.viewModesCurrentIndex.value == 0
-                ? listCard()
-                : gridCard(),
+          body: SingleChildScrollView(
+            child: Column(
+              children: [
+                CarouselSlider(
+                  options: CarouselOptions(height: 160),
+                  items:
+                      currentLocationController.getCurrentLocals().map((local) {
+                    return Builder(
+                      builder: (BuildContext context) {
+                        return Container(
+                            width: MediaQuery.of(context).size.width,
+                            margin: const EdgeInsets.all(8),
+                            decoration: BoxDecoration(
+                                color: Colors.amber,
+                                borderRadius: BorderRadius.circular(20)),
+                            child: Text(
+                              local,
+                              textAlign: TextAlign.center,
+                              style: const TextStyle(fontSize: 16.0),
+                            ));
+                      },
+                    );
+                  }).toList(),
+                ),
+                RefreshIndicator(
+                  key: refreshIndicatorKey,
+                  color: Colors.white,
+                  backgroundColor: Colors.blue,
+                  strokeWidth: 4.0,
+                  onRefresh: () async {
+                    Data? newData = await refreshData.handleRefresh();
+                    if (newData != null) {
+                      refreshController.weatherData.value = newData;
+                    }
+                  },
+                  child: viewModeController.viewModesCurrentIndex.value == 0
+                      ? listCard()
+                      : gridCard(),
+                ),
+              ],
+            ),
           ),
         ));
   }
@@ -78,6 +126,7 @@ class _HomePageState extends State<HomePage> {
         height: 1000,
         child: ListView(
             scrollDirection: Axis.vertical,
+            shrinkWrap: true,
             padding: const EdgeInsets.all(16),
             children: [
               Column(
@@ -96,11 +145,15 @@ class _HomePageState extends State<HomePage> {
   Widget gridCard() {
     return Obx(() {
       return Container(
-          padding: const EdgeInsets.all(12), child: gridViewBuilder());
+          height: 620,
+          padding: const EdgeInsets.all(12),
+          child: gridViewBuilder());
     });
   }
 
   Widget gridViewBuilder() => GridView.builder(
+        scrollDirection: Axis.vertical,
+        shrinkWrap: true,
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2,
           childAspectRatio: 1,

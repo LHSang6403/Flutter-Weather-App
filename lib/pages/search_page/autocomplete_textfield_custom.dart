@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_generic_function_type_aliases, prefer_const_constructors_in_immutables
+
 library autocomplete_textfield;
 
 import 'package:flutter/material.dart';

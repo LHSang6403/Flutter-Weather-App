@@ -37,22 +37,15 @@ void informationDialog(context) => showDialog(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
+                      const SizedBox(
+                        height: 12,
+                      ),
                       Text(
                         'Sang Le',
                         textAlign: TextAlign.start,
                         style: TextStyle(
                           fontSize: 26,
                           fontWeight: FontWeight.bold,
-                          color: themeData.getPrimaryColor(
-                              viewModeController.indexThemeData.value),
-                        ),
-                      ),
-                      Text(
-                        'Software Engineer',
-                        textAlign: TextAlign.start,
-                        style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.w500,
                           color: themeData.getPrimaryColor(
                               viewModeController.indexThemeData.value),
                         ),

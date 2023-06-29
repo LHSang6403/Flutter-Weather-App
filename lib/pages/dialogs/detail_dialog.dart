@@ -1,5 +1,6 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:get/get.dart';
 import 'package:untitled/data/item.dart';
 import 'package:untitled/main.dart';
@@ -27,7 +28,8 @@ Future detailDialog(context, Item item, String id) => showDialog(
                   height: 250,
                   decoration: BoxDecoration(
                     image: DecorationImage(
-                      image: AssetImage("./assets/images/background_imgs/img$id.jpg"),
+                      image: AssetImage(
+                          "./assets/images/background_imgs/img$id.jpg"),
                       fit: BoxFit.fill,
                       alignment: Alignment.bottomCenter,
                     ),
@@ -127,4 +129,6 @@ Future detailDialog(context, Item item, String id) => showDialog(
               ),
             ],
           ),
-        ));
+        ).animate().fadeIn(curve: Curves.easeInOut).scale(
+            curve: Curves.easeInOut,
+            duration: const Duration(milliseconds: 250)));
