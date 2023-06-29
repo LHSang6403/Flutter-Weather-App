@@ -19,7 +19,7 @@ class RefreshData {
         loadDone = true;
       }
     }
-    
+
     if (loadDone) return temp;
     return null;
   }

@@ -15,7 +15,6 @@ import 'package:get/get.dart';
 
 ThemeDataModel themeData = ThemeDataModel();
 RefreshData refreshData = RefreshData();
-
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
@@ -42,22 +41,27 @@ class _MyAppState extends State<MyApp> {
   final RefreshController refreshController = Get.find();
   final CurrentLocationController currentLocationController = Get.find();
 
-
+  @override
   void initState() {
     super.initState();
     loadJsonAsset();
+    loadCurrentLocations(); // chay chua dung
 
     voiceController.initSpeech();
     voiceController.context = context;
     voiceController.addCard = handleAddCard;
-
-    currentLocationController.updateCurrentLocal();
 
     pages.add(HomePage());
     pages.add(SearchPage(
       addCard: handleAddCard,
     ));
     pages.add(SettingsPage());
+  }
+
+  Future<void> loadCurrentLocations() async {
+    await currentLocationController.updateCurrentLocal(); // chua cho dc
+    await currentLocationController
+        .updateCurrentLocaltionsWeatherData(); // chua cho dc
   }
 
   Future<void> loadJsonAsset() async {
