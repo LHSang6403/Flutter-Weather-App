@@ -47,8 +47,8 @@ class CardBody extends StatelessWidget {
               height: 120,
               decoration: BoxDecoration(
                 image: DecorationImage(
-                  image:
-                      AssetImage("./assets/images/background_imgs/img${item.getImgID()}.jpg"),
+                  image: AssetImage(
+                      "./assets/images/background_imgs/img${item.getImgID()}.jpg"),
                   fit: BoxFit.fitWidth,
                   alignment: Alignment.bottomCenter,
                   colorFilter: ColorFilter.mode(
@@ -60,27 +60,48 @@ class CardBody extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: Column(mainAxisSize: MainAxisSize.max, children: [
                   const SizedBox(
-                    height: 55,
+                    height: 20,
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Expanded(
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.end,
-                          children: [
-                            Text(
-                              '${item.getTemperatureC().toStringAsFixed(1)}°C',
-                              style: const TextStyle(
-                                  fontSize: 30,
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.w400),
-                            ),
-                            const SizedBox(
-                              width: 12,
-                            ),
-                            Expanded(
+                  SizedBox(
+                    height: 88,
+                    width: 360,
+                    child: Stack(
+                      children: [
+                        Positioned(
+                            top: -4,
+                            left: -2,
+                            child: Opacity(
+                              opacity: 0.98,
+                              child: Container(
+                                padding: const EdgeInsets.all(0),
+                                width: 80,
+                                height: 80,
+                                decoration: BoxDecoration(
+                                  image: DecorationImage(
+                                    image: AssetImage(
+                                        'assets/images/weather_icons/icons${item.getImgID()}.png'),
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
+                              ),
+                            )),
+                        Positioned(
+                          top: 28,
+                          child: Text(
+                            '${item.getTemperatureC().toStringAsFixed(1)}°C',
+                            style: const TextStyle(
+                                fontSize: 30,
+                                color: Colors.white,
+                                fontWeight: FontWeight.w400),
+                          ),
+                        ),
+                        Positioned(
+                          top: 38,
+                          left: 104,
+                          child: SizedBox(
+                            height: 20,
+                            width: 240,
+                            child: Expanded(
                               child: Text(
                                 item.getStatus(),
                                 style: const TextStyle(
@@ -91,26 +112,22 @@ class CardBody extends StatelessWidget {
                                 overflow: TextOverflow.ellipsis,
                               ),
                             ),
-                            const SizedBox(
-                              width: 6,
-                            ),
-                          ],
+                          ),
                         ),
-                      ),
-                    ],
+                        Positioned(
+                          top: 60,
+                          left: 12,
+                          child: Text(
+                            item.getLocation(),
+                            style: const TextStyle(
+                                fontSize: 16,
+                                color: Colors.white,
+                                fontWeight: FontWeight.w400),
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
-                  Row(mainAxisAlignment: MainAxisAlignment.start, children: [
-                    const SizedBox(
-                      width: 18,
-                    ),
-                    Text(
-                      item.getLocation(),
-                      style: const TextStyle(
-                          fontSize: 16,
-                          color: Colors.white,
-                          fontWeight: FontWeight.w400),
-                    ),
-                  ]),
                 ]),
               )),
         ),

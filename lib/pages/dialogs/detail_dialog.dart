@@ -29,7 +29,7 @@ Future detailDialog(context, Item item, String id) => showDialog(
                   decoration: BoxDecoration(
                     image: DecorationImage(
                       image: AssetImage(
-                          "./assets/images/background_imgs/img$id.jpg"),
+                          "./assets/images/background_imgs/img${item.getImgID()}.jpg"),
                       fit: BoxFit.fill,
                       alignment: Alignment.bottomCenter,
                     ),
@@ -47,91 +47,136 @@ Future detailDialog(context, Item item, String id) => showDialog(
                       bottomRight: Radius.circular(20)),
                 ),
                 child: SizedBox(
-                  height: 180,
+                  height: 190,
                   width: MediaQuery.of(context).size.width - 90,
                   child: Padding(
-                    padding: const EdgeInsets.only(
-                        left: 20, right: 20, top: 12, bottom: 14),
+                    padding: const EdgeInsets.all(0),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Flexible(
-                          child: Text(
-                            item.getStatus(),
-                            textAlign: TextAlign.start,
-                            style: TextStyle(
-                              fontSize: 28,
-                              fontWeight: FontWeight.w500,
-                              color: themeData.getPrimaryColor(
-                                  viewModeController.indexThemeData.value),
-                            ),
-                            maxLines: 2,
-                            overflow: TextOverflow.ellipsis,
+                        SizedBox(
+                          height: 82,
+                          child: Stack(
+                            children: [
+                              Positioned(
+                                left: 0,
+                                top: 0,
+                                child: Container(
+                                  padding: const EdgeInsets.all(0),
+                                  width: 80,
+                                  height: 80,
+                                  decoration: BoxDecoration(
+                                    image: DecorationImage(
+                                      image: AssetImage(
+                                          'assets/images/weather_icons/icons${item.getImgID()}.png'),
+                                      fit: BoxFit.cover,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              Container(
+                                padding: const EdgeInsets.only(
+                                    left: 20, top: 20, right: 20),
+                                child: Flexible(
+                                  child: Expanded(
+                                    child: Text(
+                                      item.getStatus(),
+                                      textAlign: TextAlign.start,
+                                      style: TextStyle(
+                                        fontSize: 28,
+                                        fontWeight: FontWeight.w500,
+                                        color: themeData.getPrimaryColor(
+                                            viewModeController
+                                                .indexThemeData.value),
+                                      ),
+                                      maxLines: 1,
+                                      overflow: TextOverflow.ellipsis,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              Positioned(
+                                top: 50,
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.end,
+                                  children: [
+                                    Container(
+                                      padding: const EdgeInsets.only(
+                                          left: 20, right: 20),
+                                      child: Text(
+                                        '${item.getTemperatureC()}°C',
+                                        style: TextStyle(
+                                          fontSize: 26,
+                                          fontWeight: FontWeight.w500,
+                                          color: themeData.getPrimaryColor(
+                                              viewModeController
+                                                  .indexThemeData.value),
+                                        ),
+                                      ),
+                                    ),
+                                    const SizedBox(
+                                      width: 4,
+                                    ),
+                                    Container(
+                                      padding: const EdgeInsets.only(
+                                          left: 20, right: 20),
+                                      child: Text(
+                                        '${item.getTemperatureF()}°F',
+                                        style: TextStyle(
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.w500,
+                                          color: themeData.getPrimaryColor(
+                                              viewModeController
+                                                  .indexThemeData.value),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
                           ),
-                        ),
-                        const SizedBox(
-                          height: 0,
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.end,
-                          children: [
-                            Text(
-                              '${item.getTemperatureC()}°C',
-                              style: TextStyle(
-                                fontSize: 26,
-                                fontWeight: FontWeight.w500,
-                                color: themeData.getPrimaryColor(
-                                    viewModeController.indexThemeData.value),
-                              ),
-                            ),
-                            const SizedBox(
-                              width: 4,
-                            ),
-                            Text(
-                              '${item.getTemperatureF()}°F',
-                              style: TextStyle(
-                                fontSize: 20,
-                                fontWeight: FontWeight.w500,
-                                color: themeData.getPrimaryColor(
-                                    viewModeController.indexThemeData.value),
-                              ),
-                            ),
-                          ],
                         ),
                         Divider(
                           color: themeData.getPrimaryColor(
                               viewModeController.indexThemeData.value),
                         ),
-                        Text(
-                          item.getLocation() != item.getCountry() ? 
-                          '${item.getLocation()}, ${item.getCountry()}' : item.getCountry(),
-                          style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w500,
-                            color: themeData.getPrimaryColor(
-                                viewModeController.indexThemeData.value),
-                          ),
-                        ),
-                        const SizedBox(
-                          height: 2,
-                        ),
-                        Text(
-                          'Local time: ${item.getLocalTime()}',
-                          style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w500,
-                            color: themeData.getPrimaryColor(
-                                viewModeController.indexThemeData.value),
-                          ),
-                        ),
-                        Text(
-                          'Last update: ${item.getLastUpdate()}',
-                          style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w500,
-                            color: themeData.getPrimaryColor(
-                                viewModeController.indexThemeData.value),
+                        Container(
+                          padding: const EdgeInsets.only(left: 20, right: 20),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                item.getLocation() != item.getCountry()
+                                    ? '${item.getLocation()}, ${item.getCountry()}'
+                                    : item.getCountry(),
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w500,
+                                  color: themeData.getPrimaryColor(
+                                      viewModeController.indexThemeData.value),
+                                ),
+                              ),
+                              Text(
+                                'Local time: ${item.getLocalTime()}',
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w500,
+                                  color: themeData.getPrimaryColor(
+                                      viewModeController.indexThemeData.value),
+                                ),
+                              ),
+                              Text(
+                                'Last update: ${item.getLastUpdate()}',
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w500,
+                                  color: themeData.getPrimaryColor(
+                                      viewModeController.indexThemeData.value),
+                                ),
+                              ),
+                            ],
                           ),
                         ),
                       ],
