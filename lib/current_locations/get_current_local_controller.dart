@@ -10,12 +10,20 @@ class CurrentLocationController extends GetxController {
 
   Future updateCurrentLocal() async {
     Future<List<String>> currentLocalLists = getCurrentPlacemark();
-    currentLocalLists.then((List<String> localList) {
+    currentLocalLists.then((List<String> localList) async {
       for (var i = 0; i < 3; i++) {
         String? tmpLocal = localList[i];
         currentLocals.add(tmpLocal);
         print(localList[i]);
       }
+
+      Data temp = Data();
+      for (String city in currentLocals) {
+        print('City: $city');
+        await temp.dataHandleAdd(city);
+      }
+      temp.PrintOut();
+      currentLocaltionsWeatherData.value = temp;
     });
   }
 
@@ -26,6 +34,7 @@ class CurrentLocationController extends GetxController {
   Future updateCurrentLocaltionsWeatherData() async {
     Data temp = Data();
     for (String city in currentLocals) {
+      print('City: $city');
       await temp.dataHandleAdd(city);
     }
     temp.PrintOut();

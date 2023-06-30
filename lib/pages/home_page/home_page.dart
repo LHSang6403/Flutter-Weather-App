@@ -81,7 +81,7 @@ class _HomePageState extends State<HomePage> {
                 CarouselSlider(
                   options: CarouselOptions(height: 160),
                   items:
-                      //currentLocationController.getCurrentLocals().map((local) {
+                      //currentLocationController.getCurrentLocals().map((item) {
                       currentLocationController
                           .currentLocaltionsWeatherData.value.items
                           .map((item) {
@@ -94,7 +94,8 @@ class _HomePageState extends State<HomePage> {
                                 color: Colors.amber,
                                 borderRadius: BorderRadius.circular(20)),
                             child: Text(
-                              item.getLocation(),
+                              '${item.getLocation()} - ${item.getStatus()}',
+                              //item,
                               textAlign: TextAlign.center,
                               style: const TextStyle(fontSize: 16.0),
                             ));

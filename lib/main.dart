@@ -59,9 +59,10 @@ class _MyAppState extends State<MyApp> {
   }
 
   Future<void> loadCurrentLocations() async {
-    await currentLocationController.updateCurrentLocal(); // chua cho dc
-    await currentLocationController
-        .updateCurrentLocaltionsWeatherData(); // chua cho dc
+    // chi moi load dc 1 thanh pho dc khoi tao luc dau
+    await currentLocationController.updateCurrentLocal(); // chay dung roi
+    // await currentLocationController
+    //     .updateCurrentLocaltionsWeatherData(); // chua cho dc
   }
 
   Future<void> loadJsonAsset() async {
