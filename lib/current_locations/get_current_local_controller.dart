@@ -14,12 +14,12 @@ class CurrentLocationController extends GetxController {
       for (var i = 0; i < 3; i++) {
         String? tmpLocal = localList[i];
         currentLocals.add(tmpLocal);
-        print(localList[i]);
+        //print(localList[i]);
       }
 
       Data temp = Data();
       for (String city in currentLocals) {
-        print('City: $city');
+        //print('City: $city');
         await temp.dataHandleAdd(city);
       }
       temp.PrintOut();
@@ -30,14 +30,4 @@ class CurrentLocationController extends GetxController {
   List<String> getCurrentLocals() {
     return currentLocals;
   }
-
-  // Future updateCurrentLocaltionsWeatherData() async {
-  //   Data temp = Data();
-  //   for (String city in currentLocals) {
-  //     print('City: $city');
-  //     await temp.dataHandleAdd(city);
-  //   }
-  //   temp.PrintOut();
-  //   currentLocaltionsWeatherData.value = temp;
-  // }
 }

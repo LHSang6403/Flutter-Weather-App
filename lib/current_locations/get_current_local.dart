@@ -7,8 +7,7 @@ Future<Position> getCurrentLocation() async {
   Position position = await Geolocator.getCurrentPosition(
       desiredAccuracy: LocationAccuracy.high);
 
-  print('latitude: ${position.latitude}, longitude: ${position.longitude}');
-
+  //print('latitude: ${position.latitude}, longitude: ${position.longitude}');
   return position;
 }
 

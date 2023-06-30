@@ -45,7 +45,7 @@ class _MyAppState extends State<MyApp> {
   void initState() {
     super.initState();
     loadJsonAsset();
-    loadCurrentLocations(); // chay chua dung
+    loadCurrentLocations();
 
     voiceController.initSpeech();
     voiceController.context = context;
@@ -59,10 +59,7 @@ class _MyAppState extends State<MyApp> {
   }
 
   Future<void> loadCurrentLocations() async {
-    // chi moi load dc 1 thanh pho dc khoi tao luc dau
-    await currentLocationController.updateCurrentLocal(); // chay dung roi
-    // await currentLocationController
-    //     .updateCurrentLocaltionsWeatherData(); // chua cho dc
+    await currentLocationController.updateCurrentLocal();
   }
 
   Future<void> loadJsonAsset() async {
