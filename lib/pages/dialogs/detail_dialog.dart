@@ -51,7 +51,7 @@ Future detailDialog(context, Item item, String id) => showDialog(
                   width: MediaQuery.of(context).size.width - 90,
                   child: Padding(
                     padding: const EdgeInsets.only(
-                        left: 20, right: 20, top: 14, bottom: 14),
+                        left: 20, right: 20, top: 12, bottom: 14),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -69,57 +69,69 @@ Future detailDialog(context, Item item, String id) => showDialog(
                             overflow: TextOverflow.ellipsis,
                           ),
                         ),
+                        const SizedBox(
+                          height: 0,
+                        ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.end,
                           children: [
-                            Container(
-                              padding: const EdgeInsets.only(top: 4),
-                              child: Text(
-                                '${item.getTemperatureC()}°C',
-                                style: TextStyle(
-                                  fontSize: 26,
-                                  fontWeight: FontWeight.w500,
-                                  color: themeData.getPrimaryColor(
-                                      viewModeController.indexThemeData.value),
-                                ),
+                            Text(
+                              '${item.getTemperatureC()}°C',
+                              style: TextStyle(
+                                fontSize: 26,
+                                fontWeight: FontWeight.w500,
+                                color: themeData.getPrimaryColor(
+                                    viewModeController.indexThemeData.value),
                               ),
                             ),
-                            Container(
-                              padding: const EdgeInsets.only(top: 4),
-                              child: Text(
-                                '${item.getTemperatureF()}°F',
-                                style: TextStyle(
-                                  fontSize: 24,
-                                  fontWeight: FontWeight.w500,
-                                  color: themeData.getPrimaryColor(
-                                      viewModeController.indexThemeData.value),
-                                ),
+                            const SizedBox(
+                              width: 4,
+                            ),
+                            Text(
+                              '${item.getTemperatureF()}°F',
+                              style: TextStyle(
+                                fontSize: 20,
+                                fontWeight: FontWeight.w500,
+                                color: themeData.getPrimaryColor(
+                                    viewModeController.indexThemeData.value),
                               ),
                             ),
                           ],
                         ),
-                        Container(
-                          padding: const EdgeInsets.only(top: 4),
-                          child: Text(
-                            item.getCountry(),
-                            style: TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.w500,
-                              color: themeData.getPrimaryColor(
-                                  viewModeController.indexThemeData.value),
-                            ),
+                        Divider(
+                          color: themeData.getPrimaryColor(
+                              viewModeController.indexThemeData.value),
+                        ),
+                        Text(
+                          item.getLocation() != item.getCountry() ? 
+                          '${item.getLocation()}, ${item.getCountry()}' : item.getCountry(),
+                          style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w500,
+                            color: themeData.getPrimaryColor(
+                                viewModeController.indexThemeData.value),
                           ),
                         ),
-                        Container(
-                          padding: const EdgeInsets.only(top: 4),
-                          child: Text(
-                            'Local time: ${item.getLocalTime()}',
-                            style: TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.w500,
-                              color: themeData.getPrimaryColor(
-                                  viewModeController.indexThemeData.value),
-                            ),
+                        const SizedBox(
+                          height: 2,
+                        ),
+                        Text(
+                          'Local time: ${item.getLocalTime()}',
+                          style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w500,
+                            color: themeData.getPrimaryColor(
+                                viewModeController.indexThemeData.value),
+                          ),
+                        ),
+                        Text(
+                          'Last update: ${item.getLastUpdate()}',
+                          style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w500,
+                            color: themeData.getPrimaryColor(
+                                viewModeController.indexThemeData.value),
                           ),
                         ),
                       ],

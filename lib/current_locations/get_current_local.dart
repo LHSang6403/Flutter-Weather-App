@@ -13,7 +13,6 @@ Future<Position> getCurrentLocation() async {
 
 Future<List<String>> getCurrentPlacemark() async {
   List<String> placeList = [];
-
   Position position = await getCurrentLocation();
 
   for (var i = 0; i < 3; i++) {

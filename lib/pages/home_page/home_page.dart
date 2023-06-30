@@ -106,7 +106,7 @@ class _HomePageState extends State<HomePage> {
                         });
                       },
                       autoPlay: true,
-                      autoPlayInterval: const Duration(seconds: 3),
+                      autoPlayInterval: const Duration(seconds: 4),
                     ),
                   ),
                   Row(

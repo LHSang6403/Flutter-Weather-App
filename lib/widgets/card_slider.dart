@@ -33,60 +33,60 @@ class CardSlider extends StatelessWidget {
           ),
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20),
-            child: Column(mainAxisSize: MainAxisSize.max, children: [
-              const SizedBox(
-                height: 55,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Expanded(
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      children: [
-                        Text(
-                          '${item.getTemperatureC().toStringAsFixed(1)}°C',
-                          style: const TextStyle(
-                              fontSize: 30,
-                              color: Colors.white,
-                              fontWeight: FontWeight.w400),
-                        ),
-                        const SizedBox(
-                          width: 12,
-                        ),
-                        Expanded(
-                          child: Text(
-                            item.getStatus(),
-                            style: const TextStyle(
-                                fontSize: 20,
-                                color: Colors.white,
-                                fontWeight: FontWeight.w400),
-                            maxLines: 1,
-                            overflow: TextOverflow.ellipsis,
-                          ),
-                        ),
-                        const SizedBox(
-                          width: 6,
-                        ),
-                      ],
+                  const SizedBox(height: 30),
+                  Container(
+                    padding: const EdgeInsets.only(bottom: 0),
+                    child: Expanded(
+                      child: Text(
+                        item.getStatus(),
+                        style: const TextStyle(
+                            fontSize: 22,
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold),
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                      ),
                     ),
                   ),
-                ],
-              ),
-              Row(mainAxisAlignment: MainAxisAlignment.start, children: [
-                const SizedBox(
-                  width: 18,
-                ),
-                Text(
-                  item.getLocation(),
-                  style: const TextStyle(
-                      fontSize: 16,
-                      color: Colors.white,
-                      fontWeight: FontWeight.w400),
-                ),
-              ]),
-            ]),
+                  const SizedBox(
+                    width: 6,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                      Text(
+                        '${item.getTemperatureC().toStringAsFixed(1)}°C',
+                        style: const TextStyle(
+                            fontSize: 26,
+                            color: Colors.white,
+                            fontWeight: FontWeight.w400),
+                      ),
+                      const SizedBox(
+                        width: 8,
+                      ),
+                      Text(
+                        '${item.getTemperatureF().toStringAsFixed(1)}°F',
+                        style: const TextStyle(
+                            fontSize: 20,
+                            color: Colors.white,
+                            fontWeight: FontWeight.w400),
+                      ),
+                    ],
+                  ),
+                  Text(
+                    item.getLocation(),
+                    style: const TextStyle(
+                        fontSize: 16,
+                        color: Colors.white,
+                        fontWeight: FontWeight.w400),
+                  ),
+                  const SizedBox(height: 20),
+                ]),
           )),
     );
   }

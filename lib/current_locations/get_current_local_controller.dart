@@ -22,7 +22,7 @@ class CurrentLocationController extends GetxController {
         //print('City: $city');
         await temp.dataHandleAdd(city);
       }
-      temp.PrintOut();
+      //temp.PrintOut();
       currentLocaltionsWeatherData.value = temp;
     });
   }
