@@ -31,13 +31,13 @@ class CurrentLocationController extends GetxController {
     return currentLocals;
   }
 
-  Future updateCurrentLocaltionsWeatherData() async {
-    Data temp = Data();
-    for (String city in currentLocals) {
-      print('City: $city');
-      await temp.dataHandleAdd(city);
-    }
-    temp.PrintOut();
-    currentLocaltionsWeatherData.value = temp;
-  }
+  // Future updateCurrentLocaltionsWeatherData() async {
+  //   Data temp = Data();
+  //   for (String city in currentLocals) {
+  //     print('City: $city');
+  //     await temp.dataHandleAdd(city);
+  //   }
+  //   temp.PrintOut();
+  //   currentLocaltionsWeatherData.value = temp;
+  // }
 }

@@ -10,12 +10,13 @@ import 'package:untitled/pages/dialogs/loading_dialog.dart';
 import 'package:untitled/pages/dialogs/modal_bottom_delete.dart';
 import 'package:untitled/pages/setting_page/setting_controller.dart';
 import 'package:untitled/widgets/card_body.dart';
+import 'package:untitled/widgets/card_slider.dart';
 import 'package:untitled/widgets/square_body.dart';
 
 RefreshController refreshController = Get.find();
 CurrentLocationController currentLocationController = Get.find();
-final ViewModeController viewModeController = Get.find();
-final GlobalKey<RefreshIndicatorState> refreshIndicatorKey =
+ViewModeController viewModeController = Get.find();
+GlobalKey<RefreshIndicatorState> refreshIndicatorKey =
     GlobalKey<RefreshIndicatorState>();
 
 class HomePage extends StatefulWidget {
@@ -25,6 +26,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  int currentIndexSlider = 0;
   @override
   void initState() {
     super.initState();
@@ -79,29 +81,44 @@ class _HomePageState extends State<HomePage> {
             child: Column(
               children: [
                 CarouselSlider(
-                  options: CarouselOptions(height: 160),
-                  items:
-                      //currentLocationController.getCurrentLocals().map((item) {
-                      currentLocationController
-                          .currentLocaltionsWeatherData.value.items
-                          .map((item) {
-                    return Builder(
-                      builder: (BuildContext context) {
-                        return Container(
-                            width: MediaQuery.of(context).size.width,
-                            margin: const EdgeInsets.all(8),
-                            decoration: BoxDecoration(
-                                color: Colors.amber,
-                                borderRadius: BorderRadius.circular(20)),
-                            child: Text(
-                              '${item.getLocation()} - ${item.getStatus()}',
-                              //item,
-                              textAlign: TextAlign.center,
-                              style: const TextStyle(fontSize: 16.0),
-                            ));
-                      },
-                    );
-                  }).toList(),
+                  items: currentLocationController
+                      .currentLocaltionsWeatherData.value.items
+                      .map((item) => CardSlider(
+                            item: item,
+                          ))
+                      .toList(),
+                  options: CarouselOptions(
+                    height: 160,
+                    onPageChanged: (index, reason) {
+                      setState(() {
+                        currentIndexSlider = index;
+                      });
+                    },
+                    autoPlay: true,
+                    autoPlayInterval: const Duration(seconds: 3),
+                  ),
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    for (int i = 0; i < 4; i++)
+                      Container(
+                        height: 10,
+                        width: 10,
+                        margin: const EdgeInsets.all(5),
+                        decoration: BoxDecoration(
+                            color: currentIndexSlider == i
+                                ? themeData.getPrimaryColor(
+                                    viewModeController.indexThemeData.value)
+                                : Colors.white,
+                            shape: BoxShape.circle,
+                            border: Border.all(
+                                color: themeData
+                                    .getPrimaryColor(
+                                        viewModeController.indexThemeData.value)
+                                    .withOpacity(0.5))),
+                      )
+                  ],
                 ),
                 RefreshIndicator(
                   key: refreshIndicatorKey,
