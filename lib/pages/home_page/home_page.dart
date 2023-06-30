@@ -77,78 +77,90 @@ class _HomePageState extends State<HomePage> {
             backgroundColor: themeData
                 .getPrimaryColor(viewModeController.indexThemeData.value),
           ),
-          body: SingleChildScrollView(
-            child: Column(
-              children: [
-                CarouselSlider(
-                  items: currentLocationController
-                      .currentLocaltionsWeatherData.value.items
-                      .map((item) => CardSlider(
-                            item: item,
-                          ))
-                      .toList(),
-                  options: CarouselOptions(
-                    height: 160,
-                    onPageChanged: (index, reason) {
-                      setState(() {
-                        currentIndexSlider = index;
-                      });
-                    },
-                    autoPlay: true,
-                    autoPlayInterval: const Duration(seconds: 3),
+          body: RefreshIndicator(
+            key: refreshIndicatorKey,
+            color: Colors.white,
+            backgroundColor: Colors.blue,
+            strokeWidth: 4.0,
+            onRefresh: () async {
+              Data? newData = await refreshData.handleRefresh();
+              if (newData != null) {
+                refreshController.weatherData.value = newData;
+              }
+            },
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  CarouselSlider(
+                    items: currentLocationController
+                        .currentLocaltionsWeatherData.value.items
+                        .map((item) => CardSlider(
+                              item: item,
+                            ))
+                        .toList(),
+                    options: CarouselOptions(
+                      height: 160,
+                      onPageChanged: (index, reason) {
+                        setState(() {
+                          currentIndexSlider = index;
+                        });
+                      },
+                      autoPlay: true,
+                      autoPlayInterval: const Duration(seconds: 3),
+                    ),
                   ),
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    for (int i = 0; i < 4; i++)
-                      Container(
-                        height: 10,
-                        width: 10,
-                        margin: const EdgeInsets.all(5),
-                        decoration: BoxDecoration(
-                            color: currentIndexSlider == i
-                                ? themeData.getPrimaryColor(
-                                    viewModeController.indexThemeData.value)
-                                : Colors.white,
-                            shape: BoxShape.circle,
-                            border: Border.all(
-                                color: themeData
-                                    .getPrimaryColor(
-                                        viewModeController.indexThemeData.value)
-                                    .withOpacity(0.5))),
-                      )
-                  ],
-                ),
-                RefreshIndicator(
-                  key: refreshIndicatorKey,
-                  color: Colors.white,
-                  backgroundColor: Colors.blue,
-                  strokeWidth: 4.0,
-                  onRefresh: () async {
-                    Data? newData = await refreshData.handleRefresh();
-                    if (newData != null) {
-                      refreshController.weatherData.value = newData;
-                    }
-                  },
-                  child: viewModeController.viewModesCurrentIndex.value == 0
-                      ? listCard()
-                      : gridCard(),
-                ),
-              ],
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      for (int i = 0; i < 4; i++)
+                        Container(
+                          height: 10,
+                          width: 10,
+                          margin: const EdgeInsets.all(5),
+                          decoration: BoxDecoration(
+                              color: currentIndexSlider == i
+                                  ? viewModeController
+                                              .indexThemeData.value == 0
+                                      ? themeData.getPrimaryColor(
+                                          viewModeController
+                                              .indexThemeData.value)
+                                      : themeData.getAccentColor(
+                                          viewModeController
+                                              .indexThemeData.value)
+                                  : Colors.white,
+                              shape: BoxShape.circle,
+                              border: Border.all(
+                                  color: viewModeController
+                                              .indexThemeData.value == 0
+                                      ? themeData.getPrimaryColor(
+                                          viewModeController
+                                              .indexThemeData.value)
+                                      : themeData
+                                          .getAccentColor(viewModeController
+                                              .indexThemeData.value)
+                                          .withOpacity(0.5))),
+                        ),
+                    ],
+                  ),
+                  viewModeController.viewModesCurrentIndex.value == 0
+                      ? listViewOption()
+                      : gridViewOption(),
+                ],
+              ),
             ),
           ),
         ));
   }
 
-  Widget listCard() {
+  Widget listViewOption() {
     return Obx(() {
       return SizedBox(
         height: 1000,
         child: ListView(
-            scrollDirection: Axis.vertical,
+            physics: const NeverScrollableScrollPhysics(),
             shrinkWrap: true,
-            padding: const EdgeInsets.all(16),
+            padding:
+                const EdgeInsets.only(top: 8, bottom: 16, right: 16, left: 16),
             children: [
               Column(
                 children: refreshController.weatherData.value.items
@@ -163,7 +175,7 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
-  Widget gridCard() {
+  Widget gridViewOption() {
     return Obx(() {
       return Container(
           height: 620,
@@ -173,8 +185,8 @@ class _HomePageState extends State<HomePage> {
   }
 
   Widget gridViewBuilder() => GridView.builder(
-        scrollDirection: Axis.vertical,
         shrinkWrap: true,
+        physics: const NeverScrollableScrollPhysics(),
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2,
           childAspectRatio: 1,

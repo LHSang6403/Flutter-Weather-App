@@ -19,8 +19,7 @@ class CardSlider extends StatelessWidget {
       child: Container(
           width: MediaQuery.of(context).size.width,
           height: 140,
-          margin:
-              const EdgeInsets.only(top: 12, bottom: 8, left: 8, right: 8),
+          margin: const EdgeInsets.only(top: 12, bottom: 8, left: 8, right: 8),
           decoration: BoxDecoration(
             image: DecorationImage(
               image: AssetImage(
