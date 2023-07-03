@@ -14,7 +14,7 @@ import 'package:untitled/pages/home_page/home_page.dart';
 import 'package:get/get.dart';
 
 ThemeDataModel themeData = ThemeDataModel();
-//RefreshData refreshData = RefreshData();
+
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
