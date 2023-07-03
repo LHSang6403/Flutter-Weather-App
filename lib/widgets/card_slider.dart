@@ -5,12 +5,11 @@ import 'package:untitled/data/item.dart';
 import 'package:untitled/pages/dialogs/detail_dialog.dart';
 
 class CardSlider extends StatelessWidget {
+  Item item;
   CardSlider({
     Key? key,
     required this.item,
   }) : super(key: key);
-
-  Item item;
 
   @override
   Widget build(BuildContext context) {

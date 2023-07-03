@@ -7,12 +7,11 @@ import 'package:untitled/pages/dialogs/detail_dialog.dart';
 import 'package:untitled/pages/home_page/home_page.dart';
 
 class CardBody extends StatelessWidget {
+  Item item;
   CardBody({
     Key? key,
     required this.item,
   }) : super(key: key);
-
-  Item item;
 
   @override
   Widget build(BuildContext context) {
