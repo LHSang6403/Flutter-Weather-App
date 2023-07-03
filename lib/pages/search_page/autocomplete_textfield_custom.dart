@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_generic_function_type_aliases, prefer_const_constructors_in_immutables
+// ignore_for_file: prefer_generic_function_type_aliases, prefer_const_constructors_in_immutables, unnecessary_new, no_logic_in_create_state, annotate_overrides, overridden_fields, unnecessary_this
 
 library autocomplete_textfield;
 
@@ -503,7 +503,7 @@ class SimpleAutoCompleteTextField extends AutoCompleteTextField<String> {
           textSubmitted,
           onFocusChanged,
           itemSubmitted, (context, item) {
-        return Padding(padding: EdgeInsets.all(8.0), child: Text(item));
+        return Padding(padding: const EdgeInsets.all(8.0), child: Text(item));
       }, (a, b) {
         return a.compareTo(b);
       }, (item, query) {

@@ -6,8 +6,6 @@ Future<Position> getCurrentLocation() async {
   await Geolocator.requestPermission();
   Position position = await Geolocator.getCurrentPosition(
       desiredAccuracy: LocationAccuracy.high);
-
-  //print('latitude: ${position.latitude}, longitude: ${position.longitude}');
   return position;
 }
 
@@ -18,7 +16,6 @@ Future<List<String>> getCurrentPlacemark() async {
   for (var i = 0; i < 3; i++) {
     List<Placemark> curLocal = await placemarkFromCoordinates(
         position.latitude + i * 2, position.longitude - i * 2);
-    //print(curLocal[0].country);
     placeList.add(curLocal[0].country.toString());
   }
 

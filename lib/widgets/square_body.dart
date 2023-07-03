@@ -1,19 +1,14 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:flutter/material.dart';
 import 'package:untitled/data/item.dart';
 import 'package:untitled/pages/dialogs/detail_dialog.dart';
 
 class SquareBody extends StatelessWidget {
   final VoidCallback onLongPressFunc;
-
-  SquareBody(
-      {Key? key,
-      required this.item,
-      required this.deleteCard,
-      required this.onLongPressFunc})
-      : super(key: key);
-
   Item item;
-  final Function deleteCard;
+  SquareBody({Key? key, required this.item, required this.onLongPressFunc})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:untitled/theme/color_converter.dart';
 
-class customTheme {
+class CustomTheme {
   String name;
   Color primaryColor; // bar's color
   Color accentColor; // selected navbar button's color
@@ -11,7 +11,7 @@ class customTheme {
   Color unselectedButtonColor;
   Color settingTextColor;
 
-  customTheme(
+  CustomTheme(
       {required this.name,
       required this.primaryColor,
       required this.accentColor,
@@ -23,10 +23,10 @@ class customTheme {
 }
 
 class ThemeDataModel {
-  List<customTheme> listThemes = [];
+  List<CustomTheme> listThemes = [];
 
   ThemeDataModel() {
-    var defaultTheme = customTheme(
+    var defaultTheme = CustomTheme(
         name: "Default",
         primaryColor: HexColor("#0066cc"),
         accentColor: HexColor("#0066CC"),
@@ -78,7 +78,7 @@ class ThemeDataModel {
         eachTheme['themes']['UnselectedButtonColor'];
     final String settingTextColor = eachTheme['themes']['settingTextColor'];
 
-    var theme = customTheme(
+    var theme = CustomTheme(
         name: name,
         primaryColor: HexColor(primaryColor),
         accentColor: HexColor(accentColor),
@@ -105,7 +105,7 @@ class ThemeDataModel {
           themeJson['unselectedButtonColor'] as String;
       final String settingTextColor = themeJson['settingTextColor'] as String;
 
-      var themeTemp = customTheme(
+      var themeTemp = CustomTheme(
           name: name,
           primaryColor: HexColor(primaryColor),
           accentColor: HexColor(accentColor),

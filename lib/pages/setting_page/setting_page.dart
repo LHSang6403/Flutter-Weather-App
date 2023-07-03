@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors_in_immutables, use_key_in_widget_constructors
+
 import 'package:flutter/material.dart';
 import 'package:untitled/main.dart';
 import 'package:get/get.dart';
@@ -7,7 +9,7 @@ import 'package:untitled/pages/setting_page/setting_controller.dart';
 final ViewModeController viewModeController = Get.put(ViewModeController());
 
 class SettingsPage extends StatefulWidget {
-  const SettingsPage({Key? key});
+  SettingsPage({Key? key});
 
   @override
   State<SettingsPage> createState() => _SettingsPageState();

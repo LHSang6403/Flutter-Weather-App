@@ -12,7 +12,6 @@ class VoiceController extends GetxController {
   SpeechToText? speechToText = SpeechToText();
   bool speechEnabled = false;
   late BuildContext context;
-  late Function addCard;
 
   void updateLastWords(String input) {
     lastWords.value = input;
@@ -24,7 +23,6 @@ class VoiceController extends GetxController {
         showAddBottomSheet(
           context,
           voiceController.lastWords.value,
-          addCard
         );
         isFinalListen = false;
       }

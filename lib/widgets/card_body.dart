@@ -1,17 +1,18 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:untitled/data/item.dart';
 import 'package:untitled/pages/dialogs/detail_dialog.dart';
+import 'package:untitled/pages/home_page/home_page.dart';
 
 class CardBody extends StatelessWidget {
   CardBody({
     Key? key,
     required this.item,
-    required this.deleteCard,
   }) : super(key: key);
 
   Item item;
-  final Function deleteCard;
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +33,7 @@ class CardBody extends StatelessWidget {
                 autoClose: true,
                 flex: 1,
                 onPressed: (value) {
-                  deleteCard(item.getId());
+                  refreshController.removeCity(item.getId());
                 },
                 backgroundColor: Colors.red,
                 foregroundColor: Colors.white,

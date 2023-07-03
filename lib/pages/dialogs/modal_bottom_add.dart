@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:untitled/pages/dialogs/detail_dialog.dart';
-import '../../main.dart';
+import 'package:untitled/main.dart';
+import 'package:untitled/pages/home_page/home_page.dart';
 
-void showAddBottomSheet(
-    BuildContext context, String locationName, Function addCard) {
+void showAddBottomSheet(BuildContext context, String locationName) {
   showModalBottomSheet<void>(
     context: context,
     builder: (BuildContext context) {
@@ -29,7 +28,7 @@ void showAddBottomSheet(
               children: [
                 ElevatedButton(
                   onPressed: () {
-                    addCard(locationName);
+                    refreshController.addCity(locationName);
                     Navigator.of(context).pop();
                   },
                   style: ElevatedButton.styleFrom(
@@ -52,16 +51,13 @@ void showAddBottomSheet(
                     Navigator.of(context).pop();
                   },
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: themeData.getTextColor(
-                        viewModeController.indexThemeData.value),
-                    
+                    backgroundColor: themeData
+                        .getTextColor(viewModeController.indexThemeData.value),
                     shape: RoundedRectangleBorder(
-                      borderRadius:
-                          BorderRadius.circular(10),
+                      borderRadius: BorderRadius.circular(10),
                     ),
                     padding: const EdgeInsets.symmetric(
                         vertical: 12, horizontal: 24),
-                    
                     textStyle: const TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.bold,

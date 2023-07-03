@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:untitled/main.dart';
 import 'package:untitled/pages/setting_page/setting_controller.dart';
-import '../../main.dart';
 
 void showRemoveBottomSheet(VoidCallback removeCard, BuildContext context) {
   ViewModeController viewModeController = Get.find();

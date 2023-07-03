@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'package:untitled/generate/generate_id.dart';
 
 class Item {

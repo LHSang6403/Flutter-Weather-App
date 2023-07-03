@@ -1,7 +1,7 @@
 import 'dart:async';
-import 'package:untitled/data/refresh_indicator.dart';
 import 'package:untitled/data/refresh_indicator_controller.dart';
 import 'package:untitled/current_locations/get_current_local_controller.dart';
+import 'package:untitled/pages/home_page/home_page_controller.dart';
 import 'package:untitled/pages/search_page/search_page_controller.dart';
 import 'package:untitled/pages/setting_page/setting_controller.dart';
 import 'theme/theme_loader.dart';
@@ -14,7 +14,7 @@ import 'package:untitled/pages/home_page/home_page.dart';
 import 'package:get/get.dart';
 
 ThemeDataModel themeData = ThemeDataModel();
-RefreshData refreshData = RefreshData();
+//RefreshData refreshData = RefreshData();
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
@@ -22,6 +22,7 @@ Future<void> main() async {
   Get.put(VoiceController());
   Get.put(RefreshController());
   Get.put(CurrentLocationController());
+  Get.put(SliderController());
 
   runApp(const MaterialApp(
     debugShowCheckedModeBanner: false,
@@ -49,13 +50,10 @@ class _MyAppState extends State<MyApp> {
 
     voiceController.initSpeech();
     voiceController.context = context;
-    voiceController.addCard = handleAddCard;
 
     pages.add(HomePage());
-    pages.add(SearchPage(
-      addCard: handleAddCard,
-    ));
-    pages.add(const SettingsPage());
+    pages.add(SearchPage());
+    pages.add(SettingsPage());
   }
 
   Future<void> loadCurrentLocations() async {
@@ -66,11 +64,6 @@ class _MyAppState extends State<MyApp> {
     final String jsonString = await rootBundle.loadString('assets/themes.json');
     final data = jsonDecode(jsonString);
     themeData.parseThemes(data);
-  }
-
-  void handleAddCard(String locationName) async {
-    await refreshController.weatherData.value.dataHandleAdd(locationName);
-    setState(() {});
   }
 
   int _currentIndex = 0;

@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'item.dart';
@@ -44,7 +46,7 @@ class Data {
     }
   }
 
-  void PrintOut() {
+  void printOut() {
     print('Lasted List:');
     for (var item in items) {
       print(item.getId());

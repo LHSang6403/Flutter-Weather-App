@@ -14,15 +14,12 @@ class CurrentLocationController extends GetxController {
       for (var i = 0; i < 3; i++) {
         String? tmpLocal = localList[i];
         currentLocals.add(tmpLocal);
-        //print(localList[i]);
       }
 
       Data temp = Data();
       for (String city in currentLocals) {
-        //print('City: $city');
         await temp.dataHandleAdd(city);
       }
-      //temp.PrintOut();
       currentLocaltionsWeatherData.value = temp;
     });
   }

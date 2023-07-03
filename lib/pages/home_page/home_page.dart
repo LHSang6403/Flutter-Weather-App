@@ -1,12 +1,14 @@
+// ignore_for_file: unnecessary_overrides
+
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:untitled/data/item.dart';
 import 'package:untitled/data/items.dart';
 import 'package:untitled/data/refresh_indicator_controller.dart';
 import 'package:untitled/current_locations/get_current_local_controller.dart';
 import 'package:untitled/main.dart';
 import 'package:untitled/pages/dialogs/modal_bottom_delete.dart';
+import 'package:untitled/pages/home_page/home_page_controller.dart';
 import 'package:untitled/pages/setting_page/setting_controller.dart';
 import 'package:untitled/widgets/card_body.dart';
 import 'package:untitled/widgets/card_slider.dart';
@@ -17,6 +19,7 @@ CurrentLocationController currentLocationController = Get.find();
 ViewModeController viewModeController = Get.find();
 GlobalKey<RefreshIndicatorState> refreshIndicatorKey =
     GlobalKey<RefreshIndicatorState>();
+SliderController sliderController = Get.find();
 
 class HomePage extends StatefulWidget {
   HomePage({Key? key});
@@ -24,34 +27,22 @@ class HomePage extends StatefulWidget {
   State<HomePage> createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> {
-  int currentIndexSlider = 0;
+class _HomePageState extends State<HomePage>
+    with AutomaticKeepAliveClientMixin {
   @override
   void initState() {
-    print('init home');
     super.initState();
-  }
-
-  void handleDeleteCard(int id) {
-    for (Item item in refreshController.weatherData.value.items) {
-      if (id == item.getId()) {
-        refreshData.needRefreshCities.remove(item.getLocation());
-      }
-    }
-    refreshController.weatherData.value.items
-        .removeWhere((item) => id == item.getId());
-    setState(() {});
   }
 
   void handleOpenRemoveBottomSheet(int id) {
     showRemoveBottomSheet(() {
-      handleDeleteCard(id);
+      refreshController.removeCity(id);
     }, context);
   }
 
   @override
   Widget build(BuildContext context) {
-    print('build home');
+    super.build(context);
     return Obx(() => Scaffold(
           backgroundColor: Colors.white.withOpacity(0.0),
           appBar: AppBar(
@@ -71,7 +62,7 @@ class _HomePageState extends State<HomePage> {
             backgroundColor: Colors.blue,
             strokeWidth: 4.0,
             onRefresh: () async {
-              Data? newData = await refreshData.handleRefresh();
+              Data? newData = await refreshController.handleRefresh();
               if (newData != null) {
                 refreshController.weatherData.value = newData;
               }
@@ -89,9 +80,7 @@ class _HomePageState extends State<HomePage> {
                     options: CarouselOptions(
                       height: 160,
                       onPageChanged: (index, reason) {
-                        setState(() {
-                          currentIndexSlider = index;
-                        });
+                        sliderController.slide();
                       },
                       autoPlay: true,
                       autoPlayInterval: const Duration(seconds: 4),
@@ -106,7 +95,7 @@ class _HomePageState extends State<HomePage> {
                           width: 10,
                           margin: const EdgeInsets.all(5),
                           decoration: BoxDecoration(
-                              color: currentIndexSlider == i
+                              color: sliderController.getValue() == i
                                   ? viewModeController.indexThemeData.value == 0
                                       ? themeData.getPrimaryColor(
                                           viewModeController
@@ -154,7 +143,6 @@ class _HomePageState extends State<HomePage> {
                 children: refreshController.weatherData.value.items
                     .map((item) => CardBody(
                           item: item,
-                          deleteCard: handleDeleteCard,
                         ))
                     .toList(),
               ),
@@ -187,11 +175,13 @@ class _HomePageState extends State<HomePage> {
           final item = refreshController.weatherData.value.items[index];
           return SquareBody(
             item: item,
-            deleteCard: handleDeleteCard,
             onLongPressFunc: () {
               handleOpenRemoveBottomSheet(item.getId());
             },
           );
         },
       );
+
+  @override
+  bool get wantKeepAlive => true;
 }

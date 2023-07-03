@@ -1,3 +1,5 @@
+// ignore_for_file: use_key_in_widget_constructors, prefer_const_constructors_in_immutables
+
 import 'dart:async';
 import 'dart:convert';
 import 'package:flutter/material.dart';
@@ -5,6 +7,7 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:untitled/main.dart';
 import 'package:untitled/pages/dialogs/loading_dialog.dart';
+import 'package:untitled/pages/home_page/home_page.dart';
 import 'package:untitled/pages/search_page/search_page_controller.dart';
 import 'package:untitled/pages/search_page/autocomplete_textfield_custom.dart';
 import 'package:untitled/pages/setting_page/setting_controller.dart';
@@ -33,14 +36,13 @@ Future<void> loadJsonCities() async {
 }
 
 class SearchPage extends StatefulWidget {
-  final Function addCard;
-
-  SearchPage({Key? key, required this.addCard});
+  SearchPage({Key? key});
   @override
   State<SearchPage> createState() => SearchPageState();
 }
 
 class SearchPageState extends State<SearchPage> {
+  @override
   void initState() {
     super.initState();
     loadJsonCities();
@@ -53,8 +55,8 @@ class SearchPageState extends State<SearchPage> {
     if (locationRequest.isEmpty) {
       return;
     }
-    widget.addCard(locationRequest);
-    refreshData.loadToNeedRefreshCities(locationRequest);
+    refreshController.addCity(locationRequest);
+    refreshController.loadToRefreshCities(locationRequest);
     fieldText.clear();
     loadJsonCities();
   }
