@@ -91,7 +91,7 @@ class _SettingsPageState extends State<SettingsPage> {
                       return ChoiceChip(
                         avatar: CircleAvatar(
                           backgroundImage: AssetImage(
-                              "assets/images/weather_icons/theme${themeData.listThemes.indexOf(item)}.jpg"),
+                              "assets/images/icons/theme${themeData.listThemes.indexOf(item)}.jpg"),
                         ),
                         label: Text(
                           index == 0

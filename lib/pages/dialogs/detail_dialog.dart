@@ -59,8 +59,8 @@ Future detailDialog(context, Item item, String id) => showDialog(
                           child: Stack(
                             children: [
                               Positioned(
-                                left: 0,
-                                top: 0,
+                                left: 4,
+                                top: 2,
                                 child: Container(
                                   padding: const EdgeInsets.all(0),
                                   width: 80,
@@ -84,7 +84,7 @@ Future detailDialog(context, Item item, String id) => showDialog(
                                       textAlign: TextAlign.start,
                                       style: TextStyle(
                                         fontSize: 28,
-                                        fontWeight: FontWeight.w500,
+                                        fontWeight: FontWeight.bold,
                                         color: themeData.getPrimaryColor(
                                             viewModeController
                                                 .indexThemeData.value),
@@ -97,42 +97,39 @@ Future detailDialog(context, Item item, String id) => showDialog(
                               ),
                               Positioned(
                                 top: 50,
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  crossAxisAlignment: CrossAxisAlignment.end,
-                                  children: [
-                                    Container(
-                                      padding: const EdgeInsets.only(
-                                          left: 20, right: 20),
-                                      child: Text(
-                                        '${item.getTemperatureC()}°C',
-                                        style: TextStyle(
-                                          fontSize: 26,
-                                          fontWeight: FontWeight.w500,
-                                          color: themeData.getPrimaryColor(
-                                              viewModeController
-                                                  .indexThemeData.value),
-                                        ),
-                                      ),
+                                child: Container(
+                                  width: 180,
+                                  padding: const EdgeInsets.only(
+                                      left: 20, right: 20),
+                                  child: Text(
+                                    '${item.getTemperatureC()}°C',
+                                    style: TextStyle(
+                                      fontSize: 26,
+                                      fontWeight: FontWeight.w500,
+                                      color: themeData.getPrimaryColor(
+                                          viewModeController
+                                              .indexThemeData.value),
                                     ),
-                                    const SizedBox(
-                                      width: 4,
+                                  ),
+                                ),
+                              ),
+                              Positioned(
+                                top: 56,
+                                left: 120,
+                                child: Container(
+                                  width: 190,
+                                  padding: const EdgeInsets.only(
+                                      left: 10, right: 20),
+                                  child: Text(
+                                    '${item.getTemperatureF()}°F',
+                                    style: TextStyle(
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.w500,
+                                      color: themeData.getPrimaryColor(
+                                          viewModeController
+                                              .indexThemeData.value),
                                     ),
-                                    Container(
-                                      padding: const EdgeInsets.only(
-                                          left: 20, right: 20),
-                                      child: Text(
-                                        '${item.getTemperatureF()}°F',
-                                        style: TextStyle(
-                                          fontSize: 20,
-                                          fontWeight: FontWeight.w500,
-                                          color: themeData.getPrimaryColor(
-                                              viewModeController
-                                                  .indexThemeData.value),
-                                        ),
-                                      ),
-                                    ),
-                                  ],
+                                  ),
                                 ),
                               ),
                             ],

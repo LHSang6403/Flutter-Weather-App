@@ -87,9 +87,10 @@ class SearchPageState extends State<SearchPage> {
                     cursorColor: themeData.getAccentColor(
                         viewModeController.indexThemeData.value),
                     style: TextStyle(
-                        color: themeData.getAccentColor(
-                            viewModeController.indexThemeData.value),
-                        fontSize: 16),
+                      color: themeData.getAccentColor(
+                          viewModeController.indexThemeData.value),
+                      fontSize: 18,
+                    ),
                     decoration: InputDecoration(
                         enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(16.0),
@@ -140,7 +141,10 @@ class SearchPageState extends State<SearchPage> {
                             children: <Widget>[
                               Text(
                                 item.toString(),
-                                style: const TextStyle(color: Colors.black),
+                                style: const TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w400),
                               )
                             ],
                           ));

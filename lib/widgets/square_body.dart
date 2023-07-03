@@ -37,36 +37,58 @@ class SquareBody extends StatelessWidget {
             borderRadius: BorderRadius.circular(18),
           ),
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16),
-            child: Column(
-                mainAxisAlignment: MainAxisAlignment.end,
-                crossAxisAlignment: CrossAxisAlignment.start,
+              padding: const EdgeInsets.symmetric(horizontal: 14),
+              child: Stack(
                 children: [
-                  Text(
-                    '${item.getTemperatureC().toStringAsFixed(1)}°C',
-                    style: const TextStyle(
-                      fontSize: 28,
-                      color: Colors.black,
+                  Positioned(
+                      top: 52,
+                      left: 0,
+                      child: Opacity(
+                        opacity: 0.98,
+                        child: Container(
+                          padding: const EdgeInsets.all(0),
+                          width: 80,
+                          height: 80,
+                          decoration: BoxDecoration(
+                            image: DecorationImage(
+                              image: AssetImage(
+                                  'assets/images/weather_icons/icons${item.getImgID()}.png'),
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                        ),
+                      )),
+                  Positioned(
+                    top: 92,
+                    left: 0,
+                    child: Text(
+                      '${item.getTemperatureC().toStringAsFixed(1)}°C',
+                      style: const TextStyle(
+                        fontSize: 28,
+                        color: Colors.white,
+                      ),
                     ),
                   ),
-                  Text(
-                    item.getStatus(),
-                    style: const TextStyle(fontSize: 24, color: Colors.black),
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
+                  Positioned(
+                    top: 120,
+                    left: 0,
+                    child: Text(
+                      item.getStatus(),
+                      style: const TextStyle(fontSize: 24, color: Colors.white),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                    ),
                   ),
-                  const SizedBox(
-                    height: 2,
+                  Positioned(
+                    top: 146,
+                    left: 4,
+                    child: Text(
+                      item.getLocation(),
+                      style: const TextStyle(fontSize: 14, color: Colors.white),
+                    ),
                   ),
-                  Text(
-                    item.getLocation(),
-                    style: const TextStyle(fontSize: 20, color: Colors.black),
-                  ),
-                  const SizedBox(
-                    height: 16,
-                  ),
-                ]),
-          )),
+                ],
+              ))),
     );
   }
 }

@@ -55,7 +55,7 @@ class _MyAppState extends State<MyApp> {
     pages.add(SearchPage(
       addCard: handleAddCard,
     ));
-    pages.add(SettingsPage());
+    pages.add(const SettingsPage());
   }
 
   Future<void> loadCurrentLocations() async {

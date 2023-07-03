@@ -6,8 +6,6 @@ import 'package:speech_to_text/speech_to_text.dart';
 import 'package:untitled/pages/dialogs/modal_bottom_add.dart';
 import 'package:untitled/pages/search_page/search_page.dart';
 
-
-
 class VoiceController extends GetxController {
   RxString lastWords = "".obs;
   bool isFinalListen = false;

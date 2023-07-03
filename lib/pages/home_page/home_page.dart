@@ -6,7 +6,6 @@ import 'package:untitled/data/items.dart';
 import 'package:untitled/data/refresh_indicator_controller.dart';
 import 'package:untitled/current_locations/get_current_local_controller.dart';
 import 'package:untitled/main.dart';
-import 'package:untitled/pages/dialogs/loading_dialog.dart';
 import 'package:untitled/pages/dialogs/modal_bottom_delete.dart';
 import 'package:untitled/pages/setting_page/setting_controller.dart';
 import 'package:untitled/widgets/card_body.dart';
@@ -29,20 +28,8 @@ class _HomePageState extends State<HomePage> {
   int currentIndexSlider = 0;
   @override
   void initState() {
+    print('init home');
     super.initState();
-  }
-
-  void firstLoading() {
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        context = context;
-        Future.delayed(const Duration(seconds: 1), () {
-          Navigator.of(context).pop();
-        });
-        return const Loading();
-      },
-    );
   }
 
   void handleDeleteCard(int id) {
@@ -64,6 +51,7 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    print('build home');
     return Obx(() => Scaffold(
           backgroundColor: Colors.white.withOpacity(0.0),
           appBar: AppBar(
@@ -119,8 +107,7 @@ class _HomePageState extends State<HomePage> {
                           margin: const EdgeInsets.all(5),
                           decoration: BoxDecoration(
                               color: currentIndexSlider == i
-                                  ? viewModeController
-                                              .indexThemeData.value == 0
+                                  ? viewModeController.indexThemeData.value == 0
                                       ? themeData.getPrimaryColor(
                                           viewModeController
                                               .indexThemeData.value)
@@ -131,7 +118,8 @@ class _HomePageState extends State<HomePage> {
                               shape: BoxShape.circle,
                               border: Border.all(
                                   color: viewModeController
-                                              .indexThemeData.value == 0
+                                              .indexThemeData.value ==
+                                          0
                                       ? themeData.getPrimaryColor(
                                           viewModeController
                                               .indexThemeData.value)
