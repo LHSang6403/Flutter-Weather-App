@@ -9,6 +9,7 @@ class RefreshController extends GetxController {
 
   void addCity(String location) async {
     await weatherData.value.dataHandleAdd(location);
+    loadToRefreshCities(location);
   }
 
   void removeCity(int id) {

@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 
-Future<void> dialogBuilder(BuildContext context) {
+Future<void> dialogBuilder(
+    BuildContext context, String title, String content) async {
   return showDialog<void>(
     context: context,
     builder: (BuildContext context) {
       return AlertDialog(
-        title: const Text('Confirmation'),
-        content: const Text(
-          'Remove this weather card',
-        ),
+        title: Text(title),
+        content: Text(content),
         actions: <Widget>[
           TextButton(
             style: TextButton.styleFrom(

@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:untitled/data/refresh_indicator_controller.dart';
 import 'package:untitled/main.dart';
 import 'package:untitled/pages/home_page/home_page.dart';
+
+final RefreshController refreshController = Get.put(RefreshController());
 
 void showAddBottomSheet(BuildContext context, String locationName) {
   showModalBottomSheet<void>(

@@ -58,6 +58,6 @@ class Data {
       print(item.getLocalTime());
       print(item.getLastUpdate());
     }
-    print('\n');
+    print('--');
   }
 }

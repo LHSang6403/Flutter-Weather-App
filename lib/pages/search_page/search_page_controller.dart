@@ -12,6 +12,7 @@ class VoiceController extends GetxController {
   SpeechToText? speechToText = SpeechToText();
   bool speechEnabled = false;
   late BuildContext context;
+  int remainingTime = 4;
 
   void updateLastWords(String input) {
     lastWords.value = input;
@@ -32,7 +33,7 @@ class VoiceController extends GetxController {
   void startListening() async {
     await speechToText!.listen(
         onResult: (result) => onSpeechResult(result), localeId: 'en_US');
-    Timer(const Duration(seconds: 4), stopListening);
+    Timer(Duration(seconds: remainingTime), stopListening);
   }
 
   void stopListening() async {

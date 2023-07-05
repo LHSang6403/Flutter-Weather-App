@@ -66,6 +66,8 @@ class _HomePageState extends State<HomePage>
               if (newData != null) {
                 refreshController.weatherData.value = newData;
               }
+              refreshController.weatherData.value.printOut();
+              print(refreshController.needRefreshCities);
             },
             child: SingleChildScrollView(
               child: Column(
