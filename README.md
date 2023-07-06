@@ -17,7 +17,6 @@ This is my first Flutter project.
       <img src="https://github.com/LHSang6403/Flutter-Weather-App/assets/88763282/c7e467ff-4366-4d21-9daf-e11a81f761d6" alt="Image 2">
     </td>
     <td>
-
       <img src="https://github.com/LHSang6403/Flutter-Weather-App/assets/88763282/74d0ee21-e9f4-4644-955a-44086d6911e8" alt="Image 3">
     </td>
     <td>
