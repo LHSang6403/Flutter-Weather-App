@@ -32,6 +32,7 @@ Future<void> main() async {
 
 class MyApp extends StatefulWidget {
   const MyApp({Key? key}) : super(key: key);
+
   @override
   State<MyApp> createState() => _MyAppState();
 }
@@ -68,8 +69,8 @@ class _MyAppState extends State<MyApp> {
 
   int _currentIndex = 0;
   final List<Widget> pages = [];
-
   final pageController = PageController(initialPage: 0);
+
   @override
   void dispose() {
     pageController.dispose();
@@ -78,53 +79,51 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    return Obx(
-      () => MaterialApp(
-          home: Scaffold(
-        backgroundColor: themeData
-            .getBackgroundColor(viewModeController.indexThemeData.value),
-        body: PageView(
-            physics: const NeverScrollableScrollPhysics(),
-            controller: pageController,
-            children: pages),
-        bottomNavigationBar: BottomNavigationBar(
-          currentIndex: _currentIndex,
-          onTap: (index) {
-            pageController.animateToPage(index,
-                duration: const Duration(milliseconds: 400),
-                curve: Curves.easeInOut);
-            setState(() {
-              _currentIndex = index;
-            });
-          },
+    return Obx(() => MaterialApp(
+            home: Scaffold(
           backgroundColor: themeData
-              .getPrimaryColor(viewModeController.indexThemeData.value),
-          selectedFontSize: 10,
-          selectedIconTheme: IconThemeData(
-              color: themeData.getSelectedButtonColor(
-                  viewModeController.indexThemeData.value),
-              size: 40),
-          selectedItemColor: themeData
-              .getSelectedButtonColor(viewModeController.indexThemeData.value),
-          selectedLabelStyle: const TextStyle(fontWeight: FontWeight.bold),
-          unselectedItemColor: themeData.getUnselectedButtonColor(
-              viewModeController.indexThemeData.value),
-          items: const <BottomNavigationBarItem>[
-            BottomNavigationBarItem(
-              icon: Icon(Icons.home),
-              label: 'Home',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.search),
-              label: 'Search',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.settings),
-              label: 'Setting',
-            ),
-          ],
-        ),
-      )),
-    );
+              .getBackgroundColor(viewModeController.indexThemeData.value),
+          body: PageView(
+              physics: const NeverScrollableScrollPhysics(),
+              controller: pageController,
+              children: pages),
+          bottomNavigationBar: BottomNavigationBar(
+            currentIndex: _currentIndex,
+            onTap: (index) {
+              pageController.animateToPage(index,
+                  duration: const Duration(milliseconds: 400),
+                  curve: Curves.easeInOut);
+              setState(() {
+                _currentIndex = index;
+              });
+            },
+            backgroundColor: themeData
+                .getPrimaryColor(viewModeController.indexThemeData.value),
+            selectedFontSize: 10,
+            selectedIconTheme: IconThemeData(
+                color: themeData.getSelectedButtonColor(
+                    viewModeController.indexThemeData.value),
+                size: 40),
+            selectedItemColor: themeData.getSelectedButtonColor(
+                viewModeController.indexThemeData.value),
+            selectedLabelStyle: const TextStyle(fontWeight: FontWeight.bold),
+            unselectedItemColor: themeData.getUnselectedButtonColor(
+                viewModeController.indexThemeData.value),
+            items: const <BottomNavigationBarItem>[
+              BottomNavigationBarItem(
+                icon: Icon(Icons.home),
+                label: 'Home',
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.search),
+                label: 'Search',
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.settings),
+                label: 'Setting',
+              ),
+            ],
+          ),
+        )));
   }
 }

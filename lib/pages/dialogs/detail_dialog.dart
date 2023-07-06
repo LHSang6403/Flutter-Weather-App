@@ -56,6 +56,7 @@ Future detailDialog(context, Item item, String id) => showDialog(
                       children: [
                         SizedBox(
                           height: 82,
+                          width: 260,
                           child: Stack(
                             children: [
                               Positioned(
@@ -83,8 +84,8 @@ Future detailDialog(context, Item item, String id) => showDialog(
                                       item.getStatus(),
                                       textAlign: TextAlign.start,
                                       style: TextStyle(
-                                        fontSize: 28,
-                                        fontWeight: FontWeight.bold,
+                                        fontSize: 26,
+                                        fontWeight: FontWeight.w600,
                                         color: themeData.getPrimaryColor(
                                             viewModeController
                                                 .indexThemeData.value),
@@ -97,10 +98,9 @@ Future detailDialog(context, Item item, String id) => showDialog(
                               ),
                               Positioned(
                                 top: 50,
-                                child: Container(
-                                  width: 180,
-                                  padding: const EdgeInsets.only(
-                                      left: 20, right: 20),
+                                left: 20,
+                                child: SizedBox(
+                                  width: 160,
                                   child: Text(
                                     '${item.getTemperatureC()}°C',
                                     style: TextStyle(
@@ -116,10 +116,8 @@ Future detailDialog(context, Item item, String id) => showDialog(
                               Positioned(
                                 top: 56,
                                 left: 120,
-                                child: Container(
+                                child: SizedBox(
                                   width: 190,
-                                  padding: const EdgeInsets.only(
-                                      left: 10, right: 20),
                                   child: Text(
                                     '${item.getTemperatureF()}°F',
                                     style: TextStyle(

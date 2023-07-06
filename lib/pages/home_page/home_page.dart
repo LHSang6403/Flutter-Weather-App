@@ -23,12 +23,13 @@ SliderController sliderController = Get.find();
 
 class HomePage extends StatefulWidget {
   HomePage({Key? key});
+
   @override
   State<HomePage> createState() => _HomePageState();
 }
 
 class _HomePageState extends State<HomePage>
-    with AutomaticKeepAliveClientMixin {
+    with AutomaticKeepAliveClientMixin<HomePage> {
   @override
   void initState() {
     super.initState();
@@ -44,111 +45,105 @@ class _HomePageState extends State<HomePage>
   Widget build(BuildContext context) {
     super.build(context);
     return Obx(() => Scaffold(
-          backgroundColor: Colors.white.withOpacity(0.0),
-          appBar: AppBar(
-            title: Text(
-              'Home',
-              style: TextStyle(
-                  color: themeData.getSelectedButtonColor(
-                      viewModeController.indexThemeData.value),
-                  fontWeight: FontWeight.bold),
-            ),
-            backgroundColor: themeData
-                .getPrimaryColor(viewModeController.indexThemeData.value),
+        backgroundColor: Colors.white.withOpacity(0.0),
+        appBar: AppBar(
+          title: Text(
+            'Home',
+            style: TextStyle(
+                color: themeData.getSelectedButtonColor(
+                    viewModeController.indexThemeData.value),
+                fontWeight: FontWeight.bold),
           ),
-          body: RefreshIndicator(
-            key: refreshIndicatorKey,
-            color: Colors.white,
-            backgroundColor: Colors.blue,
-            strokeWidth: 4.0,
-            onRefresh: () async {
-              Data? newData = await refreshController.handleRefresh();
-              if (newData != null) {
-                refreshController.weatherData.value = newData;
-              }
-              refreshController.weatherData.value.printOut();
-              print(refreshController.needRefreshCities);
-            },
-            child: SingleChildScrollView(
-              child: Column(
+          backgroundColor: themeData
+              .getPrimaryColor(viewModeController.indexThemeData.value),
+        ),
+        body: RefreshIndicator(
+          key: refreshIndicatorKey,
+          color: themeData
+              .getSelectedButtonColor(viewModeController.indexThemeData.value),
+          backgroundColor: themeData
+              .getPrimaryColor(viewModeController.indexThemeData.value),
+          strokeWidth: 4.0,
+          onRefresh: () async {
+            Data? newData = await refreshController.handleRefresh();
+            if (newData != null) {
+              refreshController.weatherData.value = newData;
+            }
+            //refreshController.weatherData.value.printOut();
+            print(refreshController.needRefreshCities);
+          },
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              CarouselSlider(
+                items: currentLocationController
+                    .currentLocaltionsWeatherData.value.items
+                    .map((item) => CardSlider(
+                          item: item,
+                        ))
+                    .toList(),
+                options: CarouselOptions(
+                  height: 160,
+                  onPageChanged: (index, reason) {
+                    sliderController.slide();
+                  },
+                  autoPlay: true,
+                  autoPlayInterval: const Duration(seconds: 4),
+                ),
+              ),
+              Row(
+                // Dots indicator:
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  CarouselSlider(
-                    items: currentLocationController
-                        .currentLocaltionsWeatherData.value.items
-                        .map((item) => CardSlider(
-                              item: item,
-                            ))
-                        .toList(),
-                    options: CarouselOptions(
-                      height: 160,
-                      onPageChanged: (index, reason) {
-                        sliderController.slide();
-                      },
-                      autoPlay: true,
-                      autoPlayInterval: const Duration(seconds: 4),
+                  for (int i = 0; i < 4; i++)
+                    Container(
+                      height: 10,
+                      width: 10,
+                      margin: const EdgeInsets.all(5),
+                      decoration: BoxDecoration(
+                          color: sliderController.getValue() == i
+                              ? viewModeController.indexThemeData.value == 0
+                                  ? themeData.getPrimaryColor(
+                                      viewModeController.indexThemeData.value)
+                                  : themeData.getAccentColor(
+                                      viewModeController.indexThemeData.value)
+                              : Colors.white,
+                          shape: BoxShape.circle,
+                          border: Border.all(
+                              color: viewModeController.indexThemeData.value ==
+                                      0
+                                  ? themeData.getPrimaryColor(
+                                      viewModeController.indexThemeData.value)
+                                  : themeData
+                                      .getAccentColor(viewModeController
+                                          .indexThemeData.value)
+                                      .withOpacity(0.5))),
                     ),
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      for (int i = 0; i < 4; i++)
-                        Container(
-                          height: 10,
-                          width: 10,
-                          margin: const EdgeInsets.all(5),
-                          decoration: BoxDecoration(
-                              color: sliderController.getValue() == i
-                                  ? viewModeController.indexThemeData.value == 0
-                                      ? themeData.getPrimaryColor(
-                                          viewModeController
-                                              .indexThemeData.value)
-                                      : themeData.getAccentColor(
-                                          viewModeController
-                                              .indexThemeData.value)
-                                  : Colors.white,
-                              shape: BoxShape.circle,
-                              border: Border.all(
-                                  color: viewModeController
-                                              .indexThemeData.value ==
-                                          0
-                                      ? themeData.getPrimaryColor(
-                                          viewModeController
-                                              .indexThemeData.value)
-                                      : themeData
-                                          .getAccentColor(viewModeController
-                                              .indexThemeData.value)
-                                          .withOpacity(0.5))),
-                        ),
-                    ],
-                  ),
-                  viewModeController.viewModesCurrentIndex.value == 0
-                      ? listViewOption()
-                      : gridViewOption(),
                 ],
               ),
-            ),
+              Expanded(
+                  child: viewModeController.viewModesCurrentIndex.value == 0
+                      ? listViewOption()
+                      : gridViewOption()),
+            ],
           ),
-        ));
+        )));
   }
 
   Widget listViewOption() {
     return Obx(() {
       return SizedBox(
         height: 1000,
-        child: ListView(
-            physics: const NeverScrollableScrollPhysics(),
+        child: ListView.builder(
             shrinkWrap: true,
             padding:
                 const EdgeInsets.only(top: 8, bottom: 16, right: 16, left: 16),
-            children: [
-              Column(
-                children: refreshController.weatherData.value.items
-                    .map((item) => CardBody(
-                          item: item,
-                        ))
-                    .toList(),
-              ),
-            ]),
+            itemCount: refreshController.weatherData.value.items.length,
+            itemBuilder: (BuildContext context, int index) {
+              return CardBody(
+                item: refreshController.weatherData.value.items[index],
+              );
+            }),
       );
     });
   }
@@ -158,31 +153,28 @@ class _HomePageState extends State<HomePage>
       return Container(
           height: 620,
           padding: const EdgeInsets.all(12),
-          child: gridViewBuilder());
+          child: GridView.builder(
+            shrinkWrap: true,
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2,
+              childAspectRatio: 1,
+              mainAxisSpacing: 12,
+              crossAxisSpacing: 12,
+            ),
+            padding: const EdgeInsets.all(4),
+            itemCount: refreshController.weatherData.value.items.length,
+            itemBuilder: (context, index) {
+              return SquareBody(
+                item: refreshController.weatherData.value.items[index],
+                onLongPressFunc: () {
+                  handleOpenRemoveBottomSheet(
+                      refreshController.weatherData.value.items[index].getId());
+                },
+              );
+            },
+          ));
     });
   }
-
-  Widget gridViewBuilder() => GridView.builder(
-        shrinkWrap: true,
-        physics: const NeverScrollableScrollPhysics(),
-        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 2,
-          childAspectRatio: 1,
-          mainAxisSpacing: 12,
-          crossAxisSpacing: 12,
-        ),
-        padding: const EdgeInsets.all(4),
-        itemCount: refreshController.weatherData.value.items.length,
-        itemBuilder: (context, index) {
-          final item = refreshController.weatherData.value.items[index];
-          return SquareBody(
-            item: item,
-            onLongPressFunc: () {
-              handleOpenRemoveBottomSheet(item.getId());
-            },
-          );
-        },
-      );
 
   @override
   bool get wantKeepAlive => true;

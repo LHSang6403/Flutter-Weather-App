@@ -8,6 +8,7 @@ import 'package:untitled/pages/home_page/home_page.dart';
 
 class CardBody extends StatelessWidget {
   Item item;
+
   CardBody({
     Key? key,
     required this.item,
@@ -48,7 +49,8 @@ class CardBody extends StatelessWidget {
               decoration: BoxDecoration(
                 image: DecorationImage(
                   image: AssetImage(
-                      "./assets/images/background_imgs/img${item.getImgID()}.jpg"),
+                    "./assets/images/item_thumbnails/img${item.getImgID()}.jpg",
+                  ),
                   fit: BoxFit.fitWidth,
                   alignment: Alignment.bottomCenter,
                   colorFilter: ColorFilter.mode(
@@ -68,14 +70,14 @@ class CardBody extends StatelessWidget {
                     child: Stack(
                       children: [
                         Positioned(
-                            top: -4,
-                            left: -2,
+                            top: -2,
+                            left: 1,
                             child: Opacity(
                               opacity: 0.98,
                               child: Container(
                                 padding: const EdgeInsets.all(0),
-                                width: 80,
-                                height: 80,
+                                width: 76,
+                                height: 76,
                                 decoration: BoxDecoration(
                                   image: DecorationImage(
                                     image: AssetImage(
@@ -99,18 +101,16 @@ class CardBody extends StatelessWidget {
                           top: 38,
                           left: 104,
                           child: SizedBox(
-                            height: 20,
+                            height: 26,
                             width: 240,
-                            child: Expanded(
-                              child: Text(
-                                item.getStatus(),
-                                style: const TextStyle(
-                                    fontSize: 20,
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.w400),
-                                maxLines: 1,
-                                overflow: TextOverflow.ellipsis,
-                              ),
+                            child: Text(
+                              item.getStatus(),
+                              style: const TextStyle(
+                                  fontSize: 20,
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.w400),
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
                             ),
                           ),
                         ),

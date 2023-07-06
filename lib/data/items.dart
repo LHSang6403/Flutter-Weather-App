@@ -38,15 +38,25 @@ class Data {
       final localTime = weatherData['location']['localtime'];
       final lastUpdate = weatherData['current']['last_updated'];
 
-      var item = Item(condition, tempC, tempF, location,
-          country, localTime, lastUpdate);
+      var item = Item(
+          condition, tempC, tempF, location, country, localTime, lastUpdate);
       items.add(item);
     } catch (e) {
       print('Error: $e');
     }
   }
 
+  void add100Items() {
+    // for ui testing
+    for (var i = 0; i < 100; i++) {
+      var item = Item('conditionnnnnnnnnnnnnnnn', 37, 67, 'location', 'country',
+          'localTime', 'lastUpdate');
+      items.add(item);
+    }
+  }
+
   void printOut() {
+    print('-----');
     print('Lasted List:');
     for (var item in items) {
       print(item.getId());
@@ -58,6 +68,6 @@ class Data {
       print(item.getLocalTime());
       print(item.getLastUpdate());
     }
-    print('--');
+    print('-----');
   }
 }

@@ -7,8 +7,13 @@ class RefreshController extends GetxController {
   Rx<Data> weatherData = Data().obs;
   List<String> needRefreshCities = [];
 
+  RefreshController() {
+    weatherData.value.items = [];
+  }
+
   void addCity(String location) async {
     await weatherData.value.dataHandleAdd(location);
+    weatherData.refresh();
     loadToRefreshCities(location);
   }
 

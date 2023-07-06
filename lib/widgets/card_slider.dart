@@ -6,6 +6,7 @@ import 'package:untitled/pages/dialogs/detail_dialog.dart';
 
 class CardSlider extends StatelessWidget {
   Item item;
+
   CardSlider({
     Key? key,
     required this.item,
@@ -24,7 +25,7 @@ class CardSlider extends StatelessWidget {
           decoration: BoxDecoration(
             image: DecorationImage(
               image: AssetImage(
-                  "./assets/images/background_imgs/img${item.getImgID()}.jpg"),
+                  "./assets/images/item_thumbnails/img${item.getImgID()}.jpg"),
               fit: BoxFit.fitWidth,
               alignment: Alignment.bottomCenter,
               colorFilter: ColorFilter.mode(
@@ -38,10 +39,10 @@ class CardSlider extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const SizedBox(height: 30),
-                  Container(
-                    padding: const EdgeInsets.only(bottom: 0),
-                    child: Expanded(
+                  const SizedBox(height: 40),
+                  SizedBox(
+                    width: 240,
+                    child: Center(
                       child: Text(
                         item.getStatus(),
                         style: const TextStyle(
@@ -52,9 +53,6 @@ class CardSlider extends StatelessWidget {
                         overflow: TextOverflow.ellipsis,
                       ),
                     ),
-                  ),
-                  const SizedBox(
-                    width: 6,
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -86,7 +84,7 @@ class CardSlider extends StatelessWidget {
                         color: Colors.white,
                         fontWeight: FontWeight.w400),
                   ),
-                  const SizedBox(height: 20),
+                  const SizedBox(height: 22),
                 ]),
           )),
     );
