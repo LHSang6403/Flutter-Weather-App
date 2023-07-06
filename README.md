@@ -40,7 +40,7 @@ This is my first Flutter project.
       <img src="https://github.com/LHSang6403/Flutter-Weather-App/assets/88763282/1c3f6f09-3165-4457-a512-93de60b1c19f" alt="Image 9">
     </td>
     <td>
-      <img src="https://github.com/LHSang6403/Flutter-Weather-App/assets/88763282/31c24407-4237-49c6-929c2e4bd089cc76" alt="Image 10">
+      <img src="https://github.com/LHSang6403/Flutter-Weather-App/assets/88763282/c7e467ff-4366-4d21-9daf-e11a81f761d6" alt="Image 10">
     </td>
   </tr>
 </table>
