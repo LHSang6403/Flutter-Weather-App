@@ -14,6 +14,9 @@ Through my self-learning and the help form my mentor, I developed a weather app 
 - Slider
 - Eye catching images
 
+# Functions
+I hid my api key, so if you clone my project it's actually can't fetch data. You must you your api service.
+
 # Illustration
 
   <table>
