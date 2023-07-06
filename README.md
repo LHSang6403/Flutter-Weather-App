@@ -47,13 +47,13 @@ Through my self-learning and the help form my mentor, I developed a weather app 
       <img src="https://github.com/LHSang6403/Flutter-Weather-App/assets/88763282/7927b1be-98d9-4bb3-8fe1-f5cf0a7b55f0" alt="Image 5">
     </td>
     <td>
-      <img src="https://github.com/LHSang6403/Flutter-Weather-App/assets/88763282/30f9dc13-fd32-454f-a652-6194941291fb" alt="Image 6">
+      <img src="https://github.com/LHSang6403/Flutter-Weather-App/assets/88763282/33007716-59b6-4969-80c7-fde51c5b0de4" alt="Image 7">
     </td>
   </tr>
 
   <tr>
     <td>
-      <img src="https://github.com/LHSang6403/Flutter-Weather-App/assets/88763282/33007716-59b6-4969-80c7-fde51c5b0de4" alt="Image 7">
+      <img src="https://github.com/LHSang6403/Flutter-Weather-App/assets/88763282/30f9dc13-fd32-454f-a652-6194941291fb" alt="Image 6">
     </td>
     <td>
       <img src="https://github.com/LHSang6403/Flutter-Weather-App/assets/88763282/af5ec057-3436-4dc5-bb22-12e8a59b6dd7" alt="Image 8">
