@@ -15,7 +15,7 @@ Through my self-learning and the help form my mentor, I developed a weather app 
 - Eye catching images
 
 # Note
-I hid my api key, so if you clone my project it's actually can't fetch data. You must you your api service.
+I hid my api key by using .env variable, so if you clone my project it's actually can't fetch data. You must you your api service.
 
 # Illustration
 
