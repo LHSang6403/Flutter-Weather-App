@@ -1,5 +1,5 @@
 # About
-I am a CS computer science sophomore with a passion for technology and programming. I have developed a solid foundation in various programming languages and problem-solving skills. I am constantly seeking opportunities to expand my knowledge and gain practical experience in the field of computer science and software engineering.
+I am a computer science sophomore with a passion for technology and programming. I have developed a solid foundation in various programming languages and problem-solving skills. I am constantly seeking opportunities to expand my knowledge and gain practical experience in the field of computer science and software engineering.
 
 Through my self-learning and the help form my mentor, I developed a weather app as my first intern project, using flutter, which provides real-time weather information to users. The app displays the current temperature, weather conditions, and forecast for the upcoming days.
 
