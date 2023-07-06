@@ -48,13 +48,13 @@ I developed a weather app as my first intern project, using flutter, which provi
       <img src="https://github.com/LHSang6403/Flutter-Weather-App/assets/88763282/af5ec057-3436-4dc5-bb22-12e8a59b6dd7" alt="Image 8">
     </td>
   </tr>
-  
+
   <tr>
     <td>
       <img src="https://github.com/LHSang6403/Flutter-Weather-App/assets/88763282/1c3f6f09-3165-4457-a512-93de60b1c19f" alt="Image 9">
     </td>
     <td>
-      <img src="https://github.com/LHSang6403/Flutter-Weather-App/assets/88763282/c7e467ff-4366-4d21-9daf-e11a81f761d6" alt="Image 10">
+      <img src="https://github.com/LHSang6403/Flutter-Weather-App/assets/88763282/4b0100b1-7d8d-45d0-a249-2deedc78e237" alt="Image 10">
     </td>
   </tr>
 </table>
