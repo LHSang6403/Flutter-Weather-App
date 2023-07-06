@@ -1,7 +1,7 @@
 # About
 I am a computer science sophomore with a passion for technology and programming. I have developed a solid foundation in various programming languages and problem-solving skills. I am constantly seeking opportunities to expand my knowledge and gain practical experience in the field of computer science and software engineering.
 
-Through my self-learning and the help form my mentor, I developed a weather app as my first intern project, using flutter, which provides real-time weather information to users. The app displays the current temperature, weather conditions, and forecast for the upcoming days.
+Through my self-learning and the help form my mentor, I developed a weather app as my first intern project, using Flutter, which provides real-time weather information to users. The app displays the current temperature, weather conditions, and forecast for the upcoming days.
 
 # Functions
 - Multiple theme changing, it's also easy to add more themes by adding json objects
@@ -16,7 +16,7 @@ Through my self-learning and the help form my mentor, I developed a weather app 
 
 # Note
 - I hid my api key by using .env variable, so if you clone my project it's actually can't fetch data. You must you your api service
-- I only built on my iOS device, i will try on android platform if posible
+- I only built on my iOS device, i will try on Android platform if posible
 
 # Illustration
 
