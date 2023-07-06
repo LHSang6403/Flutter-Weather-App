@@ -1,12 +1,16 @@
 # Weather-App
-This is my first Flutter project.
+I developed a weather app as my first intern project, which provides real-time weather information to users. The app displays the current temperature, weather conditions, and forecast for the upcoming days.
 
 # Functions:
-- Build UI
-- Fetch API weather and render
-- Add location
-- Remove location
-- Theme changing
+- Multiple theme changing, it's also easy to add more themes by adding json objects
+- 2 types of view: list and grid
+- Scroll down to refresh api data 
+- Fetch api weather from a free service
+- Add, remove, manage your local wather
+- Speech recognition
+- Auto locate your curent destination
+- Slider
+- Eye catching images
 
   <table>
   <tr>
