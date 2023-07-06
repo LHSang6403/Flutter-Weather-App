@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:untitled/data/items.dart';
 import 'package:untitled/data/refresh_indicator_controller.dart';
-import 'package:untitled/current_locations/get_current_local_controller.dart';
+import 'package:untitled/utils/current_locations/get_current_local_controller.dart';
 import 'package:untitled/main.dart';
 import 'package:untitled/pages/bottom_sheets/modal_bottom_delete.dart';
 import 'package:untitled/pages/home_page/home_page_controller.dart';

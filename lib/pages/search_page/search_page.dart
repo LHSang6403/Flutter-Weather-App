@@ -12,7 +12,7 @@ import 'package:untitled/pages/dialogs/loading_dialog.dart';
 import 'package:untitled/pages/search_page/search_page_controller.dart';
 import 'package:untitled/pages/search_page/autocomplete_textfield_custom.dart';
 import 'package:untitled/pages/setting_page/setting_controller.dart';
-import 'package:untitled/pages/snackbars/snackbar.dart';
+import 'package:untitled/widgets/snackbars/snackbar.dart';
 
 List<String> suggestionList = [];
 final VoiceController voiceController = Get.put(VoiceController());

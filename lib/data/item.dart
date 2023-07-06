@@ -1,6 +1,6 @@
 // ignore_for_file: avoid_print
 
-import 'package:untitled/generate/generate_id.dart';
+import 'package:untitled/utils/generate_id.dart';
 
 class Item {
   late int _id;

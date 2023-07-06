@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'package:untitled/data/refresh_indicator_controller.dart';
-import 'package:untitled/current_locations/get_current_local_controller.dart';
+import 'package:untitled/utils/current_locations/get_current_local_controller.dart';
 import 'package:untitled/pages/home_page/home_page_controller.dart';
 import 'package:untitled/pages/search_page/search_page_controller.dart';
 import 'package:untitled/pages/setting_page/setting_controller.dart';

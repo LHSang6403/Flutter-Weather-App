@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import 'package:untitled/current_locations/get_current_local.dart';
+import 'package:untitled/utils/current_locations/get_current_local.dart';
 import 'package:untitled/data/items.dart';
 
 class CurrentLocationController extends GetxController {
