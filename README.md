@@ -8,7 +8,7 @@ Through my self-learning and the help form my mentor, I developed a weather app 
 - 2 types of view: list and grid
 - Scroll down to refresh api data 
 - Fetch api weather from a free service
-- Add, remove, manage your local wather
+- Add, remove, manage your local weather
 - Speech recognition
 - Auto locate your curent destination
 - Slider
