@@ -11,7 +11,8 @@ This is my first Flutter project.
 
 
 LHSang - Mobile Application Engineer Intern.
-![IMG_8473](https://github.com/LHSang6403/Flutter-Weather-App/assets/88763282/d98c4a78-8f58-4a1c-9f21-ed76a48857a8, width=50% height=50%)
+<img src="https://github.com/LHSang6403/Flutter-Weather-App/assets/88763282/d98c4a78-8f58-4a1c-9f21-ed76a48857a8" width="400">
+![IMG_8473](https://github.com/LHSang6403/Flutter-Weather-App/assets/88763282/d98c4a78-8f58-4a1c-9f21-ed76a48857a8)
 ![IMG_8474](https://github.com/LHSang6403/Flutter-Weather-App/assets/88763282/74d0ee21-e9f4-4644-955a-44086d6911e8)
 ![IMG_8475](https://github.com/LHSang6403/Flutter-Weather-App/assets/88763282/a667c9dc-74dd-4536-9ef7-e2d0447d836e)
 ![IMG_8476](https://github.com/LHSang6403/Flutter-Weather-App/assets/88763282/7927b1be-98d9-4bb3-8fe1-f5cf0a7b55f0)
