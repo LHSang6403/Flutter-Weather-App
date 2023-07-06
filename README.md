@@ -1,5 +1,5 @@
 # Weather-App
-I developed a weather app as my first intern project, which provides real-time weather information to users. The app displays the current temperature, weather conditions, and forecast for the upcoming days.
+I developed a weather app as my first intern project, using flutter, which provides real-time weather information to users. The app displays the current temperature, weather conditions, and forecast for the upcoming days.
 
 # Functions:
 - Multiple theme changing, it's also easy to add more themes by adding json objects
