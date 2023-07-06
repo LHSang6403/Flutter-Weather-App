@@ -26,6 +26,12 @@ Through my self-learning and the help form my mentor, I developed a weather app 
       <img src="https://github.com/LHSang6403/Flutter-Weather-App/assets/88763282/d98c4a78-8f58-4a1c-9f21-ed76a48857a8" alt="Image 1">
     </td>
     <td>
+      <img src="https://github.com/LHSang6403/Flutter-Weather-App/assets/88763282/c4fd2d52-a0b9-4bf1-b942-0b8a91912baa" alt="Image 1">
+    </td>
+    <td>
+      <img src="https://github.com/LHSang6403/Flutter-Weather-App/assets/88763282/3bd79f28-12bc-40dc-aa4a-966b7c72e19b" alt="Image 1">
+    </td>
+    <td>
       <img src="https://github.com/LHSang6403/Flutter-Weather-App/assets/88763282/c7e467ff-4366-4d21-9daf-e11a81f761d6" alt="Image 2">
     </td>
   </tr>
@@ -37,9 +43,6 @@ Through my self-learning and the help form my mentor, I developed a weather app 
     <td>
       <img src="https://github.com/LHSang6403/Flutter-Weather-App/assets/88763282/a667c9dc-74dd-4536-9ef7-e2d0447d836e" alt="Image 4">
     </td>
-  </tr>
-
-  <tr>
     <td>
       <img src="https://github.com/LHSang6403/Flutter-Weather-App/assets/88763282/7927b1be-98d9-4bb3-8fe1-f5cf0a7b55f0" alt="Image 5">
     </td>
@@ -55,9 +58,6 @@ Through my self-learning and the help form my mentor, I developed a weather app 
     <td>
       <img src="https://github.com/LHSang6403/Flutter-Weather-App/assets/88763282/af5ec057-3436-4dc5-bb22-12e8a59b6dd7" alt="Image 8">
     </td>
-  </tr>
-
-  <tr>
     <td>
       <img src="https://github.com/LHSang6403/Flutter-Weather-App/assets/88763282/1c3f6f09-3165-4457-a512-93de60b1c19f" alt="Image 9">
     </td>
