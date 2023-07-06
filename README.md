@@ -15,6 +15,7 @@ Through my self-learning and the help form my mentor, I developed a weather app 
 - Eye catching images
 
 # Note
+- I used free api provider, so it limited a figure for cities 
 - I only built on my iOS device, i will try on Android platform if posible
 
 # Illustration
