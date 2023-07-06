@@ -59,6 +59,4 @@ I developed a weather app as my first intern project, using flutter, which provi
   </tr>
 </table>
 
-
-LHSang - Mobile Developer Intern.
-
+Many thanks! I'm willing to receive your feedback.
